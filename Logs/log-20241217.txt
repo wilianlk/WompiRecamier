@@ -1,0 +1,13 @@
+2024-12-17 14:28:54.279 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:28:55.468 -05:00 [Information] Conexión exitosa a la base de datos.
+2024-12-17 14:28:58.382 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:28:58.387 -05:00 [Information] Conexión exitosa a la base de datos.
+2024-12-17 14:28:59.696 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:28:59.700 -05:00 [Information] Conexión exitosa a la base de datos.
+2024-12-17 14:29:00.578 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:29:00.582 -05:00 [Information] Conexión exitosa a la base de datos.
+2024-12-17 14:29:05.404 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:29:05.411 -05:00 [Information] Conexión exitosa a la base de datos.
+2024-12-17 14:29:11.073 -05:00 [Information] Request get:/api/validation/test-connection from IP ::1 has been blocked, quota 5/1m exceeded by 1. Blocked by rule GET:/api/validation/test-connection, TraceIdentifier 0HN8UQ4487PMC:00000013. MonitorMode: False
+2024-12-17 14:29:15.780 -05:00 [Information] Request get:/api/validation/test-connection from IP ::1 has been blocked, quota 5/1m exceeded by 2. Blocked by rule GET:/api/validation/test-connection, TraceIdentifier 0HN8UQ4487PMC:00000015. MonitorMode: False
+2024-12-17 14:29:16.676 -05:00 [Information] Request get:/api/validation/test-connection from IP ::1 has been blocked, quota 5/1m exceeded by 3. Blocked by rule GET:/api/validation/test-connection, TraceIdentifier 0HN8UQ4487PMC:00000017. MonitorMode: False

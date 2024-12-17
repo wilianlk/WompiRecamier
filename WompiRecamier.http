@@ -1,0 +1,6 @@
+@WompiRecamier_HostAddress = http://localhost:5158
+
+GET {{WompiRecamier_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
