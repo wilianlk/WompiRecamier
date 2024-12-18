@@ -6,22 +6,18 @@ namespace WompiRecamier.Services
     {
         private readonly string _connectionString;
 
-        // Constructor que recibe la configuración de la cadena de conexión
         public InformixService(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("InformixConnection");
         }
 
-        // Método para probar si la conexión a la base de datos es exitosa
         public bool TestConnection()
         {
             try
             {
-                // Crear y abrir la conexión
                 using var connection = new DB2Connection(_connectionString);
                 connection.Open();
 
-                // Verificar si la conexión está activa
                 if (connection.State == System.Data.ConnectionState.Open)
                 {
                     connection.Close();
@@ -31,7 +27,6 @@ namespace WompiRecamier.Services
             }
             catch (Exception ex)
             {
-                // Registrar el error en consola para debugging
                 Console.WriteLine($"Error al conectar a la base de datos: {ex.Message}");
                 return false;
             }

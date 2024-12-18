@@ -1,0 +1,59 @@
+2024-12-17 14:44:39.571 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:42.123 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:43.781 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:43.789 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:45.360 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:45.367 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:46.703 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:46.708 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:47.991 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:47.995 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:49.426 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:49.436 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:50.467 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:50.473 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:51.481 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:51.488 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:53.009 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:53.014 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:53.519 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:53.524 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:54.020 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:54.027 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:54.516 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:54.523 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:54.998 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:55.002 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:55.233 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:55.243 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:55.371 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:55.376 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:55.557 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:55.561 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:55.727 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:55.734 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:55.906 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:55.911 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:56.058 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:56.064 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:56.222 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:56.229 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:56.407 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:56.415 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:56.580 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:56.585 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:56.768 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:56.773 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:44:56.979 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:44:56.986 -05:00 [INF] Conexión exitosa a la base de datos.
+2024-12-17 14:45:24.799 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:45:25.619 -05:00 [Information] Conexión exitosa a la base de datos.
+2024-12-17 14:45:28.444 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:45:28.449 -05:00 [Information] Conexión exitosa a la base de datos.
+2024-12-17 14:45:30.163 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:45:30.174 -05:00 [Information] Conexión exitosa a la base de datos.
+2024-12-17 14:45:31.816 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:45:31.825 -05:00 [Information] Conexión exitosa a la base de datos.
+2024-12-17 14:45:35.048 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
+2024-12-17 14:45:35.052 -05:00 [Information] Conexión exitosa a la base de datos.
+2024-12-17 14:45:38.779 -05:00 [Information] Request get:/api/validation/test-connection from IP ::1 has been blocked, quota 5/1m exceeded by 1. Blocked by rule GET:/api/validation/test-connection, TraceIdentifier 0HN8UQDBN5V99:00000013. MonitorMode: False

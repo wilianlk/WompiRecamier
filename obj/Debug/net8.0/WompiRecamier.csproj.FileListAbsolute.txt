@@ -171,3 +171,12 @@ C:\Users\wlucumi\OneDrive - RECAMIER S.A\Documentos\william\proyectoWompi\WompiR
 C:\Users\wlucumi\OneDrive - RECAMIER S.A\Documentos\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\wlucumi\OneDrive - RECAMIER S.A\Documentos\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\AspNetCoreRateLimit.dll
 C:\Users\wlucumi\OneDrive - RECAMIER S.A\Documentos\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\wlucumi\OneDrive - RECAMIER S.A\Documentos\william\proyectoWompi\WompiRecamier\obj\Debug\net8.0\WompiRecamier.sourcelink.json
+C:\Users\wlucumi\OneDrive - RECAMIER S.A\Documentos\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\wlucumi\OneDrive - RECAMIER S.A\Documentos\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\wlucumi\OneDrive - RECAMIER S.A\Documentos\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\wlucumi\OneDrive - RECAMIER S.A\Documentos\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\wlucumi\OneDrive - RECAMIER S.A\Documentos\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\wlucumi\OneDrive - RECAMIER S.A\Documentos\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\wlucumi\OneDrive - RECAMIER S.A\Documentos\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\wlucumi\OneDrive - RECAMIER S.A\Documentos\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
