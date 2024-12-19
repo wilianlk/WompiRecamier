@@ -1,5 +1,6 @@
 using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
@@ -79,22 +80,43 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(@"C:\DataProtection-Keys"))
+    .SetApplicationName("WompiRecamier");
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(@"C:\DataProtection-Keys"))
+    .ProtectKeysWithDpapi()
+    .SetApplicationName("WompiRecamier");
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 // Middleware de Autenticación, Rate Limiting y Autorización
 app.UseAuthentication();
 app.UseIpRateLimiting();
 app.UseAuthorization();
 
+app.MapGet("/", () => Results.Ok("Bienvenido a la API WompiRecamier!"));
 app.MapControllers();
 
 try

@@ -1,2 +1,0 @@
-2024-12-17 16:13:28.379 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
-2024-12-17 16:13:31.025 -05:00 [INF] Conexión exitosa a la base de datos.
