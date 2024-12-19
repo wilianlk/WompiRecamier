@@ -83,10 +83,12 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(new DirectoryInfo(@"C:\DataProtection-Keys"))
     .SetApplicationName("WompiRecamier");
+
 builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(new DirectoryInfo(@"C:\DataProtection-Keys"))
     .ProtectKeysWithDpapi()
     .SetApplicationName("WompiRecamier");
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
