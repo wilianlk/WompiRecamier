@@ -1,0 +1,7 @@
+2025-01-02 17:49:57.107 -05:00 [INF] Iniciando búsqueda de pagos pendientes para la compañía RE y el cliente 1000478.
+2025-01-02 17:52:48.986 -05:00 [Information] Iniciando búsqueda de pagos pendientes para la compañía RE y el cliente 1000478.
+2025-01-02 17:53:34.379 -05:00 [Warning] No se encontraron pagos pendientes para el cliente 1000478 en la compañía RE.
+2025-01-02 17:53:57.814 -05:00 [Information] Iniciando búsqueda de pagos pendientes para la compañía RE y el cliente 1000478.
+2025-01-02 17:54:28.797 -05:00 [Warning] No se encontraron pagos pendientes para el cliente 1000478 en la compañía RE.
+2025-01-02 18:00:52.040 -05:00 [Information] Iniciando búsqueda de pagos pendientes para la compañía RE y el cliente 1000478.
+2025-01-02 23:01:25.814 -05:00 [Warning] No se encontraron pagos pendientes para el cliente 1000478 en la compañía RE.

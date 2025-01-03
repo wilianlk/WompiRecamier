@@ -1,21 +1,5 @@
 [
   {
-    "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_4",
-    "RelativePath": "",
-    "HttpMethod": "GET",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "WompiRecamier.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "api/Auth/login",
@@ -34,18 +18,29 @@
   {
     "ContainingType": "WompiRecamier.Controllers.ValidationController",
     "Method": "GetCustomerPayments",
-    "RelativePath": "api/Validation/customer-payments/{company}/{customer}",
+    "RelativePath": "api/Validation/customer-payments/{customer}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "company",
+        "Name": "customer",
         "Type": "System.String",
         "IsRequired": true
-      },
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WompiRecamier.Controllers.ValidationController",
+    "Method": "GetCustomerDetailsAsync",
+    "RelativePath": "api/Validation/get-customer-details/{resal}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "customer",
+        "Name": "resal",
         "Type": "System.String",
         "IsRequired": true
       }

@@ -1,0 +1,6 @@
+2025-01-03 13:14:24.597 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 10323591348
+2025-01-03 13:14:27.613 -05:00 [INF] Cliente encontrado: MAKEUP COSMETICOS D&Y, Teléfono: 3204926721
+2025-01-03 14:27:14.409 -05:00 [Information] Iniciando validación del cliente con resal: 123
+2025-01-03 14:27:17.467 -05:00 [Information] Cliente con resal 123 encontrado en la base de datos.
+2025-01-03 14:28:09.266 -05:00 [Information] Iniciando validación del cliente con resal: 123
+2025-01-03 14:28:09.466 -05:00 [Information] Cliente con resal 123 encontrado en la base de datos.

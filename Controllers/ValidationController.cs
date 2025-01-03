@@ -19,7 +19,7 @@ namespace WompiRecamier.Controllers
             _logger = logger;
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("test-connection")]
         public IActionResult TestDatabaseConnection()
         {
@@ -54,6 +54,7 @@ namespace WompiRecamier.Controllers
                     _logger.LogInformation($"Cliente con resal {resal} encontrado en la base de datos.");
                     return Ok(new
                     {
+                        Status = "Success",
                         Resal = resal,
                         Message = "El cliente existe en la base de datos."
                     });
@@ -63,6 +64,7 @@ namespace WompiRecamier.Controllers
                     _logger.LogWarning($"Cliente con resal {resal} no encontrado en la base de datos.");
                     return NotFound(new
                     {
+                        Status = "NotFound",
                         Resal = resal,
                         Message = "El cliente no existe en la base de datos."
                     });
@@ -71,44 +73,94 @@ namespace WompiRecamier.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error al validar el cliente con resal {resal}");
-                return StatusCode(500, "Ocurrió un error al validar el cliente.");
+                return StatusCode(500,new
+                {
+                    Status = "Error",
+                    Resal = resal,
+                    Message = "Ocurrió un error al validar el cliente."
+
+                });
             }
         }
 
-        // Endpoint para obtener pagos pendientes
-        [HttpGet("customer-payments/{company}/{customer}")]
-        public async Task<IActionResult> GetCustomerPayments(string company, string customer)
+        [HttpGet("get-customer-details/{resal}")]
+        public async Task<IActionResult> GetCustomerDetailsAsync(string resal)
         {
-            _logger.LogInformation($"Iniciando búsqueda de pagos pendientes para la compañía {company} y el cliente {customer}.");
+            _logger.LogInformation("Iniciando solicitud para obtener información del cliente con Resal: {Resal}", resal);
 
             try
             {
-                var payments = await _informixService.GetPendingPaymentsAsync(company, customer);
+                var customerDetails = await _informixService.GetCustomerDetailsAsync(resal);
 
-                if (payments.Any())
+                if (customerDetails == null)
                 {
-                    _logger.LogInformation($"Pagos pendientes encontrados para el cliente {customer} en la compañía {company}.");
-                    return Ok(new
-                    {
-                        Customer = customer,
-                        Message = "Facturas y pagos pendientes encontrados.",
-                        Data = payments
-                    });
-                }
-                else
-                {
-                    _logger.LogWarning($"No se encontraron pagos pendientes para el cliente {customer} en la compañía {company}.");
+                    _logger.LogWarning("No se encontró información del cliente para Resal: {Resal}", resal);
                     return NotFound(new
                     {
-                        Customer = customer,
-                        Message = "No se encontraron pagos pendientes para este cliente."
+                        Status = "NotFound",
+                        Resal = resal,
+                        Message = "No se encontró información del cliente."
                     });
                 }
+
+                _logger.LogInformation("Cliente encontrado: {CustomerName}, Teléfono: {Telephone}", customerDetails.Name, customerDetails.Telephone);
+                return Ok(new
+                {
+                    Status = "Success",
+                    Resal = resal,
+                    CustomerDetails = customerDetails,
+                    Message = "Información del cliente obtenida exitosamente."
+                });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error al obtener pagos pendientes para la compañía {company} y el cliente {customer}");
-                return StatusCode(500, "Ocurrió un error al obtener los pagos pendientes.");
+                _logger.LogError(ex, "Error al procesar la solicitud para Resal: {Resal}", resal);
+                return StatusCode(500, new
+                {
+                    Status = "Error",
+                    Resal = resal,
+                    Message = $"Error al procesar la solicitud: {ex.Message}"
+                });
+            }
+        }
+
+        [HttpGet("customer-payments/{customer}")]
+        public async Task<IActionResult> GetCustomerPayments(string customer)
+        {
+            try
+            {
+                // Validación básica de entradas
+                if (string.IsNullOrWhiteSpace(customer))
+                {
+                    return BadRequest("Los parámetros 'customer' son obligatorios.");
+                }
+
+                // Llama al método para obtener los detalles de pagos
+                var invoiceDetails = await _informixService.GetInvoiceDetailsAsync(customer);
+
+                // Si no hay resultados, devuelve un mensaje adecuado
+                if (invoiceDetails == null || !invoiceDetails.Any())
+                {
+                    return NotFound(new
+                    {
+                        Status = "NotFound",
+                        Customer = customer,
+                        Message = $"No se encontraron pagos para el cliente {customer}."
+                    });
+                }
+
+                // Devuelve los resultados en formato JSON
+                return Ok(invoiceDetails);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener pagos del cliente: {ex.Message}");
+                return StatusCode(500, new
+                {
+                    Status = "Error",
+                    Customer = customer,
+                    Message = "Ocurrió un error interno al procesar la solicitud."
+                });
             }
         }
     }

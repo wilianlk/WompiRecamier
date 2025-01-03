@@ -1,13 +1,18 @@
 using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Text;
 using WompiRecamier.Services;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    ContentRootPath = AppContext.BaseDirectory, // Establece la raíz del contenido según el directorio base
+    WebRootPath = Path.Combine(AppContext.BaseDirectory, "wwwroot") // Ruta explícita a wwwroot
+});
 
 // Configuración de Serilog
 Log.Logger = new LoggerConfiguration()
@@ -80,46 +85,80 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-builder.Services.AddDataProtection()
-    .PersistKeysToFileSystem(new DirectoryInfo(@"C:\DataProtection-Keys"))
-    .SetApplicationName("WompiRecamier");
 
 builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(new DirectoryInfo(@"C:\DataProtection-Keys"))
     .ProtectKeysWithDpapi()
     .SetApplicationName("WompiRecamier");
 
+// Configuración de CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", builder =>
+    options.AddPolicy("AllowSpecificOrigins", policy =>
     {
-        builder
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
+        policy.WithOrigins("http://192.168.20.30:8081", "http://localhost:3000") // Cambia por tus dominios permitidos
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
     });
 });
 
-
 var app = builder.Build();
 
-//if (app.Environment.IsDevelopment())
-//{
-    app.UseSwagger();
+// Middleware de Swagger
+app.UseSwagger();
+if (app.Environment.IsProduction())
+{
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "WompiRecamier API v1");
+        c.RoutePrefix = "swagger";
+    });
+}
+else
+{
     app.UseSwaggerUI();
-//}
+}
 
-//app.UseHttpsRedirection();
+// Middleware de CORS
+if (app.Environment.IsProduction())
+{
+    app.UseCors("AllowSpecificOrigins"); // En producción, permitir solo dominios específicos
+}
+else
+{
+    app.UseCors("AllowAll"); // En desarrollo, permitir cualquier origen
+}
 
-app.UseCors("AllowAll");
+// Middleware para servir el frontend
+app.UseDefaultFiles(); // Redirige automáticamente a index.html
+app.UseStaticFiles(new StaticFileOptions
+{
+    OnPrepareResponse = ctx =>
+    {
+        Console.WriteLine($"Sirviendo archivo estático: {ctx.File.PhysicalPath}");
+    }
+});
 
-// Middleware de Autenticación, Rate Limiting y Autorización
-app.UseAuthentication();
-app.UseIpRateLimiting();
-app.UseAuthorization();
-
-app.MapGet("/", () => Results.Ok("Bienvenido a la API WompiRecamier!"));
+// Mapear rutas de API
 app.MapControllers();
+
+// Redirección para React Router
+app.MapFallbackToFile("index.html");
+
+// Controlador de errores global
+app.UseExceptionHandler("/error");
+app.Map("/error", (HttpContext context) =>
+{
+    var exception = context.Features.Get<IExceptionHandlerFeature>()?.Error;
+    return Results.Problem(detail: exception?.Message, title: "Error interno del servidor");
+});
 
 try
 {

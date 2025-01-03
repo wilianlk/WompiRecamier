@@ -70,22 +70,14 @@
         }
       }
     },
-    "/api/Validation/customer-payments/{company}/{customer}": {
+    "/api/Validation/get-customer-details/{resal}": {
       "get": {
         "tags": [
           "Validation"
         ],
         "parameters": [
           {
-            "name": "company",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "customer",
+            "name": "resal",
             "in": "path",
             "required": true,
             "schema": {
@@ -100,10 +92,20 @@
         }
       }
     },
-    "/": {
+    "/api/Validation/customer-payments/{customer}": {
       "get": {
         "tags": [
-          "WompiRecamier"
+          "Validation"
+        ],
+        "parameters": [
+          {
+            "name": "customer",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {

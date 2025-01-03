@@ -1,3 +1,0 @@
-2024-12-19 14:50:23.195 -05:00 [WRN] No XML encryptor configured. Key {39794545-7fb9-4f05-87e3-965161283cf0} may be persisted to storage in unencrypted form.
-2024-12-19 15:41:09.160 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
-2024-12-19 15:41:12.569 -05:00 [Information] Conexión exitosa a la base de datos.
