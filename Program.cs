@@ -107,6 +107,13 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
+
+    options.AddPolicy("AllowAllOrigins", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
 
 var app = builder.Build();
@@ -129,11 +136,11 @@ else
 // Middleware de CORS
 if (app.Environment.IsProduction())
 {
-    app.UseCors("AllowSpecificOrigins"); // En producción, permitir solo dominios específicos
+    app.UseCors("AllowSpecificOrigins");
 }
 else
 {
-    app.UseCors("AllowAll"); // En desarrollo, permitir cualquier origen
+    app.UseCors("AllowAllOrigins"); // En desarrollo, permitir cualquier origen
 }
 
 // Middleware para servir el frontend

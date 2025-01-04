@@ -1,8 +1,0 @@
-2025-01-02 17:46:26.628 -05:00 [INF] Iniciando búsqueda de pagos pendientes para la compañía Re y el cliente 1000478.
-2025-01-02 17:46:29.030 -05:00 [WRN] No se encontraron pagos pendientes para el cliente 1000478 en la compañía Re.
-2025-01-02 17:46:32.569 -05:00 [INF] Iniciando búsqueda de pagos pendientes para la compañía Re y el cliente 1000478.
-2025-01-02 17:46:32.627 -05:00 [WRN] No se encontraron pagos pendientes para el cliente 1000478 en la compañía Re.
-2025-01-02 17:47:11.721 -05:00 [INF] Iniciando búsqueda de pagos pendientes para la compañía RE y el cliente 1000478.
-2025-01-02 17:47:42.675 -05:00 [WRN] No se encontraron pagos pendientes para el cliente 1000478 en la compañía RE.
-2025-01-02 17:48:39.304 -05:00 [INF] Iniciando búsqueda de pagos pendientes para la compañía RE y el cliente 1000478.
-2025-01-02 17:49:57.107 -05:00 [Information] Iniciando búsqueda de pagos pendientes para la compañía RE y el cliente 1000478.

@@ -1,4 +1,0 @@
-2025-01-03 12:42:13.909 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "123"
-2025-01-03 12:42:16.694 -05:00 [Information] Cliente encontrado: "JOKR COLOMBIA S.A.S                     ", Teléfono: ""
-2025-01-03 12:47:38.069 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "123"
-2025-01-03 12:47:38.388 -05:00 [Information] Cliente encontrado: "JOKR COLOMBIA S.A.S                     ", Teléfono: ""

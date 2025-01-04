@@ -129,7 +129,6 @@ namespace WompiRecamier.Controllers
         {
             try
             {
-                // Validación básica de entradas
                 if (string.IsNullOrWhiteSpace(customer))
                 {
                     return BadRequest("Los parámetros 'customer' son obligatorios.");
@@ -145,7 +144,7 @@ namespace WompiRecamier.Controllers
                     {
                         Status = "NotFound",
                         Customer = customer,
-                        Message = $"No se encontraron pagos para el cliente {customer}."
+                        Message = $"No se encontraron pagos para el cliente."
                     });
                 }
 
