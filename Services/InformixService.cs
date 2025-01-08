@@ -11,7 +11,6 @@ namespace WompiRecamier.Services
         {
             _connectionString = configuration.GetConnectionString("InformixConnection");
         }
-
         public bool TestConnection()
         {
             try
@@ -32,31 +31,47 @@ namespace WompiRecamier.Services
                 return false;
             }
         }
-
-        public async Task<bool> ValidateCustomerAsync(string resal)
+        public async Task<(bool Exists, string Status)> ValidateCustomerAsync(string resal)
         {
             try
             {
                 using var connection = new DB2Connection(_connectionString);
                 await connection.OpenAsync();
 
-                string query = @"
+                string validateQuery = @"
                     SELECT COUNT(1)
                     FROM custmain c
                     WHERE cm_cmpy = 'RE'
                     AND SUBSTR(c.cm_resal, 2, 15) = @resal
                     OR  SUBSTR(c.cm_cust, 2, 15) = @resal";
 
-                using var command = new DB2Command(query, connection);
-                command.Parameters.Add(new DB2Parameter("@resal", resal));
+                using var validateCommand = new DB2Command(validateQuery, connection);
+                validateCommand.Parameters.Add(new DB2Parameter("@resal", resal));
 
-                var result = await command.ExecuteScalarAsync();
-                return Convert.ToInt32(result) > 0;
+                var result = await validateCommand.ExecuteScalarAsync();
+                bool exists = Convert.ToInt32(result) > 0;
+
+                if (!exists)
+                    return (false, null);
+
+                string statusQuery = @"
+                    SELECT cwe_status_type
+                    FROM custmain_wompi_excepcion
+                    WHERE cwe_cmpy = 'RE'
+                    AND (SUBSTR(cwe_resal, 2, 15) = @resal 
+                    OR SUBSTR(cwe_cust, 2, 15) = @resal)";
+
+                using var statusCommand = new DB2Command(statusQuery, connection);
+                statusCommand.Parameters.Add(new DB2Parameter("@resal", resal));
+
+                var status = (string)(await statusCommand.ExecuteScalarAsync()) ?? "A";
+
+                return (true, status);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al ejecutar la consulta: {ex.Message}");
-                return false;
+                throw;
             }
         }
         public async Task<CustomerDetails> GetCustomerDetailsAsync(string resal)
@@ -94,7 +109,6 @@ namespace WompiRecamier.Services
                 return null;
             }
         }
-
         public async Task<List<PaymentInfo>> GetInvoiceDetailsAsync(string resal)
         {
             try

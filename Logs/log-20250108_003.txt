@@ -1,0 +1,6 @@
+2025-01-08 10:21:14.862 -05:00 [INF] Iniciando validación del cliente con resal: 10323591348
+2025-01-08 10:21:16.527 -05:00 [INF] Cliente con resal 10323591348 encontrado en la base de datos.
+2025-01-08 10:21:36.770 -05:00 [INF] Iniciando validación del cliente con resal: 103235913488
+2025-01-08 10:21:37.178 -05:00 [WRN] Cliente con resal 103235913488 no encontrado en la base de datos.
+2025-01-08 13:08:41.885 -05:00 [Information] Iniciando validación del cliente con resal: 10323591348
+2025-01-08 13:08:44.261 -05:00 [Information] Cliente con resal 10323591348 encontrado. Status: unknown

@@ -39,7 +39,6 @@ namespace WompiRecamier.Controllers
             }
         }
 
-        // Endpoint para validar si un cliente existe
         [HttpGet("validate-customer/{resal}")]
         public async Task<IActionResult> ValidateCustomer(string resal)
         {
@@ -47,38 +46,36 @@ namespace WompiRecamier.Controllers
 
             try
             {
-                bool exists = await _informixService.ValidateCustomerAsync(resal);
+                var (exists, status_type) = await _informixService.ValidateCustomerAsync(resal);
 
-                if (exists)
-                {
-                    _logger.LogInformation($"Cliente con resal {resal} encontrado en la base de datos.");
-                    return Ok(new
-                    {
-                        Status = "Success",
-                        Resal = resal,
-                        Message = "El cliente existe en la base de datos."
-                    });
-                }
-                else
+                if (!exists)
                 {
                     _logger.LogWarning($"Cliente con resal {resal} no encontrado en la base de datos.");
                     return NotFound(new
                     {
-                        Status = "NotFound",
-                        Resal = resal,
-                        Message = "El cliente no existe en la base de datos."
+                        status = "NotFound",
+                        resal = resal,
+                        message = "El cliente no existe en la base de datos."
                     });
                 }
+
+                _logger.LogInformation($"Cliente con resal {resal} encontrado. Status: {status_type}");
+                return Ok(new
+                {
+                    status = "Success",
+                    resal = resal,
+                    message = "El cliente existe en la base de datos.",
+                    customerStatus = status_type
+                });
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error al validar el cliente con resal {resal}");
-                return StatusCode(500,new
+                return StatusCode(500, new
                 {
-                    Status = "Error",
-                    Resal = resal,
-                    Message = "Ocurrió un error al validar el cliente."
-
+                    status = "Error",
+                    resal = resal,
+                    message = "Ocurrió un error al validar el cliente."
                 });
             }
         }
