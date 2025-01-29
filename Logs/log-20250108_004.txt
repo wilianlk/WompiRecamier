@@ -1,6 +1,0 @@
-2025-01-08 13:08:41.885 -05:00 [INF] Iniciando validación del cliente con resal: 10323591348
-2025-01-08 13:08:44.261 -05:00 [INF] Cliente con resal 10323591348 encontrado. Status: unknown
-2025-01-08 13:14:05.815 -05:00 [Information] Iniciando validación del cliente con resal: 10323591348
-2025-01-08 13:14:07.714 -05:00 [Information] Cliente con resal 10323591348 encontrado. Status: Automatico
-2025-01-08 13:16:48.012 -05:00 [Information] Iniciando validación del cliente con resal: 10323591348
-2025-01-08 13:16:48.318 -05:00 [Information] Cliente con resal 10323591348 encontrado. Status: M

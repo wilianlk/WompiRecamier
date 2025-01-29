@@ -1,7 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
+using Newtonsoft.Json.Linq;
+using System.Text.Json;
 using WompiRecamier.Services;
+using WompiRecamier.Models;
+using IBM.Data.Db2;
+using System.Globalization;
 
 namespace WompiRecamier.Controllers
 {
@@ -65,7 +71,7 @@ namespace WompiRecamier.Controllers
                     status = "Success",
                     resal = resal,
                     message = "El cliente existe en la base de datos.",
-                    customerStatus = status_type
+                    customerType = status_type
                 });
             }
             catch (Exception ex)
@@ -157,6 +163,54 @@ namespace WompiRecamier.Controllers
                     Customer = customer,
                     Message = "Ocurrió un error interno al procesar la solicitud."
                 });
+            }
+        }
+
+        [HttpPost("webhook")]
+        public async Task<IActionResult> Webhook([FromBody] JsonElement payload)
+        {
+            try
+            {
+                _logger.LogInformation("JSON recibido: {Payload}", payload.GetRawText());
+
+                var webhook = JsonSerializer.Deserialize<WompiWebhook>(
+                    payload.GetRawText(),
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
+                );
+
+                if (webhook?.Data?.Transaction?.Id == null || webhook.Data.Transaction.Status == null)
+                {
+                    _logger.LogWarning("Campos críticos faltantes en el webhook.");
+                    return BadRequest(new { status = "ValidationError", message = "Campos críticos faltantes en el webhook." });
+                }
+
+                var t = webhook.Data.Transaction;
+                _logger.LogInformation("Procesando transacción {TransactionId}, Estado: {Status}", t.Id, t.Status);
+
+                await _informixService.InsertTransferControlAsync(webhook);
+
+                switch (t.Status)
+                {
+                    case "APPROVED":
+                        _logger.LogInformation("Transacción aprobada: {Reference}", t.Reference);
+                        break;
+                    case "DECLINED":
+                        _logger.LogWarning("Transacción declinada: {Reference}", t.Reference);
+                        break;
+                    case "ERROR":
+                        _logger.LogError("Error en transacción: {Reference}, Mensaje {StatusMessage}", t.Reference, t.StatusMessage);
+                        break;
+                    default:
+                        _logger.LogWarning("Estado no manejado: {Status}", t.Status);
+                        return BadRequest(new { status = "UnhandledStatus", message = "Estado de transacción no soportado." });
+                }
+
+                return Ok(new { status = "Success", message = "Webhook procesado correctamente." });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al procesar el webhook.");
+                return StatusCode(500, new { status = "Error", message = "Error interno al procesar el webhook." });
             }
         }
     }

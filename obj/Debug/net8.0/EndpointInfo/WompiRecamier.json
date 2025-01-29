@@ -135,7 +135,7 @@
     "securitySchemes": {
       "Bearer": {
         "type": "http",
-        "description": "Autorización JWT usando el esquema Bearer. \r\n\r\n Introduzca el token en el siguiente formato: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'",
+        "description": "Autorizaci�n JWT usando el esquema Bearer. \r\n\r\n Introduzca el token en el siguiente formato: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'",
         "scheme": "Bearer"
       }
     }

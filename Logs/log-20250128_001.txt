@@ -1,0 +1,50 @@
+2025-01-28 16:17:22.637 -05:00 [INF] JSON recibido: {
+  "event": "transaction.updated",
+  "data": {
+    "transaction": {
+      "id": "1126070-1738092883-43718",
+      "created_at": "2025-01-28T19:34:43.138Z",
+      "finalized_at": "2025-01-28T19:34:45.106Z",
+      "amount_in_cents": 194487900,
+      "reference": "PEDIDO-2714598-1738092862375-5791",
+      "customer_email": "prueba@correo.com",
+      "currency": "COP",
+      "payment_method_type": "NEQUI",
+      "payment_method": {
+        "type": "NEQUI",
+        "extra": {
+          "is_three_ds": false,
+          "transaction_id": "SANDBOX-17380928850anLYH",
+          "three_ds_auth_type": null,
+          "external_identifier": "1738092885sv5DSr"
+        },
+        "phone_number": "3991111111"
+      },
+      "status": "APPROVED",
+      "status_message": null,
+      "shipping_address": null,
+      "redirect_url": "https://transaction-redirect.wompi.co/check",
+      "payment_source_id": null,
+      "payment_link_id": null,
+      "customer_data": {
+        "device_id": "1ba349edb455f8ce1348cae7d278a9fd",
+        "full_name": "MAKEUP COSMETICOS D\u0026Y",
+        "phone_number": "573991111111"
+      },
+      "billing_data": null
+    }
+  },
+  "sent_at": "2025-01-28T19:34:45.262Z",
+  "timestamp": 1738092885,
+  "signature": {
+    "checksum": "2df7941a79dd7d85d0d06c90dcfe5afc9f91a72e5783fffcfdfcf2094ab0e76b",
+    "properties": [
+      "transaction.id",
+      "transaction.status",
+      "transaction.amount_in_cents"
+    ]
+  },
+  "environment": "test"
+}
+2025-01-28 16:17:22.694 -05:00 [INF] Procesando transacción ID: 1126070-1738092883-43718, Estado: APPROVED
+2025-01-28 16:17:22.697 -05:00 [INF] Transacción aprobada: Referencia PEDIDO-2714598-1738092862375-5791

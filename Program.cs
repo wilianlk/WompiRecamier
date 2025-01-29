@@ -10,11 +10,11 @@ using WompiRecamier.Services;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
-    ContentRootPath = AppContext.BaseDirectory, // Establece la raíz del contenido según el directorio base
-    WebRootPath = Path.Combine(AppContext.BaseDirectory, "wwwroot") // Ruta explícita a wwwroot
+    ContentRootPath = AppContext.BaseDirectory, // Establece la raï¿½z del contenido segï¿½n el directorio base
+    WebRootPath = Path.Combine(AppContext.BaseDirectory, "wwwroot") // Ruta explï¿½cita a wwwroot
 });
 
-// Configuración de Serilog
+// Configuraciï¿½n de Serilog
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .WriteTo.Console()
@@ -23,7 +23,7 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-// Configuración JWT
+// Configuraciï¿½n JWT
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
 
@@ -46,7 +46,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// Configuración de Rate Limiting
+// Configuraciï¿½n de Rate Limiting
 builder.Services.AddOptions();
 builder.Services.AddMemoryCache();
 builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
@@ -57,13 +57,13 @@ builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>()
 builder.Services.AddControllers();
 builder.Services.AddSingleton<InformixService>();
 
-// Configuración de Swagger con Autenticación JWT
+// Configuraciï¿½n de Swagger con Autenticaciï¿½n JWT
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = "Autorización JWT usando el esquema Bearer. \r\n\r\n Introduzca el token en el siguiente formato: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'",
+        Description = "Autorizaciï¿½n JWT usando el esquema Bearer. \r\n\r\n Introduzca el token en el siguiente formato: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'",
         Name = "Authorization",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.Http,
@@ -91,7 +91,7 @@ builder.Services.AddDataProtection()
     .ProtectKeysWithDpapi()
     .SetApplicationName("WompiRecamier");
 
-// Configuración de CORS
+// Configuraciï¿½n de CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins", policy =>
@@ -144,19 +144,19 @@ else
 }
 
 // Middleware para servir el frontend
-app.UseDefaultFiles(); // Redirige automáticamente a index.html
+app.UseDefaultFiles(); // Redirige automï¿½ticamente a index.html
 app.UseStaticFiles(new StaticFileOptions
 {
     OnPrepareResponse = ctx =>
     {
-        Console.WriteLine($"Sirviendo archivo estático: {ctx.File.PhysicalPath}");
+        Console.WriteLine($"Sirviendo archivo estï¿½tico: {ctx.File.PhysicalPath}");
     }
 });
 
 // Mapear rutas de API
 app.MapControllers();
 
-// Redirección para React Router
+// Redirecciï¿½n para React Router
 app.MapFallbackToFile("index.html");
 
 // Controlador de errores global
@@ -173,7 +173,7 @@ try
 }
 catch (Exception ex)
 {
-    Log.Fatal(ex, "La aplicación falló al iniciar.");
+    Log.Fatal(ex, "La aplicaciï¿½n fallï¿½ al iniciar.");
 }
 finally
 {
