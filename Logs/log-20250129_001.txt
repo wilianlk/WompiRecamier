@@ -48,3 +48,39 @@
 }
 2025-01-29 08:53:40.413 -05:00 [INF] Procesando transacción 1126070-1738092883-43718, Estado: APPROVED
 2025-01-29 08:53:41.858 -05:00 [INF] Transacción aprobada: PEDIDO-2714598-1738092862375-5791
+2025-01-29 09:21:54.912 -05:00 [Information] Iniciando validación del cliente con resal: 9003300530
+2025-01-29 09:21:56.628 -05:00 [Information] Cliente con resal 9003300530 encontrado. Status: A
+2025-01-29 09:21:56.652 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "9003300530"
+2025-01-29 09:21:56.891 -05:00 [Information] Cliente encontrado: "DEPOSITO DE MEDICAMENTOS EMES S.A.S", Teléfono: "3104474304"
+2025-01-29 09:28:12.631 -05:00 [Information] Iniciando validación del cliente con resal: 79744933
+2025-01-29 09:28:12.930 -05:00 [Information] Cliente con resal 79744933 encontrado. Status: M
+2025-01-29 09:28:12.944 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "79744933"
+2025-01-29 09:28:13.029 -05:00 [Information] Cliente encontrado: "LOS MONOS DUQUE", Teléfono: "3162417398"
+2025-01-29 09:31:05.924 -05:00 [Information] Iniciando validación del cliente con resal: 79744933
+2025-01-29 09:31:06.222 -05:00 [Information] Cliente con resal 79744933 encontrado. Status: M
+2025-01-29 09:31:06.229 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "79744933"
+2025-01-29 09:31:06.315 -05:00 [Information] Cliente encontrado: "LOS MONOS DUQUE", Teléfono: "3162417398"
+2025-01-29 09:31:11.042 -05:00 [Information] Iniciando validación del cliente con resal: 9003300530
+2025-01-29 09:31:11.343 -05:00 [Information] Cliente con resal 9003300530 encontrado. Status: A
+2025-01-29 09:31:11.351 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "9003300530"
+2025-01-29 09:31:11.586 -05:00 [Information] Cliente encontrado: "DEPOSITO DE MEDICAMENTOS EMES S.A.S", Teléfono: "3104474304"
+2025-01-29 09:34:50.586 -05:00 [Information] Iniciando validación del cliente con resal: 10323591348
+2025-01-29 09:34:50.892 -05:00 [Information] Cliente con resal 10323591348 encontrado. Status: A
+2025-01-29 09:34:50.908 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "10323591348"
+2025-01-29 09:34:51.006 -05:00 [Information] Cliente encontrado: "MAKEUP COSMETICOS D&Y", Teléfono: "3204926721"
+2025-01-29 10:33:56.078 -05:00 [Information] Iniciando validación del cliente con resal: 10323591348
+2025-01-29 10:33:56.396 -05:00 [Information] Cliente con resal 10323591348 encontrado. Status: A
+2025-01-29 10:33:56.410 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "10323591348"
+2025-01-29 10:33:56.510 -05:00 [Information] Cliente encontrado: "MAKEUP COSMETICOS D&Y", Teléfono: "3204926721"
+2025-01-29 10:46:36.655 -05:00 [Information] Iniciando validación del cliente con resal: 10323591348
+2025-01-29 10:46:36.960 -05:00 [Information] Cliente con resal 10323591348 encontrado. Status: A
+2025-01-29 10:46:36.970 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "10323591348"
+2025-01-29 10:46:37.065 -05:00 [Information] Cliente encontrado: "MAKEUP COSMETICOS D&Y", Teléfono: "3204926721"
+2025-01-29 11:49:51.784 -05:00 [Information] Iniciando validación del cliente con resal: 10323591348
+2025-01-29 11:49:52.117 -05:00 [Information] Cliente con resal 10323591348 encontrado. Status: A
+2025-01-29 11:49:52.135 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "10323591348"
+2025-01-29 11:49:52.240 -05:00 [Information] Cliente encontrado: "MAKEUP COSMETICOS D&Y", Teléfono: "3204926721"
+2025-01-29 11:59:40.210 -05:00 [Information] Iniciando validación del cliente con resal: 10323591348
+2025-01-29 11:59:40.562 -05:00 [Information] Cliente con resal 10323591348 encontrado. Status: A
+2025-01-29 11:59:40.577 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "10323591348"
+2025-01-29 11:59:40.728 -05:00 [Information] Cliente encontrado: "MAKEUP COSMETICOS D&Y", Teléfono: "3204926721"

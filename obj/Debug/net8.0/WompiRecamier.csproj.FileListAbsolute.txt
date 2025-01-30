@@ -473,3 +473,17 @@ C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Pub
 C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\wwwroot\manifest.json
 C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\WompiRecamier.deps.json
 C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\WompiRecamier.runtimeconfig.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\web.config
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\appsettings.Development.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\appsettings.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\wwwroot\asset-manifest.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\wwwroot\manifest.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\WompiRecamier.deps.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\WompiRecamier.runtimeconfig.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\web.config
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\appsettings.Development.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\appsettings.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\wwwroot\asset-manifest.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\wwwroot\manifest.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\WompiRecamier.deps.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Debug\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\WompiRecamier.runtimeconfig.json
