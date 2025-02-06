@@ -216,77 +216,118 @@ namespace WompiRecamier.Services
                 throw new ArgumentNullException(nameof(webhook), "webhook o transaction nulos");
 
             var t = webhook.Data.Transaction;
+            string reference = t.Reference ?? "";
+
+            List<string> invoiceList = new List<string>();
+            string customerIdFromReference = string.Empty;
+
+            if (reference.StartsWith("NIT-"))
+            {
+
+                var tokens = reference.Split('-');
+
+                if (tokens.Length >= 4 && tokens[2] == "FAV")
+                {
+                    customerIdFromReference = tokens[1];
+                    invoiceList.AddRange(tokens.Skip(3));
+                }
+                else
+                {
+                    invoiceList.Add(reference);
+                }
+            }
+            else
+            {
+                invoiceList.Add(reference);
+            }
 
             string sql = @"
-                INSERT INTO control_transferencias (
-                    ctr_cliente_nit,
-                    ctr_cliente_cedula,
-                    ctr_pago_fecha,
-                    ctr_pago_estado,
-                    ctr_factura_valor,
-                    ctr_factura_numero,
-                    ctr_transaccion_numero,
-                    ctr_pago_franquicia,
-                    ctr_usuario_nombre,
-                    ctr_cliente_correo,
-                    ctr_pago_marca,
-                    ctr_pago_descuento,
-                    ctr_registro_usuario,
-                    ctr_enter,
-                    ctr_entry_date,
-                    ctr_entry_time
-                )
-                VALUES (
-                    @Nit,
-                    @Cedula,
-                    @Fecha,
-                    @Estado,
-                    @Valor,
-                    @Factura,
-                    @Transaccion,
-                    @Franquicia,
-                    @Usuario,
-                    @Correo,
-                    @Marca,
-                    @Descuento,
-                    @RegistroUsuario,
-                    @Enter,
-                    @EntryDate,
-                    @EntryTime
-                )
-            ";
+            INSERT INTO control_transferencias (
+                ctr_cliente_nit,
+                ctr_pago_fecha,
+                ctr_pago_estado,
+                ctr_factura_valor,
+                ctr_factura_numero,
+                ctr_transaccion_numero,
+                ctr_pago_franquicia,
+                ctr_usuario_nombre,
+                ctr_cliente_correo,
+                ctr_pago_marca,
+                ctr_pago_descuento,
+                ctr_registro_usuario,
+                ctr_enter,
+                ctr_entry_date,
+                ctr_entry_time
+            )
+            VALUES (
+                @Nit,
+                @Fecha,
+                @Estado,
+                @Valor,
+                @Factura,
+                @Transaccion,
+                @Franquicia,
+                @Usuario,
+                @Correo,
+                @Marca,
+                @Descuento,
+                @RegistroUsuario,
+                @Enter,
+                @EntryDate,
+                @EntryTime
+            )
+        ";
 
             DateTime fechaPago;
             if (!DateTime.TryParse(t.FinalizedAt, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out fechaPago))
                 fechaPago = DateTime.Now;
 
-            decimal valor = t.AmountInCents / 100m;
+            decimal defaultValor = t.AmountInCents / 100m;
             string entryTime = DateTime.Now.ToString("HH:mm:ss");
 
             using var connection = new DB2Connection(_connectionString);
             await connection.OpenAsync();
 
-            using var cmd = new DB2Command(sql, connection);
+            foreach (var invoiceToken in invoiceList)
+            { 
 
-            // Aquí ajustas cada parámetro sin usar AddWithValue:
-            cmd.Parameters.Add("@Nit", DB2Type.VarChar).Value = "NIT_QUEMADO";
-            cmd.Parameters.Add("@Cedula", DB2Type.VarChar).Value = "CEDULA_QUEMADA";
-            cmd.Parameters.Add("@Fecha", DB2Type.DateTime).Value = fechaPago;
-            cmd.Parameters.Add("@Estado", DB2Type.VarChar).Value = t.Status ?? "";
-            cmd.Parameters.Add("@Valor", DB2Type.Decimal).Value = valor;
-            cmd.Parameters.Add("@Factura", DB2Type.VarChar).Value = t.Reference ?? "";
-            cmd.Parameters.Add("@Transaccion", DB2Type.VarChar).Value = t.Id ?? "";
-            cmd.Parameters.Add("@Franquicia", DB2Type.VarChar).Value = t.PaymentMethodType ?? "";
-            cmd.Parameters.Add("@Usuario", DB2Type.VarChar).Value = t.CustomerData?.FullName ?? "";
-            cmd.Parameters.Add("@Correo", DB2Type.VarChar).Value = t.CustomerEmail ?? "";
-            cmd.Parameters.Add("@Marca", DB2Type.VarChar).Value = t.PaymentMethod?.Type ?? "";
-            cmd.Parameters.Add("@Descuento", DB2Type.Decimal).Value = 0m;
-            cmd.Parameters.Add("@RegistroUsuario", DB2Type.VarChar).Value = "SYS";
-            cmd.Parameters.Add("@Enter", DB2Type.VarChar).Value = "";
-            cmd.Parameters.Add("@EntryDate", DB2Type.Date).Value = DateTime.Now.Date;
-            cmd.Parameters.Add("@EntryTime", DB2Type.VarChar).Value = entryTime;
+                string invoiceNumber = invoiceToken;
+                decimal invoiceValue = defaultValor;
 
-            await cmd.ExecuteNonQueryAsync();
+                if (invoiceToken.Contains("_"))
+                {
+                    var parts = invoiceToken.Split('_');
+                    if (parts.Length == 2)
+                    {
+                        invoiceNumber = parts[0];
+                        if (decimal.TryParse(parts[1], out decimal parsedValue))
+                        {
+                            invoiceValue = parsedValue;
+                        }
+                    }
+                }
+
+                using var cmd = new DB2Command(sql, connection);
+
+                cmd.Parameters.Add("@Nit", DB2Type.VarChar).Value =
+                    !string.IsNullOrEmpty(customerIdFromReference) ? customerIdFromReference : "NIT_QUEMADO";
+                cmd.Parameters.Add("@Fecha", DB2Type.DateTime).Value = fechaPago;
+                cmd.Parameters.Add("@Estado", DB2Type.VarChar).Value = t.Status ?? "";
+                cmd.Parameters.Add("@Valor", DB2Type.Decimal).Value = invoiceValue;
+                cmd.Parameters.Add("@Factura", DB2Type.VarChar).Value = invoiceNumber;
+                cmd.Parameters.Add("@Transaccion", DB2Type.VarChar).Value = t.Id ?? "";
+                cmd.Parameters.Add("@Franquicia", DB2Type.VarChar).Value = t.PaymentMethodType ?? "";
+                cmd.Parameters.Add("@Usuario", DB2Type.VarChar).Value = t.CustomerData?.FullName ?? "";
+                cmd.Parameters.Add("@Correo", DB2Type.VarChar).Value = t.CustomerEmail ?? "";
+                cmd.Parameters.Add("@Marca", DB2Type.VarChar).Value = t.PaymentMethod?.Type ?? "";
+                cmd.Parameters.Add("@Descuento", DB2Type.Decimal).Value = 0m;
+                cmd.Parameters.Add("@RegistroUsuario", DB2Type.VarChar).Value = "SYS";
+                cmd.Parameters.Add("@Enter", DB2Type.VarChar).Value = "";
+                cmd.Parameters.Add("@EntryDate", DB2Type.Date).Value = DateTime.Now.Date;
+                cmd.Parameters.Add("@EntryTime", DB2Type.VarChar).Value = entryTime;
+
+                await cmd.ExecuteNonQueryAsync();
+            }
         }
     }
 }

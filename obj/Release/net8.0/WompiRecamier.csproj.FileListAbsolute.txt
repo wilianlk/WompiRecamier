@@ -427,3 +427,7 @@ C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Release\net8.0\Publicacion\P
 C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Release\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\wwwroot\manifest.json
 C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Release\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\WompiRecamier.deps.json
 C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Release\net8.0\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\Publicacion\WompiRecamier.runtimeconfig.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\bin\Release\net8.0\WompiRecamier.staticwebassets.endpoints.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\staticwebassets.build.endpoints.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\staticwebassets\msbuild.WompiRecamier.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\staticwebassets.upToDateCheck.txt

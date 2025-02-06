@@ -113,6 +113,31 @@
           }
         }
       }
+    },
+    "/api/Validation/webhook": {
+      "post": {
+        "tags": [
+          "Validation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
     }
   },
   "components": {

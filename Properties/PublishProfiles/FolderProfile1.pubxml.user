@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\RECAMIER\william\proyectoWompi\WompiRecamier\Publicacion</_PublishTargetUrl>
-    <History>True|2025-01-29T17:02:16.6137794Z;True|2025-01-29T12:01:50.9734631-05:00;True|2025-01-28T15:51:09.5150798-05:00;True|2025-01-28T15:39:41.6134838-05:00;True|2025-01-28T15:12:41.9084196-05:00;True|2025-01-28T14:30:05.6338726-05:00;True|2025-01-28T14:04:04.5314213-05:00;</History>
+    <History>True|2025-02-06T15:44:49.0611841Z||;True|2025-01-29T12:02:16.6137794-05:00||;True|2025-01-29T12:01:50.9734631-05:00||;True|2025-01-28T15:51:09.5150798-05:00||;True|2025-01-28T15:39:41.6134838-05:00||;True|2025-01-28T15:12:41.9084196-05:00||;True|2025-01-28T14:30:05.6338726-05:00||;True|2025-01-28T14:04:04.5314213-05:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

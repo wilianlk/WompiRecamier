@@ -187,6 +187,7 @@ namespace WompiRecamier.Controllers
                 var t = webhook.Data.Transaction;
                 _logger.LogInformation("Procesando transacción {TransactionId}, Estado: {Status}", t.Id, t.Status);
 
+                // Se llama al servicio modificado que registra cada factura de forma independiente
                 await _informixService.InsertTransferControlAsync(webhook);
 
                 switch (t.Status)

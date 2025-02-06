@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "iAWwYL0Z3Ew73x7FlSF9piA1XKxW4UxRLXADtmuIGKY=",
+  "Hash": "FFBIlL+frnymGPfg49tMy793r/qfn5dbSa25/RBwQ+8=",
   "Source": "WompiRecamier",
   "BasePath": "_content/WompiRecamier",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }
