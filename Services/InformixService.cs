@@ -119,7 +119,7 @@ namespace WompiRecamier.Services
 
                 // Paso 1: Consulta para obtener el valor de cm_cust
                 string getCustomerCodeQuery = @"
-                SELECT SUBSTR(cm_cust, 2, 15) AS cm_cust
+                SELECT cm_cust
                 FROM custmain c
                 WHERE c.cm_cmpy = 'RE'
                   AND (SUBSTR(c.cm_cust, 2, 15) = @resal 
@@ -153,7 +153,7 @@ namespace WompiRecamier.Services
                 FROM invhead
                 JOIN xinvhead ON xin_num = in_num AND xin_cmpy = in_cmpy
                 WHERE in_cmpy = 'RE'
-                  AND SUBSTR(in_cust, 2, 15) = @CustomerCode
+                  AND in_cust = @CustomerCode
                   AND in_amt > in_paid
                   AND in_post != 'V'
                   AND xin_mont > xin_paga
@@ -173,15 +173,20 @@ namespace WompiRecamier.Services
                     var invoiceNumber = baseReader["in_num"].ToString();
                     var netValue = Convert.ToDecimal(baseReader["valor_neto"]);
                     var invoiceDate = Convert.ToDateTime(baseReader["in_date"]);
+                    var currentDate = DateTime.Now;
+                    var receiptDate = currentDate.ToString("yyyy-MM-dd");
+                    var checkDate = currentDate.ToString("MM/dd/yyyy");
 
                     // Segunda consulta para calcular el descuento
                     string derivedQuery = @"
-                    SELECT COALESCE(llamar_proc_reglasprontopago('RE', @InvoiceNumber, '2024-12-17', @NetValue, 0, '12/17/2024', 'V'), 0) AS DiscountResult
+                    SELECT COALESCE(proc_reglasprontopago('RE', @InvoiceNumber, @ReceiptDate, @NetValue, 0, @CheckDate, 'V'), 0) AS DiscountResult
                     ";
 
                     using var derivedCommand = new DB2Command(derivedQuery, connection);
                     derivedCommand.Parameters.Add(new DB2Parameter("@InvoiceNumber", invoiceNumber));
+                    derivedCommand.Parameters.Add(new DB2Parameter("@ReceiptDate", receiptDate));
                     derivedCommand.Parameters.Add(new DB2Parameter("@NetValue", netValue));
+                    derivedCommand.Parameters.Add(new DB2Parameter("@CheckDate", checkDate));
 
                     var discountResult = 0m;
                     using var derivedReader = await derivedCommand.ExecuteReaderAsync();
@@ -209,7 +214,6 @@ namespace WompiRecamier.Services
                 return new List<PaymentInfo>();
             }
         }
-
         public async Task InsertTransferControlAsync(WompiWebhook webhook)
         {
             if (webhook?.Data?.Transaction == null)

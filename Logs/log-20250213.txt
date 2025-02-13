@@ -1,0 +1,6 @@
+2025-02-13 08:31:11.788 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
+2025-02-13 08:31:11.820 -05:00 [Information] Conexión exitosa a la base de datos.
+2025-02-13 08:31:50.006 -05:00 [Information] Iniciando validación del cliente con resal: 9003300530
+2025-02-13 08:31:50.228 -05:00 [Information] Cliente con resal 9003300530 encontrado. Status: A
+2025-02-13 08:32:04.168 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "9003300530"
+2025-02-13 08:32:04.392 -05:00 [Information] Cliente encontrado: "DEPOSITO DE MEDICAMENTOS EMES S.A.S", Teléfono: "3104474304"

@@ -1,0 +1,14 @@
+2025-02-13 08:31:11.788 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2025-02-13 08:31:11.820 -05:00 [INF] Conexión exitosa a la base de datos.
+2025-02-13 08:31:50.006 -05:00 [INF] Iniciando validación del cliente con resal: 9003300530
+2025-02-13 08:31:50.228 -05:00 [INF] Cliente con resal 9003300530 encontrado. Status: A
+2025-02-13 08:32:04.168 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 9003300530
+2025-02-13 08:32:04.392 -05:00 [INF] Cliente encontrado: DEPOSITO DE MEDICAMENTOS EMES S.A.S, Teléfono: 3104474304
+2025-02-13 08:44:13.494 -05:00 [Information] Iniciando validación del cliente con resal: 9003300530
+2025-02-13 08:44:13.810 -05:00 [Information] Cliente con resal 9003300530 encontrado. Status: A
+2025-02-13 08:44:13.826 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "9003300530"
+2025-02-13 08:44:14.055 -05:00 [Information] Cliente encontrado: "DEPOSITO DE MEDICAMENTOS EMES S.A.S", Teléfono: "3104474304"
+2025-02-13 08:47:03.927 -05:00 [Information] Iniciando validación del cliente con resal: 2005955
+2025-02-13 08:47:04.248 -05:00 [Information] Cliente con resal 2005955 encontrado. Status: A
+2025-02-13 08:47:04.258 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "2005955"
+2025-02-13 08:47:04.289 -05:00 [Information] Cliente encontrado: "MAKRO", Teléfono: "6108083"
