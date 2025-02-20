@@ -1,4 +1,5 @@
 ﻿using IBM.Data.Db2;
+using System.Data;
 using System.Globalization;
 using WompiRecamier.Models;
 
@@ -179,7 +180,7 @@ namespace WompiRecamier.Services
 
                     // Segunda consulta para calcular el descuento
                     string derivedQuery = @"
-                    SELECT COALESCE(proc_reglasprontopago('RE', @InvoiceNumber, @ReceiptDate, @NetValue, 0, @CheckDate, 'V'), 0) AS DiscountResult
+                    SELECT COALESCE(proc_reglasprontopago('RE', @InvoiceNumber, @ReceiptDate, @NetValue, @CheckDate), 0) AS DiscountResult
                     ";
 
                     using var derivedCommand = new DB2Command(derivedQuery, connection);
@@ -214,6 +215,46 @@ namespace WompiRecamier.Services
                 return new List<PaymentInfo>();
             }
         }
+        public async Task<decimal> CalculateDiscountAsync(string invoiceNumber, decimal netValue)
+        {
+            try
+            {
+                using var connection = new DB2Connection(_connectionString);
+                await connection.OpenAsync();
+
+                var currentDate = DateTime.Now;
+                var receiptDate = currentDate.ToString("yyyy-MM-dd");  
+                var checkDate = currentDate.ToString("MM/dd/yyyy");
+
+                // Consulta para calcular el descuento con proc_reglasprontopago
+                string derivedQuery = @"
+                SELECT COALESCE(proc_reglasprontopago('RE', @InvoiceNumber, @ReceiptDate, 
+                @NetValue, @CheckDate), 0) AS DiscountResult
+                ";
+
+                using var derivedCommand = new DB2Command(derivedQuery, connection);
+                derivedCommand.Parameters.Add(new DB2Parameter("@InvoiceNumber", invoiceNumber));
+                derivedCommand.Parameters.Add(new DB2Parameter("@ReceiptDate", receiptDate));
+                derivedCommand.Parameters.Add(new DB2Parameter("@NetValue", netValue));
+                derivedCommand.Parameters.Add(new DB2Parameter("@CheckDate", checkDate));
+
+                var discountResult = 0m;
+
+                using var derivedReader = await derivedCommand.ExecuteReaderAsync();
+                if (await derivedReader.ReadAsync())
+                {
+                    discountResult = Convert.ToDecimal(derivedReader["DiscountResult"]);
+                }
+
+                return discountResult;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al calcular pronto pago: {ex.Message}\nStackTrace: {ex.StackTrace}");
+                return 0;
+            }
+        }
+
         public async Task InsertTransferControlAsync(WompiWebhook webhook)
         {
             if (webhook?.Data?.Transaction == null)
@@ -311,6 +352,9 @@ namespace WompiRecamier.Services
                     }
                 }
 
+                // Llamada asíncrona para calcular el descuento de esa factura específica
+                decimal discount = await CalculateDiscountAsync(invoiceNumber, invoiceValue);
+
                 using var cmd = new DB2Command(sql, connection);
 
                 cmd.Parameters.Add("@Nit", DB2Type.VarChar).Value =
@@ -324,7 +368,7 @@ namespace WompiRecamier.Services
                 cmd.Parameters.Add("@Usuario", DB2Type.VarChar).Value = t.CustomerData?.FullName ?? "";
                 cmd.Parameters.Add("@Correo", DB2Type.VarChar).Value = t.CustomerEmail ?? "";
                 cmd.Parameters.Add("@Marca", DB2Type.VarChar).Value = t.PaymentMethod?.Type ?? "";
-                cmd.Parameters.Add("@Descuento", DB2Type.Decimal).Value = 0m;
+                cmd.Parameters.Add("@Descuento", DB2Type.Decimal).Value = discount;
                 cmd.Parameters.Add("@RegistroUsuario", DB2Type.VarChar).Value = "SYS";
                 cmd.Parameters.Add("@Enter", DB2Type.VarChar).Value = "";
                 cmd.Parameters.Add("@EntryDate", DB2Type.Date).Value = DateTime.Now.Date;

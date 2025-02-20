@@ -166,6 +166,31 @@ namespace WompiRecamier.Controllers
             }
         }
 
+        [HttpGet("calculate-discount/{invoiceNumber}/{netValue}")]
+        public async Task<IActionResult> CalculateDiscount(string invoiceNumber, decimal netValue)
+        {
+            try
+            {
+                _logger.LogInformation("Calculando pronto pago para la factura: {InvoiceNumber}", invoiceNumber);
+
+                // Llamar al servicio sin pasar fechas (se generan dentro del servicio)
+                decimal discount = await _informixService.CalculateDiscountAsync(invoiceNumber, netValue);
+
+                return Ok(new
+                {
+                    status = "Success",
+                    invoiceNumber = invoiceNumber,
+                    discount = discount,
+                    message = "Cálculo de pronto pago realizado exitosamente."
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al calcular el pronto pago para la factura: {InvoiceNumber}", invoiceNumber);
+                return StatusCode(500, new { status = "Error", message = "Error interno al calcular el pronto pago." });
+            }
+        }
+
         [HttpPost("webhook")]
         public async Task<IActionResult> Webhook([FromBody] JsonElement payload)
         {
