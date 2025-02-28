@@ -1,0 +1,11 @@
+2025-02-27 19:37:00.778 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 19:37:05.392 -05:00 [ERR] Error al validar el cliente con resal 10449289277
+IBM.Data.Db2.DB2Exception (0x80004005): ERROR [42000] [IBM][IDS/UNIX64] A syntax error has occurred.
+   at IBM.Data.Db2.DB2Connection.HandleError(IntPtr hHandle, SQL_HANDLE hType, RETCODE retcode)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject(Boolean skipInitialValidation)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject()
+   at IBM.Data.Db2.DB2Command.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Services\InformixService.cs:line 44
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Controllers\ValidationController.cs:line 55

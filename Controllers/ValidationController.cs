@@ -180,6 +180,7 @@ namespace WompiRecamier.Controllers
                 {
                     status = "Success",
                     invoiceNumber = invoiceNumber,
+                    netValue = netValue,
                     discount = discount,
                     message = "Cálculo de pronto pago realizado exitosamente."
                 });
@@ -239,5 +240,16 @@ namespace WompiRecamier.Controllers
                 return StatusCode(500, new { status = "Error", message = "Error interno al procesar el webhook." });
             }
         }
+
+        [HttpGet("confirmation")]
+        public IActionResult Confirmation([FromQuery] string transactionId, [FromQuery] string status)
+        {
+            _logger.LogInformation("Redirigiendo a React. Transacción: {TransactionId}, Estado: {Status}", transactionId, status);
+
+            // Define la URL de la página de confirmación en tu app React.
+            var reactUrl = $"http://localhost:3000/confirmation?transactionId={transactionId}&status={status}";
+            return Redirect(reactUrl);
+        }
+
     }
 }

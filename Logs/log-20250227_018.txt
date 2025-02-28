@@ -1,0 +1,10 @@
+2025-02-27 17:31:11.875 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:31:13.595 -05:00 [INF] Cliente con resal 10449289277 encontrado. Status: A
+2025-02-27 17:31:13.626 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 10449289277
+2025-02-27 17:31:13.893 -05:00 [INF] Cliente encontrado: NOEMY PINO, Teléfono: 3017588486
+2025-02-27 17:33:35.083 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
+2025-02-27 17:33:36.104 -05:00 [Information] Conexión exitosa a la base de datos.
+2025-02-27 17:33:43.945 -05:00 [Information] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:33:44.282 -05:00 [Information] Cliente con resal 10449289277 encontrado. Status: A
+2025-02-27 17:33:44.323 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "10449289277"
+2025-02-27 17:33:44.573 -05:00 [Information] Cliente encontrado: "NOEMY PINO", Teléfono: "3017588486"

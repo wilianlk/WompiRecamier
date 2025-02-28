@@ -1,5 +1,6 @@
 ﻿using IBM.Data.Db2;
 using System.Data;
+using IBM.Data.Informix;
 using System.Globalization;
 using WompiRecamier.Models;
 
@@ -39,6 +40,9 @@ namespace WompiRecamier.Services
             {
                 using var connection = new DB2Connection(_connectionString);
                 await connection.OpenAsync();
+
+                using var isolationCommand = new DB2Command("SET CURRENT ISOLATION UR", connection);
+                await isolationCommand.ExecuteNonQueryAsync();
 
                 string validateQuery = @"
                     SELECT COUNT(1)
@@ -83,6 +87,9 @@ namespace WompiRecamier.Services
                 using var connection = new DB2Connection(_connectionString);
                 await connection.OpenAsync();
 
+                using var isolationCommand = new DB2Command("SET ISOLATION TO DIRTY READ", connection);
+                await isolationCommand.ExecuteNonQueryAsync();
+
                 string query = @"
                 SELECT TRIM(cm_name) AS cm_name, TRIM(cm_tele) AS cm_tele
                 FROM custmain c
@@ -118,6 +125,9 @@ namespace WompiRecamier.Services
                 using var connection = new DB2Connection(_connectionString);
                 await connection.OpenAsync();
 
+                using var isolationCommand = new DB2Command("SET ISOLATION TO DIRTY READ", connection);
+                await isolationCommand.ExecuteNonQueryAsync();
+
                 // Paso 1: Consulta para obtener el valor de cm_cust
                 string getCustomerCodeQuery = @"
                 SELECT cm_cust
@@ -146,11 +156,43 @@ namespace WompiRecamier.Services
                     return new List<PaymentInfo>();
                 }
 
+                
+                await isolationCommand.ExecuteNonQueryAsync();
+
                 // Paso 2: Consulta principal para obtener detalles de las facturas
                 string baseQuery = @"
+                SELECT unique in_num, 
+                       (xin_mont - xin_paga) AS valor_neto,
+                       in_date,in_misc
+                FROM invhead
+                JOIN xinvhead ON xin_num = in_num AND xin_cmpy = in_cmpy
+                LEFT JOIN guias on gui_cmpy = xin_cmpy and gui_inv = xin_num
+                WHERE in_cmpy = 'RE'
+                  AND in_cust = @CustomerCode
+                  AND in_amt > in_paid
+                  AND in_post != 'V'
+                  AND xin_mont > xin_paga
+                  AND gui_fentreal IS NOT NULL
+                  AND (in_num NOT IN (
+  	                    SELECT ctr_factura_numero
+ 	                    FROM control_transferencias
+	                    WHERE ctr_pago_estado = 'APPROVED' 
+                        AND ctr_factura_numero = in_num
+                      )
+                  OR in_num IN (
+                      SELECT ctr_factura_numero
+                      FROM control_transferencias
+                      WHERE ctr_pago_estado = 'APPROVED' 
+                      AND ctr_factura_numero = in_num
+                      and length(ctr_pago_marca) != 0
+                      ))
+                  AND in_misc = 'FR'
+
+                UNION ALL 
+
                 SELECT in_num, 
                        (xin_mont - xin_paga) AS valor_neto,
-                       in_date
+                       in_date,in_misc
                 FROM invhead
                 JOIN xinvhead ON xin_num = in_num AND xin_cmpy = in_cmpy
                 WHERE in_cmpy = 'RE'
@@ -158,8 +200,22 @@ namespace WompiRecamier.Services
                   AND in_amt > in_paid
                   AND in_post != 'V'
                   AND xin_mont > xin_paga
-                ORDER BY in_num, in_date
-                ";
+                  AND (in_num NOT IN (
+                          SELECT ctr_factura_numero
+                          FROM control_transferencias
+                          WHERE ctr_pago_estado = 'APPROVED' 
+                          AND ctr_factura_numero = in_num
+                      )
+                      OR in_num IN (
+                          SELECT ctr_factura_numero
+                          FROM control_transferencias
+                          WHERE ctr_pago_estado = 'APPROVED' 
+                          AND ctr_factura_numero = in_num
+                          and length(ctr_pago_marca) != 0
+                      )
+                   )
+                 AND in_misc = 'DB'
+                 ORDER BY in_misc,in_date,in_num";
 
                 using var baseCommand = new DB2Command(baseQuery, connection);
                 baseCommand.Parameters.Add(new DB2Parameter("@CustomerCode", customerCode));
@@ -222,6 +278,9 @@ namespace WompiRecamier.Services
                 using var connection = new DB2Connection(_connectionString);
                 await connection.OpenAsync();
 
+                using var isolationCommand = new DB2Command("SET ISOLATION TO DIRTY READ", connection);
+                await isolationCommand.ExecuteNonQueryAsync();
+
                 var currentDate = DateTime.Now;
                 var receiptDate = currentDate.ToString("yyyy-MM-dd");  
                 var checkDate = currentDate.ToString("MM/dd/yyyy");
@@ -266,15 +325,34 @@ namespace WompiRecamier.Services
             List<string> invoiceList = new List<string>();
             string customerIdFromReference = string.Empty;
 
+            // Se asume que el reference tiene el formato:
+            // NIT-<customerId>-FAV-<invoiceInfo1>-<discount1>-<invoiceInfo2>-<discount2>-...
+            // Por ejemplo: 
+            // NIT-9003300530-FAV-2930532_3671974_DP-0-2932634_477806_DP-0-2941706_1092449_DP-0
             if (reference.StartsWith("NIT-"))
             {
-
                 var tokens = reference.Split('-');
-
                 if (tokens.Length >= 4 && tokens[2] == "FAV")
                 {
                     customerIdFromReference = tokens[1];
-                    invoiceList.AddRange(tokens.Skip(3));
+                    // Se asume que los tokens restantes vienen en pares (invoiceInfo y discount)
+                    int numTokens = tokens.Length - 3;
+                    if (numTokens % 2 == 0)
+                    {
+                        // Por cada par se reconstruye el token completo de factura
+                        for (int i = 3; i < tokens.Length; i += 2)
+                        {
+                            // Ejemplo: tokens[i]="2930532_3671974" y tokens[i+1]="DP-0"
+                            string invoiceTokenCombined = tokens[i] + "-" + tokens[i + 1];
+                            invoiceList.Add(invoiceTokenCombined);
+                        }
+                    }
+                    else
+                    {
+                        // Si no vienen en pares, se unen todos los tokens a partir del índice 3
+                        string invoiceTokensCombined = string.Join("-", tokens.Skip(3));
+                        invoiceList.Add(invoiceTokensCombined);
+                    }
                 }
                 else
                 {
@@ -287,46 +365,47 @@ namespace WompiRecamier.Services
             }
 
             string sql = @"
-            INSERT INTO control_transferencias (
-                ctr_cliente_nit,
-                ctr_pago_fecha,
-                ctr_pago_estado,
-                ctr_factura_valor,
-                ctr_factura_numero,
-                ctr_transaccion_numero,
-                ctr_pago_franquicia,
-                ctr_usuario_nombre,
-                ctr_cliente_correo,
-                ctr_pago_marca,
-                ctr_pago_descuento,
-                ctr_registro_usuario,
-                ctr_enter,
-                ctr_entry_date,
-                ctr_entry_time
-            )
-            VALUES (
-                @Nit,
-                @Fecha,
-                @Estado,
-                @Valor,
-                @Factura,
-                @Transaccion,
-                @Franquicia,
-                @Usuario,
-                @Correo,
-                @Marca,
-                @Descuento,
-                @RegistroUsuario,
-                @Enter,
-                @EntryDate,
-                @EntryTime
-            )
-        ";
+INSERT INTO control_transferencias (
+    ctr_cliente_nit,
+    ctr_pago_fecha,
+    ctr_pago_estado,
+    ctr_factura_valor,
+    ctr_factura_numero,
+    ctr_transaccion_numero,
+    ctr_pago_franquicia,
+    ctr_usuario_nombre,
+    ctr_cliente_correo,
+    ctr_pago_marca,
+    ctr_pago_descuento,
+    ctr_registro_usuario,
+    ctr_enter,
+    ctr_entry_date,
+    ctr_entry_time
+)
+VALUES (
+    @Nit,
+    @Fecha,
+    @Estado,
+    @Valor,
+    @Factura,
+    @Transaccion,
+    @Franquicia,
+    @Usuario,
+    @Correo,
+    @Marca,
+    @Descuento,
+    @RegistroUsuario,
+    @Enter,
+    @EntryDate,
+    @EntryTime
+)
+";
 
             DateTime fechaPago;
             if (!DateTime.TryParse(t.FinalizedAt, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out fechaPago))
                 fechaPago = DateTime.Now;
 
+            // Valor por defecto basado en t.AmountInCents
             decimal defaultValor = t.AmountInCents / 100m;
             string entryTime = DateTime.Now.ToString("HH:mm:ss");
 
@@ -334,26 +413,84 @@ namespace WompiRecamier.Services
             await connection.OpenAsync();
 
             foreach (var invoiceToken in invoiceList)
-            { 
-
-                string invoiceNumber = invoiceToken;
+            {
+                // Variables para extraer la información
+                string invoiceNumberStr = "";
                 decimal invoiceValue = defaultValor;
+                decimal discount = 0m; // Descuento para la factura
 
-                if (invoiceToken.Contains("_"))
+                // Se espera que cada token tenga el formato "2930532_3671974-DP-0" o "FAC001_461808-DP-19404"
+                if (invoiceToken.Contains("_DP-"))
                 {
+                    // Importante: se usa "_DP-" como separador (no "-DP_")
+                    var parts = invoiceToken.Split(new string[] { "_DP-" }, StringSplitOptions.None);
+                    if (parts.Length == 2)
+                    {
+                        // La parte izquierda puede tener el formato "2930532_3671974" o "FAC001_461808"
+                        if (parts[0].Contains("_"))
+                        {
+                            var invoiceParts = parts[0].Split('_');
+                            if (invoiceParts.Length == 2)
+                            {
+                                invoiceNumberStr = invoiceParts[0];
+                                if (!decimal.TryParse(invoiceParts[1], out invoiceValue))
+                                    invoiceValue = defaultValor;
+                            }
+                        }
+                        else
+                        {
+                            invoiceNumberStr = parts[0];
+                            invoiceValue = defaultValor;
+                        }
+                        // La parte derecha es el descuento. Si llega con el prefijo "DP-", lo eliminamos.
+                        string discountStr = parts[1];
+                        if (discountStr.StartsWith("DP-", StringComparison.OrdinalIgnoreCase))
+                        {
+                            discountStr = discountStr.Substring(3);
+                        }
+                        if (!decimal.TryParse(discountStr, out discount))
+                            discount = 0m;
+                    }
+                }
+                else if (invoiceToken.Contains("_"))
+                {
+                    // Formato sin descuento: por ejemplo, "2930532_3671974"
                     var parts = invoiceToken.Split('_');
                     if (parts.Length == 2)
                     {
-                        invoiceNumber = parts[0];
-                        if (decimal.TryParse(parts[1], out decimal parsedValue))
-                        {
-                            invoiceValue = parsedValue;
-                        }
+                        invoiceNumberStr = parts[0];
+                        if (!decimal.TryParse(parts[1], out invoiceValue))
+                            invoiceValue = defaultValor;
+                    }
+                    else
+                    {
+                        invoiceNumberStr = invoiceToken;
+                        invoiceValue = defaultValor;
                     }
                 }
+                else
+                {
+                    invoiceNumberStr = invoiceToken;
+                    invoiceValue = defaultValor;
+                }
 
-                // Llamada asíncrona para calcular el descuento de esa factura específica
-                decimal discount = await CalculateDiscountAsync(invoiceNumber, invoiceValue);
+                if (string.IsNullOrWhiteSpace(invoiceNumberStr))
+                {
+                    throw new Exception("El token de factura no contiene un número válido.");
+                }
+
+                // Convertir invoiceNumberStr a entero.
+                // Si existe un prefijo "FAC", se remueve.
+                int invoiceNumber;
+                string numericPart = invoiceNumberStr;
+                if (invoiceNumberStr.StartsWith("FAC", StringComparison.OrdinalIgnoreCase))
+                {
+                    numericPart = invoiceNumberStr.Substring(3);
+                }
+                if (!int.TryParse(numericPart, out invoiceNumber))
+                {
+                    throw new Exception($"No se pudo convertir el número de factura '{invoiceNumberStr}' a entero.");
+                }
 
                 using var cmd = new DB2Command(sql, connection);
 
@@ -362,7 +499,7 @@ namespace WompiRecamier.Services
                 cmd.Parameters.Add("@Fecha", DB2Type.DateTime).Value = fechaPago;
                 cmd.Parameters.Add("@Estado", DB2Type.VarChar).Value = t.Status ?? "";
                 cmd.Parameters.Add("@Valor", DB2Type.Decimal).Value = invoiceValue;
-                cmd.Parameters.Add("@Factura", DB2Type.VarChar).Value = invoiceNumber;
+                cmd.Parameters.Add("@Factura", DB2Type.Integer).Value = invoiceNumber;
                 cmd.Parameters.Add("@Transaccion", DB2Type.VarChar).Value = t.Id ?? "";
                 cmd.Parameters.Add("@Franquicia", DB2Type.VarChar).Value = t.PaymentMethodType ?? "";
                 cmd.Parameters.Add("@Usuario", DB2Type.VarChar).Value = t.CustomerData?.FullName ?? "";
@@ -377,6 +514,7 @@ namespace WompiRecamier.Services
                 await cmd.ExecuteNonQueryAsync();
             }
         }
+
     }
 }
 

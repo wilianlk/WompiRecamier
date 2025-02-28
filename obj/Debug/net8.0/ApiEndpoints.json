@@ -38,6 +38,27 @@
   },
   {
     "ContainingType": "WompiRecamier.Controllers.ValidationController",
+    "Method": "Confirmation",
+    "RelativePath": "api/Validation/confirmation",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "transactionId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WompiRecamier.Controllers.ValidationController",
     "Method": "GetCustomerPayments",
     "RelativePath": "api/Validation/customer-payments/{customer}",
     "HttpMethod": "GET",

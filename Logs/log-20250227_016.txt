@@ -1,0 +1,128 @@
+2025-02-27 17:19:52.834 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:19:53.761 -05:00 [ERR] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Services\InformixService.cs:line 40
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Controllers\ValidationController.cs:line 55
+2025-02-27 17:20:49.986 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:20:50.066 -05:00 [ERR] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:20:50.824 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:20:50.888 -05:00 [ERR] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:20:50.990 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:20:51.102 -05:00 [ERR] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:20:55.428 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:20:55.513 -05:00 [ERR] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:20:58.945 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:20:59.024 -05:00 [ERR] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:20:59.540 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:20:59.620 -05:00 [ERR] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:21:08.178 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:21:08.255 -05:00 [ERR] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:23:54.097 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:23:54.191 -05:00 [ERR] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:27:58.821 -05:00 [Information] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:27:59.966 -05:00 [Error] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:28:47.352 -05:00 [Information] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:28:47.419 -05:00 [Error] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:28:48.093 -05:00 [Information] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:28:48.154 -05:00 [Error] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:28:48.657 -05:00 [Information] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:28:48.726 -05:00 [Error] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:30:09.188 -05:00 [Information] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:30:09.246 -05:00 [Error] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:30:09.933 -05:00 [Information] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:30:09.998 -05:00 [Error] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)
+2025-02-27 17:30:10.358 -05:00 [Information] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:30:10.415 -05:00 [Error] Error al validar el cliente con resal 10449289277
+System.ArgumentException: Invalid argument
+   at IBM.Data.Db2.DB2ConnPool.ReplaceConnectionStringParms(DB2Connection connection, String szValue, DB2ConnSettings& pSettings, DB2ConnSettingsInternal& pSettingsInternal, Boolean bAttach, Boolean pushDownStrAppended)
+   at IBM.Data.Db2.DB2Connection.set_ConnectionString(String value)
+   at IBM.Data.Db2.DB2Connection..ctor(String connectionString)
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal)
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal)

@@ -1,0 +1,20 @@
+2025-02-27 17:34:49.160 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:34:50.028 -05:00 [ERR] Error al validar el cliente con resal 10449289277
+System.InvalidOperationException: The ConnectionString property has not been initialized.
+   at IBM.Data.Db2.DB2Connection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Services\InformixService.cs:line 41
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Controllers\ValidationController.cs:line 55
+2025-02-27 17:34:50.865 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-02-27 17:34:50.931 -05:00 [ERR] Error al validar el cliente con resal 10449289277
+System.InvalidOperationException: The ConnectionString property has not been initialized.
+   at IBM.Data.Db2.DB2Connection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Services\InformixService.cs:line 41
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Controllers\ValidationController.cs:line 55
+2025-02-27 17:35:25.321 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
+2025-02-27 17:35:25.344 -05:00 [ERR] Error al conectar a la base de datos.
+2025-02-27 17:35:49.386 -05:00 [Information] Iniciando prueba de conexión a la base de datos.
+2025-02-27 17:35:50.359 -05:00 [Error] Error al conectar a la base de datos.
