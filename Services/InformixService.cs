@@ -1,8 +1,8 @@
 ﻿using IBM.Data.Db2;
 using System.Data;
-using IBM.Data.Informix;
 using System.Globalization;
 using WompiRecamier.Models;
+using System.Transactions;
 
 namespace WompiRecamier.Services
 {
@@ -12,7 +12,7 @@ namespace WompiRecamier.Services
 
         public InformixService(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("InformixConnection");
+            _connectionString = configuration.GetConnectionString("InformixConnectionProduction");
         }
         public bool TestConnection()
         {
@@ -34,6 +34,7 @@ namespace WompiRecamier.Services
                 return false;
             }
         }
+
         public async Task<(bool Exists, string Status)> ValidateCustomerAsync(string resal)
         {
             try
@@ -41,18 +42,10 @@ namespace WompiRecamier.Services
                 using var connection = new DB2Connection(_connectionString);
                 await connection.OpenAsync();
 
-                using var isolationCommand = new DB2Command("SET CURRENT ISOLATION UR", connection);
-                await isolationCommand.ExecuteNonQueryAsync();
-
-                string validateQuery = @"
-                    SELECT COUNT(1)
-                    FROM custmain c
-                    WHERE cm_cmpy = 'RE'
-                    AND SUBSTR(c.cm_resal, 2, 15) = @resal
-                    OR  SUBSTR(c.cm_cust, 2, 15) = @resal";
-
-                using var validateCommand = new DB2Command(validateQuery, connection);
-                validateCommand.Parameters.Add(new DB2Parameter("@resal", resal));
+                using var validateCommand = new DB2Command("proc_validate_customer_count_wompy", connection);
+                validateCommand.CommandType = CommandType.StoredProcedure;
+                validateCommand.Parameters.Add(new DB2Parameter("p_resal", resal));
+                validateCommand.Parameters.Add(new DB2Parameter("p_query_type", "C"));
 
                 var result = await validateCommand.ExecuteScalarAsync();
                 bool exists = Convert.ToInt32(result) > 0;
@@ -87,19 +80,9 @@ namespace WompiRecamier.Services
                 using var connection = new DB2Connection(_connectionString);
                 await connection.OpenAsync();
 
-                using var isolationCommand = new DB2Command("SET ISOLATION TO DIRTY READ", connection);
-                await isolationCommand.ExecuteNonQueryAsync();
-
-                string query = @"
-                SELECT TRIM(cm_name) AS cm_name, TRIM(cm_tele) AS cm_tele
-                FROM custmain c
-                WHERE c.cm_cmpy = 'RE'
-                  AND (SUBSTR(c.cm_cust, 2, 15) = @resal OR SUBSTR(c.cm_resal, 2, 15) = @resal)
-                LIMIT 1
-                ";
-
-                using var command = new DB2Command(query, connection);
-                command.Parameters.Add(new DB2Parameter("@resal", resal));
+                using var command = new DB2Command("proc_get_customer_details_wompy", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new DB2Parameter("p_resal", resal));
 
                 var customerDetails = new CustomerDetails();
 
@@ -125,29 +108,33 @@ namespace WompiRecamier.Services
                 using var connection = new DB2Connection(_connectionString);
                 await connection.OpenAsync();
 
-                using var isolationCommand = new DB2Command("SET ISOLATION TO DIRTY READ", connection);
-                await isolationCommand.ExecuteNonQueryAsync();
-
                 // Paso 1: Consulta para obtener el valor de cm_cust
-                string getCustomerCodeQuery = @"
+                /*string getCustomerCodeQuery = @"
                 SELECT cm_cust
                 FROM custmain c
                 WHERE c.cm_cmpy = 'RE'
                   AND (SUBSTR(c.cm_cust, 2, 15) = @resal 
                 OR SUBSTR(c.cm_resal, 2, 15) = @resal)
                 ";
-
                 using var getCustomerCodeCommand = new DB2Command(getCustomerCodeQuery, connection);
-                getCustomerCodeCommand.Parameters.Add(new DB2Parameter("@resal", resal));
+                getCustomerCodeCommand.Parameters.Add(new DB2Parameter("@resal", resal));*/
 
-                string customerCode = null;
+                using var getCustomerCodeCommand = new DB2Command("proc_validate_customer_count_wompy", connection);
+                getCustomerCodeCommand.CommandType = CommandType.StoredProcedure;
+                getCustomerCodeCommand.Parameters.Add(new DB2Parameter("p_resal", resal));
+                getCustomerCodeCommand.Parameters.Add(new DB2Parameter("p_query_type", "U"));
+
+                var result = await getCustomerCodeCommand.ExecuteScalarAsync();
+                string customerCode = result?.ToString();
+
+                /*string customerCode = null;
                 using (var reader = await getCustomerCodeCommand.ExecuteReaderAsync())
                 {
                     if (await reader.ReadAsync())
                     {
                         customerCode = reader["cm_cust"].ToString();
                     }
-                }
+                }*/
 
                 // Si no se encuentra el código de cliente, retorna una lista vacía
                 if (string.IsNullOrEmpty(customerCode))
@@ -156,11 +143,8 @@ namespace WompiRecamier.Services
                     return new List<PaymentInfo>();
                 }
 
-                
-                await isolationCommand.ExecuteNonQueryAsync();
-
                 // Paso 2: Consulta principal para obtener detalles de las facturas
-                string baseQuery = @"
+               /* string baseQuery = @"
                 SELECT unique in_num, 
                        (xin_mont - xin_paga) AS valor_neto,
                        in_date,in_misc
@@ -218,7 +202,11 @@ namespace WompiRecamier.Services
                  ORDER BY in_misc,in_date,in_num";
 
                 using var baseCommand = new DB2Command(baseQuery, connection);
-                baseCommand.Parameters.Add(new DB2Parameter("@CustomerCode", customerCode));
+                baseCommand.Parameters.Add(new DB2Parameter("@CustomerCode", customerCode));*/
+                
+                using var baseCommand = new DB2Command("proc_get_customer_invoices_wompy", connection);
+                baseCommand.CommandType = CommandType.StoredProcedure;
+                baseCommand.Parameters.Add(new DB2Parameter("p_customer_code", customerCode));
                 baseCommand.CommandTimeout = 300;
 
                 var paymentInfoList = new List<PaymentInfo>();
@@ -226,17 +214,17 @@ namespace WompiRecamier.Services
                 using var baseReader = await baseCommand.ExecuteReaderAsync();
                 while (await baseReader.ReadAsync())
                 {
-                    // Lee los valores de la consulta base
                     var invoiceNumber = baseReader["in_num"].ToString();
                     var netValue = Convert.ToDecimal(baseReader["valor_neto"]);
                     var invoiceDate = Convert.ToDateTime(baseReader["in_date"]);
+                    var miscInfo = baseReader["in_misc"].ToString();
                     var currentDate = DateTime.Now;
                     var receiptDate = currentDate.ToString("yyyy-MM-dd");
                     var checkDate = currentDate.ToString("MM/dd/yyyy");
 
                     // Segunda consulta para calcular el descuento
                     string derivedQuery = @"
-                    SELECT COALESCE(proc_reglasprontopago('RE', @InvoiceNumber, @ReceiptDate, @NetValue, @CheckDate), 0) AS DiscountResult
+                    SELECT COALESCE(proc_reglasprontopago2('RE', @InvoiceNumber, @ReceiptDate, @NetValue, @CheckDate), 0) AS DiscountResult
                     ";
 
                     using var derivedCommand = new DB2Command(derivedQuery, connection);
@@ -244,6 +232,7 @@ namespace WompiRecamier.Services
                     derivedCommand.Parameters.Add(new DB2Parameter("@ReceiptDate", receiptDate));
                     derivedCommand.Parameters.Add(new DB2Parameter("@NetValue", netValue));
                     derivedCommand.Parameters.Add(new DB2Parameter("@CheckDate", checkDate));
+
 
                     var discountResult = 0m;
                     using var derivedReader = await derivedCommand.ExecuteReaderAsync();
@@ -259,7 +248,8 @@ namespace WompiRecamier.Services
                         NetValue = netValue,
                         DiscountResult = discountResult,
                         NetValueWithDiscount = netValue - discountResult,
-                        InvoiceDate = invoiceDate
+                        InvoiceDate = invoiceDate,
+                        MiscInfo = miscInfo
                     });
                 }
 
@@ -277,9 +267,6 @@ namespace WompiRecamier.Services
             {
                 using var connection = new DB2Connection(_connectionString);
                 await connection.OpenAsync();
-
-                using var isolationCommand = new DB2Command("SET ISOLATION TO DIRTY READ", connection);
-                await isolationCommand.ExecuteNonQueryAsync();
 
                 var currentDate = DateTime.Now;
                 var receiptDate = currentDate.ToString("yyyy-MM-dd");  
@@ -313,7 +300,6 @@ namespace WompiRecamier.Services
                 return 0;
             }
         }
-
         public async Task InsertTransferControlAsync(WompiWebhook webhook)
         {
             if (webhook?.Data?.Transaction == null)
@@ -513,6 +499,42 @@ VALUES (
 
                 await cmd.ExecuteNonQueryAsync();
             }
+        }
+        public async Task<List<TransferControl>> GetTransferControlsAsync(string transactionId)
+        {
+            var transferControls = new List<TransferControl>();
+
+            try
+            {
+                using var connection = new DB2Connection(_connectionString);
+                await connection.OpenAsync();
+
+                string query = @"
+                SELECT ctr_factura_numero, ctr_factura_valor, ctr_pago_fecha
+                FROM control_transferencias
+                WHERE ctr_transaccion_numero = @transactionId";
+
+                using var command = new DB2Command(query, connection);
+                command.Parameters.Add(new DB2Parameter("@transactionId", transactionId));
+
+                using var reader = await command.ExecuteReaderAsync();
+                while (await reader.ReadAsync())
+                {
+                    transferControls.Add(new TransferControl
+                    {
+                        FacturaNumero = reader["ctr_factura_numero"]?.ToString(),
+                        FacturaValor = reader["ctr_factura_valor"] != DBNull.Value ? Convert.ToDecimal(reader["ctr_factura_valor"]) : 0,
+                        PagoFecha = reader["ctr_pago_fecha"] != DBNull.Value ? Convert.ToDateTime(reader["ctr_pago_fecha"]) : DateTime.MinValue
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al consultar transferencias: {ex.Message}");
+                throw;
+            }
+
+            return transferControls;
         }
 
     }

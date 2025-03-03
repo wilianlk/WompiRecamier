@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "he9zvjGoWQg=",
+  "dgSpecHash": "LCJma6abghQ=",
   "success": true,
   "projectFilePath": "C:\\RECAMIER\\william\\proyectoWompi\\WompiRecamier\\WompiRecamier.csproj",
   "expectedPackageFiles": [
@@ -42,11 +42,18 @@
     "C:\\Users\\william-admin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\william-admin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
     "C:\\Users\\william-admin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
+    "C:\\Users\\william-admin\\.nuget\\packages\\system.configuration.configurationmanager\\9.0.2\\system.configuration.configurationmanager.9.0.2.nupkg.sha512",
+    "C:\\Users\\william-admin\\.nuget\\packages\\system.data.odbc\\9.0.2\\system.data.odbc.9.0.2.nupkg.sha512",
     "C:\\Users\\william-admin\\.nuget\\packages\\system.diagnostics.diagnosticsource\\9.0.0\\system.diagnostics.diagnosticsource.9.0.0.nupkg.sha512",
+    "C:\\Users\\william-admin\\.nuget\\packages\\system.diagnostics.eventlog\\9.0.2\\system.diagnostics.eventlog.9.0.2.nupkg.sha512",
+    "C:\\Users\\william-admin\\.nuget\\packages\\system.diagnostics.performancecounter\\9.0.2\\system.diagnostics.performancecounter.9.0.2.nupkg.sha512",
     "C:\\Users\\william-admin\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.3.0\\system.identitymodel.tokens.jwt.8.3.0.nupkg.sha512",
     "C:\\Users\\william-admin\\.nuget\\packages\\system.io.pipelines\\9.0.0\\system.io.pipelines.9.0.0.nupkg.sha512",
+    "C:\\Users\\william-admin\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.2\\system.security.cryptography.protecteddata.9.0.2.nupkg.sha512",
+    "C:\\Users\\william-admin\\.nuget\\packages\\system.security.permissions\\9.0.2\\system.security.permissions.9.0.2.nupkg.sha512",
     "C:\\Users\\william-admin\\.nuget\\packages\\system.text.encodings.web\\9.0.0\\system.text.encodings.web.9.0.0.nupkg.sha512",
-    "C:\\Users\\william-admin\\.nuget\\packages\\system.text.json\\9.0.0\\system.text.json.9.0.0.nupkg.sha512"
+    "C:\\Users\\william-admin\\.nuget\\packages\\system.text.json\\9.0.0\\system.text.json.9.0.0.nupkg.sha512",
+    "C:\\Users\\william-admin\\.nuget\\packages\\system.windows.extensions\\9.0.2\\system.windows.extensions.9.0.2.nupkg.sha512"
   ],
   "logs": []
 }

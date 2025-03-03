@@ -87,9 +87,21 @@
               "target": "Package",
               "version": "[6.4.0, )"
             },
+            "System.Data.Odbc": {
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
+            "System.Diagnostics.PerformanceCounter": {
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[8.3.0, )"
+            },
+            "System.Security.Permissions": {
+              "target": "Package",
+              "version": "[9.0.2, )"
             }
           },
           "imports": [

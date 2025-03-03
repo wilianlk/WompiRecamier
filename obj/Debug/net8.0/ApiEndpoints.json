@@ -48,11 +48,6 @@
         "Name": "transactionId",
         "Type": "System.String",
         "IsRequired": false
-      },
-      {
-        "Name": "status",
-        "Type": "System.String",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []

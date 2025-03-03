@@ -1,0 +1,34 @@
+2025-03-02 15:43:05.872 -05:00 [INF] Iniciando validación del cliente con resal: 01162291
+2025-03-02 15:43:07.172 -05:00 [INF] Cliente con resal 01162291 encontrado. Status: A
+2025-03-02 15:43:07.202 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 01162291
+2025-03-02 15:43:07.439 -05:00 [INF] Cliente encontrado: SALA DE BELLEZA SANEM                             , Teléfono: 3225191513     
+2025-03-02 15:43:16.615 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-03-02 15:43:16.878 -05:00 [INF] Cliente con resal 10449289277 encontrado. Status: A
+2025-03-02 15:43:16.887 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 10449289277
+2025-03-02 15:43:17.132 -05:00 [INF] Cliente encontrado: NOEMY PINO                                        , Teléfono: 3017588486     
+2025-03-02 15:47:26.175 -05:00 [INF] Iniciando validación del cliente con resal: 01162291
+2025-03-02 15:47:26.562 -05:00 [INF] Cliente con resal 01162291 encontrado. Status: A
+2025-03-02 15:47:26.571 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 01162291
+2025-03-02 15:47:26.853 -05:00 [INF] Cliente encontrado: SALA DE BELLEZA SANEM                             , Teléfono: 3225191513     
+2025-03-02 15:47:34.456 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-03-02 15:47:34.988 -05:00 [INF] Cliente con resal 10449289277 encontrado. Status: A
+2025-03-02 15:47:34.997 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 10449289277
+2025-03-02 15:47:35.211 -05:00 [INF] Cliente encontrado: NOEMY PINO                                        , Teléfono: 3017588486     
+2025-03-02 20:20:14.634 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-03-02 20:20:36.197 -05:00 [ERR] Error al validar el cliente con resal 10449289277
+IBM.Data.Db2.DB2Exception (0x80004005): ERROR [08001] [IBM] SQL30081N  A communication error has been detected. Communication protocol being used: "TCP/IP".  Communication API being used: "SOCKETS".  Location where the error was detected: "192.168.20.4".  Communication function detecting the error: "connect".  Protocol specific error code(s): "10060", "*", "*".  SQLSTATE=08001
+
+   at IBM.Data.Db2.DB2ConnPool.Open(DB2Connection connection, String& szConnectionString, DB2ConnSettings& ppSettings, Object& ppConn)
+   at IBM.Data.Db2.DB2Connection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at WompiRecamier.Services.InformixService.ValidateCustomerAsync(String resal) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Services\InformixService.cs:line 44
+   at WompiRecamier.Controllers.ValidationController.ValidateCustomer(String resal) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Controllers\ValidationController.cs:line 55
+2025-03-02 20:20:42.219 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
+2025-03-02 20:20:42.682 -05:00 [INF] Cliente con resal 10449289277 encontrado. Status: A
+2025-03-02 20:20:42.701 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 10449289277
+2025-03-02 20:20:42.935 -05:00 [INF] Cliente encontrado: NOEMY PINO                                        , Teléfono: 3017588486     
+2025-03-02 20:50:11.686 -05:00 [Information] Iniciando validación del cliente con resal: 10449289277
+2025-03-02 20:50:17.112 -05:00 [Information] Cliente con resal 10449289277 encontrado. Status: A
+2025-03-02 20:50:17.196 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "10449289277"
+2025-03-02 20:50:17.563 -05:00 [Information] Cliente encontrado: "NOEMY PINO                                        ", Teléfono: "3017588486     "

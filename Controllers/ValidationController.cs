@@ -242,14 +242,33 @@ namespace WompiRecamier.Controllers
         }
 
         [HttpGet("confirmation")]
-        public IActionResult Confirmation([FromQuery] string transactionId, [FromQuery] string status)
+        public async Task<IActionResult> Confirmation([FromQuery] string transactionId)
         {
-            _logger.LogInformation("Redirigiendo a React. Transacción: {TransactionId}, Estado: {Status}", transactionId, status);
+            _logger.LogInformation("Consultando transferencias para la transacción: {TransactionId}", transactionId);
 
-            // Define la URL de la página de confirmación en tu app React.
-            var reactUrl = $"http://localhost:3000/confirmation?transactionId={transactionId}&status={status}";
-            return Redirect(reactUrl);
+            if (string.IsNullOrWhiteSpace(transactionId))
+            {
+                return BadRequest(new { status = "ValidationError", message = "El parámetro transactionId es requerido." });
+            }
+
+            try
+            {
+                // Se llama al método del servicio que ejecuta la consulta SQL.
+                var transferControls = await _informixService.GetTransferControlsAsync(transactionId);
+
+                if (transferControls == null || !transferControls.Any())
+                {
+                    _logger.LogWarning("No se encontraron registros para la transacción: {TransactionId}", transactionId);
+                    return NotFound(new { status = "NotFound", transactionId, message = "No se encontraron registros." });
+                }
+
+                return Ok(new { status = "Success", transactionId, data = transferControls });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al consultar transferencias para la transacción: {TransactionId}", transactionId);
+                return StatusCode(500, new { status = "Error", transactionId, message = "Error interno al procesar la solicitud." });
+            }
         }
-
     }
 }
