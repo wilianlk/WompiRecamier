@@ -6,7 +6,6 @@ using Newtonsoft.Json.Linq;
 using System.Text.Json;
 using WompiRecamier.Services;
 using WompiRecamier.Models;
-using IBM.Data.Db2;
 using System.Globalization;
 
 namespace WompiRecamier.Controllers

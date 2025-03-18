@@ -1,4 +1,6 @@
-﻿namespace WompiRecamier.Models
+﻿using System.Text.Json.Serialization;
+
+namespace WompiRecamier.Models
 {
     public class WompiWebhook
     {
@@ -25,6 +27,8 @@
         public string CustomerEmail { get; set; }
         public string Currency { get; set; }
         public string PaymentMethodType { get; set; }
+
+        [JsonPropertyName("payment_method")]
         public PaymentMethod PaymentMethod { get; set; }
         public string Status { get; set; }
         public string StatusMessage { get; set; }

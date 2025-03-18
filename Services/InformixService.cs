@@ -12,7 +12,7 @@ namespace WompiRecamier.Services
 
         public InformixService(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("InformixConnectionProduction");
+            _connectionString = configuration.GetConnectionString("InformixConnection");
         }
         public bool TestConnection()
         {
@@ -34,7 +34,6 @@ namespace WompiRecamier.Services
                 return false;
             }
         }
-
         public async Task<(bool Exists, string Status)> ValidateCustomerAsync(string resal)
         {
             try
@@ -214,7 +213,7 @@ namespace WompiRecamier.Services
                 using var baseReader = await baseCommand.ExecuteReaderAsync();
                 while (await baseReader.ReadAsync())
                 {
-                    var invoiceNumber = baseReader["in_num"].ToString();
+                    var invoiceNumber = baseReader["in_num"].ToString().Trim();
                     var netValue = Convert.ToDecimal(baseReader["valor_neto"]);
                     var invoiceDate = Convert.ToDateTime(baseReader["in_date"]);
                     var miscInfo = baseReader["in_misc"].ToString();
@@ -490,7 +489,7 @@ VALUES (
                 cmd.Parameters.Add("@Franquicia", DB2Type.VarChar).Value = t.PaymentMethodType ?? "";
                 cmd.Parameters.Add("@Usuario", DB2Type.VarChar).Value = t.CustomerData?.FullName ?? "";
                 cmd.Parameters.Add("@Correo", DB2Type.VarChar).Value = t.CustomerEmail ?? "";
-                cmd.Parameters.Add("@Marca", DB2Type.VarChar).Value = t.PaymentMethod?.Type ?? "";
+                cmd.Parameters.Add("@Marca", DB2Type.VarChar).Value = "";
                 cmd.Parameters.Add("@Descuento", DB2Type.Decimal).Value = discount;
                 cmd.Parameters.Add("@RegistroUsuario", DB2Type.VarChar).Value = "SYS";
                 cmd.Parameters.Add("@Enter", DB2Type.VarChar).Value = "";

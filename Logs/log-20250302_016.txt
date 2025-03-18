@@ -1,4 +1,0 @@
-2025-03-02 21:02:36.559 -05:00 [INF] Iniciando validación del cliente con resal: 10449289277
-2025-03-02 21:02:38.391 -05:00 [INF] Cliente con resal 10449289277 encontrado. Status: A
-2025-03-02 21:02:38.417 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 10449289277
-2025-03-02 21:02:38.680 -05:00 [INF] Cliente encontrado: NOEMY PINO                                        , Teléfono: 3017588486     

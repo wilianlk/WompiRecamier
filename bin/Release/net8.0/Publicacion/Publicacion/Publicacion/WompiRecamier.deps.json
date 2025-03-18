@@ -17,7 +17,10 @@
           "Serilog.Sinks.Console": "6.0.0",
           "Serilog.Sinks.File": "6.0.0",
           "Swashbuckle.AspNetCore": "6.4.0",
-          "System.IdentityModel.Tokens.Jwt": "8.3.0"
+          "System.Data.Odbc": "9.0.2",
+          "System.Diagnostics.PerformanceCounter": "9.0.2",
+          "System.IdentityModel.Tokens.Jwt": "8.3.0",
+          "System.Security.Permissions": "9.0.2"
         },
         "runtime": {
           "WompiRecamier.dll": {}
@@ -427,11 +430,86 @@
           }
         }
       },
+      "System.Configuration.ConfigurationManager/9.0.2": {
+        "dependencies": {
+          "System.Diagnostics.EventLog": "9.0.2",
+          "System.Security.Cryptography.ProtectedData": "9.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
+        }
+      },
+      "System.Data.Odbc/9.0.2": {
+        "runtime": {
+          "lib/net8.0/System.Data.Odbc.dll": {
+            "assemblyVersion": "9.0.0.2",
+            "fileVersion": "9.0.225.6610"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/net8.0/System.Data.Odbc.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.2",
+            "fileVersion": "9.0.225.6610"
+          },
+          "runtimes/win/lib/net8.0/System.Data.Odbc.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.2",
+            "fileVersion": "9.0.225.6610"
+          }
+        }
+      },
       "System.Diagnostics.DiagnosticSource/9.0.0": {
         "runtime": {
           "lib/net8.0/System.Diagnostics.DiagnosticSource.dll": {
             "assemblyVersion": "9.0.0.0",
             "fileVersion": "9.0.24.52809"
+          }
+        }
+      },
+      "System.Diagnostics.EventLog/9.0.2": {
+        "runtime": {
+          "lib/net8.0/System.Diagnostics.EventLog.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Diagnostics.EventLog.Messages.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win/lib/net8.0/System.Diagnostics.EventLog.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
+        }
+      },
+      "System.Diagnostics.PerformanceCounter/9.0.2": {
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "9.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/System.Diagnostics.PerformanceCounter.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Diagnostics.PerformanceCounter.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
           }
         }
       },
@@ -452,6 +530,25 @@
           "lib/net8.0/System.IO.Pipelines.dll": {
             "assemblyVersion": "9.0.0.0",
             "fileVersion": "9.0.24.52809"
+          }
+        }
+      },
+      "System.Security.Cryptography.ProtectedData/9.0.2": {
+        "runtime": {
+          "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
+        }
+      },
+      "System.Security.Permissions/9.0.2": {
+        "dependencies": {
+          "System.Windows.Extensions": "9.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/System.Security.Permissions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
           }
         }
       },
@@ -480,6 +577,22 @@
           "lib/net8.0/System.Text.Json.dll": {
             "assemblyVersion": "9.0.0.0",
             "fileVersion": "9.0.24.52809"
+          }
+        }
+      },
+      "System.Windows.Extensions/9.0.2": {
+        "runtime": {
+          "lib/net8.0/System.Windows.Extensions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Windows.Extensions.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.225.6610"
           }
         }
       }
@@ -757,12 +870,40 @@
       "path": "swashbuckle.aspnetcore.swaggerui/6.4.0",
       "hashPath": "swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
     },
+    "System.Configuration.ConfigurationManager/9.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pX5GhR4/mfYUbebRdINO6P4B8stIbVWaAWGgWzYO1eC30nUVpCQdzQjKwCPhtLdzjR3d/q+MQ0sRG3B1GLSyqw==",
+      "path": "system.configuration.configurationmanager/9.0.2",
+      "hashPath": "system.configuration.configurationmanager.9.0.2.nupkg.sha512"
+    },
+    "System.Data.Odbc/9.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Lr/TsB6AmNWI2Ehb4uGwmgzMnHIXb2+o1AgiB9XOn6ABrcM8C3+GkXEYdO2wV6PnKCTdklkdw4TD1xSKRD4dmw==",
+      "path": "system.data.odbc/9.0.2",
+      "hashPath": "system.data.odbc.9.0.2.nupkg.sha512"
+    },
     "System.Diagnostics.DiagnosticSource/9.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-ddppcFpnbohLWdYKr/ZeLZHmmI+DXFgZ3Snq+/E7SwcdW4UnvxmaugkwGywvGVWkHPGCSZjCP+MLzu23AL5SDw==",
       "path": "system.diagnostics.diagnosticsource/9.0.0",
       "hashPath": "system.diagnostics.diagnosticsource.9.0.0.nupkg.sha512"
+    },
+    "System.Diagnostics.EventLog/9.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-i+Fe6Fpst/onydFLBGilCr/Eh9OFdlaTU/c3alPp6IbLZXQJOgpIu3l4MOnmsN8fDYq5nAyHSqNIJesc74Yw3Q==",
+      "path": "system.diagnostics.eventlog/9.0.2",
+      "hashPath": "system.diagnostics.eventlog.9.0.2.nupkg.sha512"
+    },
+    "System.Diagnostics.PerformanceCounter/9.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hRq8SBG2CYALIJqOYLsZW749wITem4JTXIL0YxYfovWSbCKF6Eu1AEMJ54Va1rg2I5o3aTD6QvBaRw4x/v7Sfw==",
+      "path": "system.diagnostics.performancecounter/9.0.2",
+      "hashPath": "system.diagnostics.performancecounter.9.0.2.nupkg.sha512"
     },
     "System.IdentityModel.Tokens.Jwt/8.3.0": {
       "type": "package",
@@ -778,6 +919,20 @@
       "path": "system.io.pipelines/9.0.0",
       "hashPath": "system.io.pipelines.9.0.0.nupkg.sha512"
     },
+    "System.Security.Cryptography.ProtectedData/9.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+z9JWtU9di45tW/w6zpuJms4SnAAqKY2Usmmxs7MpOhxWoIeR2pKl1vEkaFbEx52ZfrMFcZXsFe+8WERMozzGg==",
+      "path": "system.security.cryptography.protecteddata/9.0.2",
+      "hashPath": "system.security.cryptography.protecteddata.9.0.2.nupkg.sha512"
+    },
+    "System.Security.Permissions/9.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rfotu5P6stl/Cf3ad2+qn4mD2DwBK1DQWWZZvyMAjI+M+kJrPVZoxDcCguM248S0hZkNfxQiTzZWRrj2Sn43YA==",
+      "path": "system.security.permissions/9.0.2",
+      "hashPath": "system.security.permissions.9.0.2.nupkg.sha512"
+    },
     "System.Text.Encodings.Web/9.0.0": {
       "type": "package",
       "serviceable": true,
@@ -791,6 +946,13 @@
       "sha512": "sha512-js7+qAu/9mQvnhA4EfGMZNEzXtJCDxgkgj8ohuxq/Qxv+R56G+ljefhiJHOxTNiw54q8vmABCWUwkMulNdlZ4A==",
       "path": "system.text.json/9.0.0",
       "hashPath": "system.text.json.9.0.0.nupkg.sha512"
+    },
+    "System.Windows.Extensions/9.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xQkPGVn+H6rlge9Ig7RomYT/z+KwIa3lcVm16YTov4UZFUhEIp+9tPUhs5n9OmXimZkfAdN/CHK2q0aj979fNA==",
+      "path": "system.windows.extensions/9.0.2",
+      "hashPath": "system.windows.extensions.9.0.2.nupkg.sha512"
     }
   }
 }
