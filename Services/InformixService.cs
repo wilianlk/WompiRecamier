@@ -486,7 +486,7 @@ VALUES (
                 cmd.Parameters.Add("@Valor", DB2Type.Decimal).Value = invoiceValue;
                 cmd.Parameters.Add("@Factura", DB2Type.Integer).Value = invoiceNumber;
                 cmd.Parameters.Add("@Transaccion", DB2Type.VarChar).Value = t.Id ?? "";
-                cmd.Parameters.Add("@Franquicia", DB2Type.VarChar).Value = t.PaymentMethodType ?? "";
+                cmd.Parameters.Add("@Franquicia", DB2Type.VarChar).Value = t.PaymentMethod.Type ?? "";
                 cmd.Parameters.Add("@Usuario", DB2Type.VarChar).Value = t.CustomerData?.FullName ?? "";
                 cmd.Parameters.Add("@Correo", DB2Type.VarChar).Value = t.CustomerEmail ?? "";
                 cmd.Parameters.Add("@Marca", DB2Type.VarChar).Value = "";

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WompiRecamier")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf04d36a0832401ca6d6fd9a45c4895bf0cb9b5a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d38b59d2ddd8963502b5a39ab937aa967c8f7e34")]
 [assembly: System.Reflection.AssemblyProductAttribute("WompiRecamier")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WompiRecamier")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

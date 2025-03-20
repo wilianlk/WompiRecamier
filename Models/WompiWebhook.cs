@@ -26,7 +26,6 @@ namespace WompiRecamier.Models
         public string Reference { get; set; }
         public string CustomerEmail { get; set; }
         public string Currency { get; set; }
-        public string PaymentMethodType { get; set; }
 
         [JsonPropertyName("payment_method")]
         public PaymentMethod PaymentMethod { get; set; }
@@ -37,6 +36,7 @@ namespace WompiRecamier.Models
 
     public class PaymentMethod
     {
+        [JsonPropertyName("type")]
         public string Type { get; set; }
         public Extra Extra { get; set; }
         public string PhoneNumber { get; set; }
