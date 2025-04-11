@@ -96,7 +96,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins", policy =>
     {
-        policy.WithOrigins("http://192.168.20.30:8081", "http://localhost:3000") // Cambia por tus dominios permitidos
+        policy.WithOrigins("http://192.168.20.30:8083", "https://portalpagos.recamier.com", "http://localhost:3000") // Cambia por tus dominios permitidos
               .AllowAnyMethod()
               .AllowAnyHeader();
     });

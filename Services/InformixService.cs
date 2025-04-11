@@ -57,7 +57,7 @@ namespace WompiRecamier.Services
                     FROM custmain_wompi_excepcion
                     WHERE cwe_cmpy = 'RE'
                     AND (SUBSTR(cwe_resal, 2, 15) = @resal 
-                    OR SUBSTR(cwe_cust, 2, 15) = @resal)";
+                    OR cwe_cust = @resal)";
 
                 using var statusCommand = new DB2Command(statusQuery, connection);
                 statusCommand.Parameters.Add(new DB2Parameter("@resal", resal));
@@ -214,7 +214,8 @@ namespace WompiRecamier.Services
                 while (await baseReader.ReadAsync())
                 {
                     var invoiceNumber = baseReader["in_num"].ToString().Trim();
-                    var netValue = Convert.ToDecimal(baseReader["valor_neto"]);
+                    var invoiceValue = Convert.ToDecimal(baseReader["valor_factura"]);
+                    var netValue = Convert.ToDecimal(baseReader["saldo"]);
                     var invoiceDate = Convert.ToDateTime(baseReader["in_date"]);
                     var miscInfo = baseReader["in_misc"].ToString();
                     var currentDate = DateTime.Now;
@@ -230,6 +231,7 @@ namespace WompiRecamier.Services
                     derivedCommand.Parameters.Add(new DB2Parameter("@InvoiceNumber", invoiceNumber));
                     derivedCommand.Parameters.Add(new DB2Parameter("@ReceiptDate", receiptDate));
                     derivedCommand.Parameters.Add(new DB2Parameter("@NetValue", netValue));
+                    //derivedCommand.Parameters.Add(new DB2Parameter("@NetValue", invoiceValue));
                     derivedCommand.Parameters.Add(new DB2Parameter("@CheckDate", checkDate));
 
 
@@ -245,6 +247,7 @@ namespace WompiRecamier.Services
                     {
                         InvoiceNumber = invoiceNumber,
                         NetValue = netValue,
+                        InvoiceValue = invoiceValue,
                         DiscountResult = discountResult,
                         NetValueWithDiscount = netValue - discountResult,
                         InvoiceDate = invoiceDate,
@@ -273,7 +276,7 @@ namespace WompiRecamier.Services
 
                 // Consulta para calcular el descuento con proc_reglasprontopago
                 string derivedQuery = @"
-                SELECT COALESCE(proc_reglasprontopago('RE', @InvoiceNumber, @ReceiptDate, 
+                SELECT COALESCE(proc_reglasprontopago2('RE', @InvoiceNumber, @ReceiptDate, 
                 @NetValue, @CheckDate), 0) AS DiscountResult
                 ";
 
