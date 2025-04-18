@@ -2,10 +2,12 @@ using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Text;
+using WompiRecamier.Models;
 using WompiRecamier.Services;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
@@ -52,6 +54,12 @@ builder.Services.AddMemoryCache();
 builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
 builder.Services.AddInMemoryRateLimiting();
 builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+builder.Services.AddHttpContextAccessor();
+
+// Configuración de Wompi: lee "Wompi:ApiBaseUrl" de appsettings según entorno
+builder.Services.Configure<WompiOptions>(
+    builder.Configuration.GetSection("Wompi")
+);
 
 // Agregar servicios y controladores
 builder.Services.AddControllers();

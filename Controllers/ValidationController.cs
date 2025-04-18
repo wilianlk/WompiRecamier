@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
-using Newtonsoft.Json.Linq;
-using System.Text.Json;
 using WompiRecamier.Services;
 using WompiRecamier.Models;
 using System.Globalization;
+using Microsoft.Extensions.Options;
+using System.Text.RegularExpressions;
 
 namespace WompiRecamier.Controllers
 {
@@ -16,14 +16,24 @@ namespace WompiRecamier.Controllers
     {
         private readonly InformixService _informixService;
         private readonly ILogger<ValidationController> _logger;
+        private readonly string _wompiBaseUrl;
 
-        // Constructor que inyecta el servicio y el logger
-        public ValidationController(InformixService informixService, ILogger<ValidationController> logger)
+        public ValidationController(InformixService informixService, ILogger<ValidationController> logger, IOptions<WompiOptions> wompiOptions)
         {
             _informixService = informixService;
             _logger = logger;
+            _wompiBaseUrl = wompiOptions.Value.ApiBaseUrl;
         }
 
+        [HttpGet("env-check")]
+        public IActionResult GetEnvironment([FromServices] IWebHostEnvironment env)
+        {
+            return Ok(new
+            {
+                Environment = env.EnvironmentName,
+                IsDevelopment = env.IsDevelopment()
+            });
+        }
         //[Authorize]
         [HttpGet("test-connection")]
         public IActionResult TestDatabaseConnection()
@@ -243,30 +253,25 @@ namespace WompiRecamier.Controllers
         [HttpGet("confirmation")]
         public async Task<IActionResult> Confirmation([FromQuery] string transactionId)
         {
-            _logger.LogInformation("Consultando transferencias para la transacción: {TransactionId}", transactionId);
-
             if (string.IsNullOrWhiteSpace(transactionId))
-            {
-                return BadRequest(new { status = "ValidationError", message = "El parámetro transactionId es requerido." });
-            }
+                return BadRequest(new { status = "ValidationError", message = "transactionId es requerido." });
 
             try
             {
-                // Se llama al método del servicio que ejecuta la consulta SQL.
-                var transferControls = await _informixService.GetTransferControlsAsync(transactionId);
+                var (status, data) = await _informixService
+                    .HandleConfirmationAsync(transactionId, _wompiBaseUrl);
 
-                if (transferControls == null || !transferControls.Any())
-                {
-                    _logger.LogWarning("No se encontraron registros para la transacción: {TransactionId}", transactionId);
-                    return NotFound(new { status = "NotFound", transactionId, message = "No se encontraron registros." });
-                }
-
-                return Ok(new { status = "Success", transactionId, data = transferControls });
+                return Ok(new { status, transactionId, data });
             }
-            catch (Exception ex)
+            catch (InvalidOperationException ex)
             {
-                _logger.LogError(ex, "Error al consultar transferencias para la transacción: {TransactionId}", transactionId);
-                return StatusCode(500, new { status = "Error", transactionId, message = "Error interno al procesar la solicitud." });
+                _logger.LogError(ex, "WompiError en confirmation");
+                return StatusCode(502, new { status = "WompiError", message = ex.Message });
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogError(ex, "Error interno en confirmation");
+                return StatusCode(500, new { status = "Error", message = "Error interno al procesar confirmation." });
             }
         }
     }

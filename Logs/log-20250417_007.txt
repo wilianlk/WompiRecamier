@@ -1,0 +1,191 @@
+2025-04-17 16:42:10.248 -05:00 [ERR] Error interno en confirmation
+IBM.Data.Db2.DB2Exception (0x80004005): ERROR [IX000] [IBM][IDS/UNIX64] No cast from text to lvarchar.
+   at IBM.Data.Db2.DB2Connection.HandleError(IntPtr hHandle, SQL_HANDLE hType, RETCODE retcode)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject(Boolean skipInitialValidation)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject()
+   at IBM.Data.Db2.DB2Command.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at WompiRecamier.Services.InformixService.InsertTransferenciasHistoricoAsync(List`1 invoices, String transactionId, String status, String payloadJson) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Services\InformixService.cs:line 655
+   at WompiRecamier.Services.InformixService.HandleConfirmationAsync(String transactionId, String wompiBaseUrl) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Services\InformixService.cs:line 597
+   at WompiRecamier.Controllers.ValidationController.Confirmation(String transactionId) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Controllers\ValidationController.cs:line 261
+2025-04-17 16:51:46.517 -05:00 [Information] Iniciando validación del cliente con resal: 46358886
+2025-04-17 16:51:47.455 -05:00 [Information] Cliente con resal 46358886 encontrado. Status: A
+2025-04-17 16:51:47.486 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "46358886"
+2025-04-17 16:51:47.588 -05:00 [Information] Cliente encontrado: "SALON DE BELLEZA SION                             ", Teléfono: "3213258148     "
+2025-04-17 17:07:11.790 -05:00 [Information] Iniciando validación del cliente con resal: 46358886
+2025-04-17 17:07:12.125 -05:00 [Information] Cliente con resal 46358886 encontrado. Status: A
+2025-04-17 17:07:12.135 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "46358886"
+2025-04-17 17:07:12.219 -05:00 [Information] Cliente encontrado: "SALON DE BELLEZA SION                             ", Teléfono: "3213258148     "
+2025-04-17 17:09:09.298 -05:00 [Information] JSON recibido: "{
+  \"data\": {
+    \"transaction\": {
+      \"id\": \"1126070-1744927666-41785\",
+      \"status\": \"DECLINED\",
+      \"currency\": \"COP\",
+      \"reference\": \"NIT-46358886-FAV-2980117_328667_DP-0-ABONO-17-04-2025_17-07-2982206_221333_DP-0-ABONO-17-04-2025_17-07\",
+      \"created_at\": \"2025-04-17T22:07:47.082Z\",
+      \"billing_data\": null,
+      \"finalized_at\": \"2025-04-17T22:07:48.780Z\",
+      \"redirect_url\": \"http://localhost:3000/confirmation\",
+      \"customer_data\": {
+        \"device_id\": \"027bf9e45fe5940d69f5b5dcde55f7c0\",
+        \"full_name\": \"SALON DE BELLEZA SION\",
+        \"browser_info\": {
+          \"browser_tz\": \"300\",
+          \"browser_language\": \"es\",
+          \"browser_user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36\",
+          \"browser_color_depth\": \"24\",
+          \"browser_screen_width\": \"1536\",
+          \"browser_screen_height\": \"864\"
+        },
+        \"phone_number\": \"3213258148\",
+        \"device_data_token\": \"eyJhbGciOiJIUzI1NiJ9.eyJjb21wcmVzc2VkIjoiZUp6VlZVdHpHamtRL2lzcW5hQnFsamZZSVNjZUJyc0NYc3JnK0xDVlNnbE56OUNGUnBxVk5Eemk4bi9mMW9DeGswcnVYamlNOUhXcisrdVg5TXczM3VlUER1d2dCZTE1bjgvTkQxUksxTHUxQnFzOG9ZN04zckg3RldzMmFvM1BqSUJlNXpNNzlEcFZOc2h6QlUrdy9vSyszbTFmMWRvOVZ2bHl1NXJQSXFad0Myd0tjbXVxYkxTeEpvTjZzMDBXdzU4dFJTSXNuby93aU9kSytNVFlqSnlUK1hhTG9FQnFJQ1hrZmlaMFdvZ1VTQWlPSkZyc01CWGUySVUxT1ZpUDRFYW1DTXcvZFNLK2gvVjA5aFdJdEEzV1NtNzhERDhRREJiZUJPd3B3Sy9pc2ZEaWNuSnFUS3FBM1dsWlk1VTc3VUZWMyt1OU16VzRuODV1empvUkt6K1ZoeXA3dkIyenFSWDVCcVZqbGNhaFFiOVBnOTUxbFkzUmd2VHRjYlBKZHU1NzkzdUQ1ZVVuWXVNQS91Um51UkhrWjBFSDBLSFJ2TjlxUjF3VU1ab0o2aFJzYmpGRTNteDFhbzFPdTNQVmJWMTFtNzNHRldVaXNmQnZBVm9lQjFxb293dGNPOWRFSXVJZU0vaGhkTWpvSUFPTFV0U0hKalZla0djbkxZQit3dGh2eUd5MzNYdUZiZ0hURGJtNjduVmVvVEZWaDdSYUJFaGp0bFNJR3kzV0NtTGU5N2FBaUNzamhWcFNxYWg4djRnY3VCRFE3NFhVYzNDQWVEejhCZDhJRysrRmhaSFJzckEyQkJkaWozZ01PNVF3aDh4WVFxNnBvOEJtV0hwd0kwRXhDb28xQm8xazZ5ZmhIQ1YxMGVhVWpJdENZclIzdlA4UER5TWhqMnd5SkhBa0ZLNHRoaFhOU1VHT0xpczJOWjdxVE1ERUNyMVZxTitRV3dIZWczWnlzd2RVVklXSXp3cUpzV0JEVzJiMHNsOEtIZnA3dm1SL0YxNVJRaytiQjBnZ2hBcHNtVk1iQ09XUEo4SGozWnVYK1lyZEhMd05GWndMcThobFdCbHQvREVITmpMVzRTNElGeGFkUngyV1MwZ05CQ096a3NhM2lCY09CdkdRaXJibC9VUW9SeG1QemIzeEt5c0N4SnZscUJZcDZwQ2NaNXJFTEtSdE1aNndyd2o3TXJZWXFEY3c5Mld6OG9XeFBsU1FqWTBzTWtvV205Q1lpMEF1b3laY0VibVRxVUNUOUFWZEtOU080WFE5ajVQUWowV1M0Q0ZvOFFDOFJCZGREd2YvQjZWdlFlM003blQ1c1A4QlNTeXlEMDZ6bkJabkVzOXU0dlNqNS9SOHhhOExWUDR2bWtoaSszRm8wclR0TUFaemNrZUNaNTdsSFpKbjRyaUcwd3VRdmR1YU5MM3NYdWdGb0plUjdoSnFiQi91OWZPd3BrZXFqalRCK3huSnJUbGdodjY0cEJ2SXZHcSsvQWZNVnFyMyJ9.2du_D41JOJtj89BrSc5DhykrJFZ0_LKqpka5r__3E-k\"
+      },
+      \"customer_email\": \"wlucumi@recamier.com\",
+      \"payment_method\": {
+        \"type\": \"PSE\",
+        \"extra\": {
+          \"ticket_id\": \"1126070174492766641785\",
+          \"is_three_ds\": false,
+          \"return_code\": \"SUCCESS\",
+          \"request_date\": \"2025-04-17\",
+          \"async_payment_url\": \"https://api-sandbox.wompi.co/v1/pse/redirect?ticket_id=1126070174492766641785\",
+          \"traceability_code\": \"SANDBOX-8fXMHyleUg-NOT_AUTHORIZED\",
+          \"transaction_cycle\": \"1\",
+          \"transaction_state\": null,
+          \"three_ds_auth_type\": null,
+          \"external_identifier\": \"SANDBOX-8fXMHyleUg-NOT_AUTHORIZED\",
+          \"bank_processing_date\": \"2025-04-17\"
+        },
+        \"user_type\": 0,
+        \"user_legal_id\": \"1144181908\",
+        \"user_legal_id_type\": \"CC\",
+        \"payment_description\": \"Pago a RECAMIER, ref: NIT-46358886-FAV-2980117_328667_DP-0-ABONO-17-04-2025_17-07-2982206_221333_DP-0-ABONO-17-04-2025_17-07\",
+        \"financial_institution_code\": \"2\"
+      },
+      \"status_message\": \"Transacción RECHAZADA en Sandbox\",
+      \"amount_in_cents\": 55000000,
+      \"payment_link_id\": null,
+      \"shipping_address\": null,
+      \"payment_source_id\": null,
+      \"payment_method_type\": \"PSE\"
+    }
+  },
+  \"event\": \"transaction.updated\",
+  \"sent_at\": \"2025-04-17T22:07:48.906Z\",
+  \"signature\": {
+    \"checksum\": \"c6901c209e357f9bb8b079bdee7c3862b2fad63f65dffc8e78976396adb09ed2\",
+    \"properties\": [
+      \"transaction.id\",
+      \"transaction.status\",
+      \"transaction.amount_in_cents\"
+    ]
+  },
+  \"timestamp\": 1744927668,
+  \"environment\": \"test\"
+}"
+2025-04-17 17:09:09.319 -05:00 [Information] Procesando transacción "1126070-1744927666-41785", Estado: "DECLINED"
+2025-04-17 17:09:09.481 -05:00 [Warning] Transacción declinada: "NIT-46358886-FAV-2980117_328667_DP-0-ABONO-17-04-2025_17-07-2982206_221333_DP-0-ABONO-17-04-2025_17-07"
+2025-04-17 17:10:35.767 -05:00 [Information] JSON recibido: "{
+  \"data\": {
+    \"transaction\": {
+      \"id\": \"1126070-1744926758-95594\",
+      \"status\": \"APPROVED\",
+      \"currency\": \"COP\",
+      \"reference\": \"NIT-46358886-FAV-2980117_328667_DP-0-ABONO-17-04-2025_16-52-2982206_171333_DP-0-ABONO-17-04-2025_16-52\",
+      \"created_at\": \"2025-04-17T21:52:38.235Z\",
+      \"billing_data\": null,
+      \"finalized_at\": \"2025-04-17T21:52:41.269Z\",
+      \"redirect_url\": \"http://localhost:3000/confirmation\",
+      \"customer_data\": {
+        \"device_id\": \"027bf9e45fe5940d69f5b5dcde55f7c0\",
+        \"full_name\": \"SALON DE BELLEZA SION\",
+        \"browser_info\": {
+          \"browser_tz\": \"300\",
+          \"browser_language\": \"es\",
+          \"browser_user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36\",
+          \"browser_color_depth\": \"24\",
+          \"browser_screen_width\": \"1536\",
+          \"browser_screen_height\": \"864\"
+        },
+        \"phone_number\": \"3213258148\",
+        \"device_data_token\": \"eyJhbGciOiJIUzI1NiJ9.eyJjb21wcmVzc2VkIjoiZUp6VlZVdHpHamtRL2lzcW5hQnFsamZZSVNjZUJyc0NYc3JnK0xDVlNnbE56OUNGUnBxVk5Eemk4bi9mMW9DeGswcnVYamlNOUhXcisrdVg5TXczM3VlUER1d2dCZTE1bjgvTkQxUksxTHUxQnFzOG9ZN04zckg3RldzMmFvM1BqSUJlNXpNNzlEcFZOc2h6QlUrdy9vSyszbTFmMWRvOVZ2bHl1NXJQSXFad0Myd0tjbXVxYkxTeEpvTjZzMDBXdzU4dFJTSXNuby93aU9kSytNVFlqSnlUK1hhTG9FQnFJQ1hrZmlaMFdvZ1VTQWlPSkZyc01CWGUySVUxT1ZpUDRFYW1DTXcvZFNLK2gvVjA5aFdJdEEzV1NtNzhERDhRREJiZUJPd3B3Sy9pc2ZEaWNuSnFUS3FBM1dsWlk1VTc3VUZWMyt1OU16VzRuODV1empvUkt6K1ZoeXA3dkIyenFSWDVCcVZqbGNhaFFiOVBnOTUxbFkzUmd2VHRjYlBKZHU1NzkzdUQ1ZVVuWXVNQS91Um51UkhrWjBFSDBLSFJ2TjlxUjF3VU1ab0o2aFJzYmpGRTNteDFhbzFPdTNQVmJWMTFtNzNHRldVaXNmQnZBVm9lQjFxb293dGNPOWRFSXVJZU0vaGhkTWpvSUFPTFV0U0hKalZla0djbkxZQit3dGh2eUd5MzNYdUZiZ0hURGJtNjduVmVvVEZWaDdSYUJFaGp0bFNJR3kzV0NtTGU5N2FBaUNzamhWcFNxYWg4djRnY3VCRFE3NFhVYzNDQWVEejhCZDhJRysrRmhaSFJzckEyQkJkaWozZ01PNVF3aDh4WVFxNnBvOEJtV0hwd0kwRXhDb28xQm8xazZ5ZmhIQ1YxMGVhVWpJdENZclIzdlA4UER5TWhqMnd5SkhBa0ZLNHRoaFhOU1VHT0xpczJOWjdxVE1ERUNyMVZxTitRV3dIZWczWnlzd2RVVklXSXp3cUpzV0JEVzJiMHNsOEtIZnA3dm1SL0YxNVJRaytiQjBnZ2hBcHNtVk1iQ09XUEo4SGozWnVYK1lyZEhMd05GWndMcThobFdCbHQvREVITmpMVzRTNElGeGFkUngyV1MwZ05CQ096a3NhM2lCY09CdkdRaXJibC9VUW9SeG1QemIzeEt5c0N4SnZscUJZcDZwQ2NaNXJFTEtSdE1aNndyd2o3TXJZWXFEY3c5Mld6OG9XeFBsU1FqWTBzTWtvV205Q1lpMEF1b3laY0VibVRxVUNUOUFWZEtOU080WFE5ajVQUWowV1M0Q0ZvOFFDOFJCZGREd2YvQjZWdlFlM003blQ1c1A4QlNTeXlEMDZ6bkJabkVzOXU0dlNqNS9SOHhhOExWUDR2bWtoaSszRm8wclR0TUFaemNrZUNaNTdsSFpKbjRyaUcwd3VRdmR1YU5MM3NYdWdGb0plUjdoSnFiQi91OWZPd3BrZXFqalRCK3huSnJUbGdodjY0cEJ2SXZHcSsvQWZNVnFyMyJ9.2du_D41JOJtj89BrSc5DhykrJFZ0_LKqpka5r__3E-k\"
+      },
+      \"customer_email\": \"wlucumi@recamier.com\",
+      \"payment_method\": {
+        \"type\": \"PSE\",
+        \"extra\": {
+          \"ticket_id\": \"1126070174492675895594\",
+          \"is_three_ds\": false,
+          \"return_code\": \"SUCCESS\",
+          \"request_date\": \"2025-04-17\",
+          \"async_payment_url\": \"https://api-sandbox.wompi.co/v1/pse/redirect?ticket_id=1126070174492675895594\",
+          \"traceability_code\": \"SANDBOX-yFwe2n3IsX-OK\",
+          \"transaction_cycle\": \"1\",
+          \"transaction_state\": null,
+          \"three_ds_auth_type\": null,
+          \"external_identifier\": \"SANDBOX-yFwe2n3IsX-OK\",
+          \"bank_processing_date\": \"2025-04-17\"
+        },
+        \"user_type\": 0,
+        \"user_legal_id\": \"1144181908\",
+        \"user_legal_id_type\": \"CC\",
+        \"payment_description\": \"Pago a RECAMIER, ref: NIT-46358886-FAV-2980117_328667_DP-0-ABONO-17-04-2025_16-52-2982206_171333_DP-0-ABONO-17-04-2025_16-52\",
+        \"financial_institution_code\": \"1\"
+      },
+      \"status_message\": null,
+      \"amount_in_cents\": 50000000,
+      \"payment_link_id\": null,
+      \"shipping_address\": null,
+      \"payment_source_id\": null,
+      \"payment_method_type\": \"PSE\"
+    }
+  },
+  \"event\": \"transaction.updated\",
+  \"sent_at\": \"2025-04-17T21:52:41.379Z\",
+  \"signature\": {
+    \"checksum\": \"b9cb1bedf67c5787fe9febfdf9db02dbe5050b4be0ac8745576f60d81a8e8be8\",
+    \"properties\": [
+      \"transaction.id\",
+      \"transaction.status\",
+      \"transaction.amount_in_cents\"
+    ]
+  },
+  \"timestamp\": 1744926761,
+  \"environment\": \"test\"
+}"
+2025-04-17 17:10:35.773 -05:00 [Information] Procesando transacción "1126070-1744926758-95594", Estado: "APPROVED"
+2025-04-17 17:10:35.823 -05:00 [Information] Transacción aprobada: "NIT-46358886-FAV-2980117_328667_DP-0-ABONO-17-04-2025_16-52-2982206_171333_DP-0-ABONO-17-04-2025_16-52"
+2025-04-17 17:11:45.062 -05:00 [Information] Iniciando validación del cliente con resal: 46358886
+2025-04-17 17:11:45.311 -05:00 [Information] Cliente con resal 46358886 encontrado. Status: A
+2025-04-17 17:11:45.319 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "46358886"
+2025-04-17 17:11:45.412 -05:00 [Information] Cliente encontrado: "SALON DE BELLEZA SION                             ", Teléfono: "3213258148     "
+2025-04-17 17:12:18.989 -05:00 [Information] Iniciando validación del cliente con resal: 46358886
+2025-04-17 17:12:19.242 -05:00 [Information] Cliente con resal 46358886 encontrado. Status: A
+2025-04-17 17:12:19.253 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "46358886"
+2025-04-17 17:12:19.342 -05:00 [Information] Cliente encontrado: "SALON DE BELLEZA SION                             ", Teléfono: "3213258148     "
+2025-04-17 17:12:28.425 -05:00 [Information] Iniciando validación del cliente con resal: 35319287
+2025-04-17 17:12:28.672 -05:00 [Information] Cliente con resal 35319287 encontrado. Status: A
+2025-04-17 17:12:28.681 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "35319287"
+2025-04-17 17:12:28.778 -05:00 [Information] Cliente encontrado: "COSMETICOS REBLIC  LIGIA INES CASTILLA            ", Teléfono: "3002752857     "
+2025-04-17 17:14:29.394 -05:00 [Information] Iniciando validación del cliente con resal: 35319287
+2025-04-17 17:14:29.707 -05:00 [Information] Cliente con resal 35319287 encontrado. Status: A
+2025-04-17 17:14:29.715 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "35319287"
+2025-04-17 17:14:29.807 -05:00 [Information] Cliente encontrado: "COSMETICOS REBLIC  LIGIA INES CASTILLA            ", Teléfono: "3002752857     "
+2025-04-17 17:16:06.611 -05:00 [Information] Iniciando validación del cliente con resal: 46358886
+2025-04-17 17:16:06.945 -05:00 [Information] Cliente con resal 46358886 encontrado. Status: A
+2025-04-17 17:16:06.953 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "46358886"
+2025-04-17 17:16:07.061 -05:00 [Information] Cliente encontrado: "SALON DE BELLEZA SION                             ", Teléfono: "3213258148     "
+2025-04-17 17:16:14.867 -05:00 [Information] Iniciando validación del cliente con resal: 43788920
+2025-04-17 17:16:15.193 -05:00 [Information] Cliente con resal 43788920 encontrado. Status: A
+2025-04-17 17:16:15.201 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "43788920"
+2025-04-17 17:16:15.321 -05:00 [Information] Cliente encontrado: "TIENDA DEL PELUQUERO RDG                          ", Teléfono: "3216390101     "
+2025-04-17 17:16:21.076 -05:00 [Information] Iniciando validación del cliente con resal: 35319287
+2025-04-17 17:16:21.300 -05:00 [Information] Cliente con resal 35319287 encontrado. Status: A
+2025-04-17 17:16:21.309 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "35319287"
+2025-04-17 17:16:21.398 -05:00 [Information] Cliente encontrado: "COSMETICOS REBLIC  LIGIA INES CASTILLA            ", Teléfono: "3002752857     "
+2025-04-17 17:17:44.994 -05:00 [Information] Iniciando validación del cliente con resal: 03112845
+2025-04-17 17:17:45.313 -05:00 [Information] Cliente con resal 03112845 encontrado. Status: A
+2025-04-17 17:17:45.322 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "03112845"
+2025-04-17 17:17:45.450 -05:00 [Information] Cliente encontrado: "ES MUY PERSONAL                                   ", Teléfono: "3103858062     "

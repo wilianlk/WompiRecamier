@@ -9,5 +9,6 @@
         public decimal NetValueWithDiscount { get; set; }
         public DateTime InvoiceDate { get; set; }
         public string MiscInfo { get; set; }
+        public string TransactionId { get; set; }
     }
 }

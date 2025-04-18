@@ -1,18 +1,31 @@
 ﻿using IBM.Data.Db2;
 using System.Data;
 using System.Globalization;
+using System.Text.Json;
+using Microsoft.AspNetCore.Http;
 using WompiRecamier.Models;
 using System.Transactions;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace WompiRecamier.Services
 {
     public class InformixService
     {
         private readonly string _connectionString;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public InformixService(IConfiguration configuration)
+        public InformixService(IConfiguration configuration, IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor)
         {
-            _connectionString = configuration.GetConnectionString("InformixConnection");
+            Console.WriteLine($"Entorno actual: {env.EnvironmentName}");
+
+            _connectionString = env.IsDevelopment()
+                ? configuration.GetConnectionString("InformixConnection")
+                : configuration.GetConnectionString("InformixConnectionProduction");
+
+            _httpContextAccessor = httpContextAccessor;
+
+            Console.WriteLine($"Cadena seleccionada: {_connectionString}");
         }
         public bool TestConnection()
         {
@@ -107,17 +120,6 @@ namespace WompiRecamier.Services
                 using var connection = new DB2Connection(_connectionString);
                 await connection.OpenAsync();
 
-                // Paso 1: Consulta para obtener el valor de cm_cust
-                /*string getCustomerCodeQuery = @"
-                SELECT cm_cust
-                FROM custmain c
-                WHERE c.cm_cmpy = 'RE'
-                  AND (SUBSTR(c.cm_cust, 2, 15) = @resal 
-                OR SUBSTR(c.cm_resal, 2, 15) = @resal)
-                ";
-                using var getCustomerCodeCommand = new DB2Command(getCustomerCodeQuery, connection);
-                getCustomerCodeCommand.Parameters.Add(new DB2Parameter("@resal", resal));*/
-
                 using var getCustomerCodeCommand = new DB2Command("proc_validate_customer_count_wompy", connection);
                 getCustomerCodeCommand.CommandType = CommandType.StoredProcedure;
                 getCustomerCodeCommand.Parameters.Add(new DB2Parameter("p_resal", resal));
@@ -125,15 +127,6 @@ namespace WompiRecamier.Services
 
                 var result = await getCustomerCodeCommand.ExecuteScalarAsync();
                 string customerCode = result?.ToString();
-
-                /*string customerCode = null;
-                using (var reader = await getCustomerCodeCommand.ExecuteReaderAsync())
-                {
-                    if (await reader.ReadAsync())
-                    {
-                        customerCode = reader["cm_cust"].ToString();
-                    }
-                }*/
 
                 // Si no se encuentra el código de cliente, retorna una lista vacía
                 if (string.IsNullOrEmpty(customerCode))
@@ -242,6 +235,26 @@ namespace WompiRecamier.Services
                         discountResult = Convert.ToDecimal(derivedReader["DiscountResult"]);
                     }
 
+                    // Consultar si hay transacción PENDING en el histórico
+                    string pendingTransactionId = null;
+
+                    string pendingQuery = @"
+                    SELECT FIRST 1 ctr_transaccion_numero
+                    FROM control_transferencias_historico
+                    WHERE ctr_factura_numero = @Factura
+                      AND ctr_pago_estado = 'PENDING'
+                    ";
+
+                    using var pendingCmd = new DB2Command(pendingQuery, connection);
+                    pendingCmd.Parameters.Add(new DB2Parameter("@Factura", DB2Type.Integer)
+                    {
+                        Value = int.TryParse(invoiceNumber, out var num) ? num : 0
+                    });
+
+                    var resultPending = await pendingCmd.ExecuteScalarAsync();
+                    if (resultPending != null)
+                        pendingTransactionId = resultPending.ToString();
+
                     // Agregar los resultados al objeto final
                     paymentInfoList.Add(new PaymentInfo
                     {
@@ -251,7 +264,8 @@ namespace WompiRecamier.Services
                         DiscountResult = discountResult,
                         NetValueWithDiscount = netValue - discountResult,
                         InvoiceDate = invoiceDate,
-                        MiscInfo = miscInfo
+                        MiscInfo = miscInfo,
+                        TransactionId = pendingTransactionId
                     });
                 }
 
@@ -310,34 +324,31 @@ namespace WompiRecamier.Services
             var t = webhook.Data.Transaction;
             string reference = t.Reference ?? "";
 
+            // 1) Limpiar cualquier sección "-ABONO-dd-mm-yyyy_hh-mm"
+            //    Esto hará que, por ejemplo, "NIT-...-ABONO-14-04-2025_12-56-..." se reduzca a "NIT-...-..."
+            reference = Regex.Replace(reference, @"-ABONO-\d{2}-\d{2}-\d{4}_\d{2}-\d{2}", "");
+
             List<string> invoiceList = new List<string>();
             string customerIdFromReference = string.Empty;
 
-            // Se asume que el reference tiene el formato:
-            // NIT-<customerId>-FAV-<invoiceInfo1>-<discount1>-<invoiceInfo2>-<discount2>-...
-            // Por ejemplo: 
-            // NIT-9003300530-FAV-2930532_3671974_DP-0-2932634_477806_DP-0-2941706_1092449_DP-0
+            // --------- RESTO DE TU LÓGICA ORIGINAL SIN TOCAR ---------
             if (reference.StartsWith("NIT-"))
             {
                 var tokens = reference.Split('-');
                 if (tokens.Length >= 4 && tokens[2] == "FAV")
                 {
                     customerIdFromReference = tokens[1];
-                    // Se asume que los tokens restantes vienen en pares (invoiceInfo y discount)
                     int numTokens = tokens.Length - 3;
                     if (numTokens % 2 == 0)
                     {
-                        // Por cada par se reconstruye el token completo de factura
                         for (int i = 3; i < tokens.Length; i += 2)
                         {
-                            // Ejemplo: tokens[i]="2930532_3671974" y tokens[i+1]="DP-0"
                             string invoiceTokenCombined = tokens[i] + "-" + tokens[i + 1];
                             invoiceList.Add(invoiceTokenCombined);
                         }
                     }
                     else
                     {
-                        // Si no vienen en pares, se unen todos los tokens a partir del índice 3
                         string invoiceTokensCombined = string.Join("-", tokens.Skip(3));
                         invoiceList.Add(invoiceTokensCombined);
                     }
@@ -393,7 +404,6 @@ VALUES (
             if (!DateTime.TryParse(t.FinalizedAt, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out fechaPago))
                 fechaPago = DateTime.Now;
 
-            // Valor por defecto basado en t.AmountInCents
             decimal defaultValor = t.AmountInCents / 100m;
             string entryTime = DateTime.Now.ToString("HH:mm:ss");
 
@@ -402,19 +412,15 @@ VALUES (
 
             foreach (var invoiceToken in invoiceList)
             {
-                // Variables para extraer la información
                 string invoiceNumberStr = "";
                 decimal invoiceValue = defaultValor;
-                decimal discount = 0m; // Descuento para la factura
+                decimal discount = 0m;
 
-                // Se espera que cada token tenga el formato "2930532_3671974-DP-0" o "FAC001_461808-DP-19404"
                 if (invoiceToken.Contains("_DP-"))
                 {
-                    // Importante: se usa "_DP-" como separador (no "-DP_")
                     var parts = invoiceToken.Split(new string[] { "_DP-" }, StringSplitOptions.None);
                     if (parts.Length == 2)
                     {
-                        // La parte izquierda puede tener el formato "2930532_3671974" o "FAC001_461808"
                         if (parts[0].Contains("_"))
                         {
                             var invoiceParts = parts[0].Split('_');
@@ -430,7 +436,7 @@ VALUES (
                             invoiceNumberStr = parts[0];
                             invoiceValue = defaultValor;
                         }
-                        // La parte derecha es el descuento. Si llega con el prefijo "DP-", lo eliminamos.
+
                         string discountStr = parts[1];
                         if (discountStr.StartsWith("DP-", StringComparison.OrdinalIgnoreCase))
                         {
@@ -442,7 +448,6 @@ VALUES (
                 }
                 else if (invoiceToken.Contains("_"))
                 {
-                    // Formato sin descuento: por ejemplo, "2930532_3671974"
                     var parts = invoiceToken.Split('_');
                     if (parts.Length == 2)
                     {
@@ -467,8 +472,6 @@ VALUES (
                     throw new Exception("El token de factura no contiene un número válido.");
                 }
 
-                // Convertir invoiceNumberStr a entero.
-                // Si existe un prefijo "FAC", se remueve.
                 int invoiceNumber;
                 string numericPart = invoiceNumberStr;
                 if (invoiceNumberStr.StartsWith("FAC", StringComparison.OrdinalIgnoreCase))
@@ -538,7 +541,148 @@ VALUES (
 
             return transferControls;
         }
+        public async Task<(string Status, List<TransferControl> Data)> HandleConfirmationAsync(
+        string transactionId,
+        string wompiBaseUrl)
+        {
+            // 1) Traer de Wompi
+            string rawJson;
+            using (var http = new HttpClient())
+            {
+                var resp = await http.GetAsync($"{wompiBaseUrl}/v1/transactions/{transactionId}");
+                rawJson = await resp.Content.ReadAsStringAsync();
+                if (!resp.IsSuccessStatusCode)
+                    throw new InvalidOperationException("Error al consultar Wompi.");
+            }
 
+            // 2) Parsear JSON
+            using var doc = JsonDocument.Parse(rawJson);
+            var dataElem = doc.RootElement.GetProperty("data");
+            var txElem = dataElem.TryGetProperty("transaction", out var nested) ? nested : dataElem;
+
+            var status = txElem.GetProperty("status").GetString() ?? "";
+            var reference = txElem.GetProperty("reference").GetString() ?? "";
+
+            // 3) Extraer lista (invoiceNumber, invoiceValue)
+            reference = Regex.Replace(reference, @"-ABONO-\d{2}-\d{2}-\d{4}_\d{2}-\d{2}", "");
+            var tokens = new List<string>();
+            if (reference.StartsWith("NIT-") && reference.Contains("-FAV-"))
+            {
+                var parts = reference.Split('-');
+                for (int i = 3; i + 1 < parts.Length; i += 2)
+                    tokens.Add(parts[i] + "_" + parts[i + 1]);
+            }
+            else tokens.Add(reference);
+
+            var invoices = tokens.Select(t =>
+            {
+                var segs = t.Split('_');
+                var num = segs[0].StartsWith("FAC")
+                           ? segs[0].Substring(3)
+                           : segs[0];
+                int invoiceNumber = int.Parse(num);
+                decimal invoiceValue = segs.Length > 1
+                    ? decimal.Parse(segs[1])
+                    : txElem.GetProperty("amount_in_cents").GetInt64() / 100m;
+                return (invoiceNumber, invoiceValue);
+            }).ToList();
+
+            // 4) **Idempotencia**: solo inserto si no hay aún histórico
+            var already = await GetTransferenciasHistoricoAsync(transactionId);
+            if (!already.Any())
+            {
+                await InsertTransferenciasHistoricoAsync(
+                    invoices,
+                    transactionId,
+                    status
+                );
+            }
+
+            // 5) Devuelvo datos según estado
+            var data = status.Equals("PENDING", StringComparison.OrdinalIgnoreCase)
+                ? await GetTransferenciasHistoricoAsync(transactionId)
+                : await GetTransferControlsAsync(transactionId);
+
+            return (status, data);
+        }
+        public async Task InsertTransferenciasHistoricoAsync(
+        List<(int invoiceNumber, decimal invoiceValue)> invoices,
+        string transactionId,
+        string status)
+        {
+            const string sql = @"
+            INSERT INTO control_transferencias_historico (
+                ctr_transaccion_numero,
+                ctr_factura_numero,
+                ctr_factura_valor,
+                ctr_pago_estado,
+                ctr_pago_fecha,
+                ctr_cliente_ip
+            ) VALUES (
+                @Transaccion,
+                @Factura,
+                @Valor,
+                @Estado,
+                @Fecha,
+                @ClienteIp
+            )";
+
+            var ip = _httpContextAccessor.HttpContext?
+                         .Connection?
+                         .RemoteIpAddress?
+                         .ToString();
+
+            using var conn = new DB2Connection(_connectionString);
+            await conn.OpenAsync();
+
+            foreach (var (invoiceNumber, invoiceValue) in invoices)
+            {
+                using var cmd = new DB2Command(sql, conn);
+                cmd.Parameters.Add(new DB2Parameter("@Transaccion", DB2Type.VarChar) { Value = transactionId });
+                cmd.Parameters.Add(new DB2Parameter("@Factura", DB2Type.Integer) { Value = invoiceNumber });
+                cmd.Parameters.Add(new DB2Parameter("@Valor", DB2Type.Decimal) { Value = invoiceValue });
+                cmd.Parameters.Add(new DB2Parameter("@Estado", DB2Type.VarChar) { Value = status });
+                cmd.Parameters.Add(new DB2Parameter("@Fecha", DB2Type.DateTime) { Value = DateTime.Now });
+                cmd.Parameters.Add(new DB2Parameter("@ClienteIp", DB2Type.VarChar) { Value = (object)ip ?? DBNull.Value });
+
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
+        public async Task<List<TransferControl>> GetTransferenciasHistoricoAsync(string transactionId)
+        {
+            var list = new List<TransferControl>();
+
+            using var conn = new DB2Connection(_connectionString);
+            await conn.OpenAsync();
+
+            const string sql = @"
+            SELECT 
+                ctr_factura_numero, 
+                ctr_factura_valor, 
+                ctr_pago_fecha
+              FROM control_transferencias_historico
+             WHERE ctr_transaccion_numero = @transactionId";
+
+            using var cmd = new DB2Command(sql, conn);
+            cmd.Parameters.Add(new DB2Parameter("@transactionId", DB2Type.VarChar) { Value = transactionId });
+
+            using var reader = await cmd.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                list.Add(new TransferControl
+                {
+                    FacturaNumero = reader["ctr_factura_numero"]?.ToString(),
+                    FacturaValor = reader["ctr_factura_valor"] != DBNull.Value
+                                        ? Convert.ToDecimal(reader["ctr_factura_valor"])
+                                        : 0,
+                    PagoFecha = reader["ctr_pago_fecha"] != DBNull.Value
+                                        ? Convert.ToDateTime(reader["ctr_pago_fecha"])
+                                        : DateTime.MinValue
+                });
+            }
+
+            return list;
+        }
     }
 }
 

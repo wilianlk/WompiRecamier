@@ -36,6 +36,18 @@
         }
       }
     },
+    "/api/Validation/env-check": {
+      "get": {
+        "tags": [
+          "Validation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Validation/test-connection": {
       "get": {
         "tags": [

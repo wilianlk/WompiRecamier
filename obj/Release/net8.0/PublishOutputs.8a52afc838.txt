@@ -1,6 +1,12 @@
 C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\PubTmp\Out\WompiRecamier.exe
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\PubTmp\Out\Publicacion\web.config
 C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\PubTmp\Out\appsettings.Development.json
 C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\PubTmp\Out\appsettings.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\PubTmp\Out\Publicacion\appsettings.Development.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\PubTmp\Out\Publicacion\appsettings.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\PubTmp\Out\Publicacion\WompiRecamier.deps.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\PubTmp\Out\Publicacion\WompiRecamier.runtimeconfig.json
+C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\PubTmp\Out\Publicacion\WompiRecamier.staticwebassets.endpoints.json
 C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\PubTmp\Out\clidriver\bin\db2app64.dll
 C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\PubTmp\Out\clidriver\bin\db2cli.exe
 C:\RECAMIER\william\proyectoWompi\WompiRecamier\obj\Release\net8.0\PubTmp\Out\clidriver\bin\db2cli64.dll

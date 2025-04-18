@@ -1,0 +1,23 @@
+2025-04-17 16:15:41.833 -05:00 [INF] Consultando transacción: 1126070-1744908881-66186
+2025-04-17 16:35:59.124 -05:00 [Error] Error interno en confirmation
+IBM.Data.Db2.DB2Exception (0x80004005): ERROR [42000] [IBM][IDS/UNIX64] The specified table (control_transferencias_historico) is not in the database. (-111 ISAM error:  no record found.)
+   at IBM.Data.Db2.DB2Connection.HandleError(IntPtr hHandle, SQL_HANDLE hType, RETCODE retcode)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject(Boolean skipInitialValidation)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject()
+   at IBM.Data.Db2.DB2Command.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at WompiRecamier.Services.InformixService.InsertTransferenciasHistoricoAsync(List`1 invoices, String transactionId, String status, String payloadJson) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Services\InformixService.cs:line 655
+   at WompiRecamier.Services.InformixService.HandleConfirmationAsync(String transactionId, String wompiBaseUrl) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Services\InformixService.cs:line 597
+   at WompiRecamier.Controllers.ValidationController.Confirmation(String transactionId) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Controllers\ValidationController.cs:line 261
+2025-04-17 16:37:57.288 -05:00 [Error] Error interno en confirmation
+IBM.Data.Db2.DB2Exception (0x80004005): ERROR [IX000] [IBM][IDS/UNIX64] No cast from text to lvarchar.
+   at IBM.Data.Db2.DB2Connection.HandleError(IntPtr hHandle, SQL_HANDLE hType, RETCODE retcode)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject(Boolean skipInitialValidation)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject()
+   at IBM.Data.Db2.DB2Command.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at WompiRecamier.Services.InformixService.InsertTransferenciasHistoricoAsync(List`1 invoices, String transactionId, String status, String payloadJson) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Services\InformixService.cs:line 655
+   at WompiRecamier.Services.InformixService.HandleConfirmationAsync(String transactionId, String wompiBaseUrl) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Services\InformixService.cs:line 597
+   at WompiRecamier.Controllers.ValidationController.Confirmation(String transactionId) in C:\RECAMIER\william\proyectoWompi\WompiRecamier\Controllers\ValidationController.cs:line 261

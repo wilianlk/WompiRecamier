@@ -70,6 +70,16 @@
   },
   {
     "ContainingType": "WompiRecamier.Controllers.ValidationController",
+    "Method": "GetEnvironment",
+    "RelativePath": "api/Validation/env-check",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WompiRecamier.Controllers.ValidationController",
     "Method": "GetCustomerDetailsAsync",
     "RelativePath": "api/Validation/get-customer-details/{resal}",
     "HttpMethod": "GET",
