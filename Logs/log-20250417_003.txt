@@ -1,4 +1,0 @@
-2025-04-17 14:43:04.689 -05:00 [INF] Iniciando prueba de conexión a la base de datos.
-2025-04-17 14:43:05.764 -05:00 [INF] Conexión exitosa a la base de datos.
-2025-04-17 16:11:34.544 -05:00 [Information] Consultando transacción: "1126070-1744908881-66186"
-2025-04-17 16:12:38.153 -05:00 [Information] Consultando transacción: "1126070-1744908881-66186"

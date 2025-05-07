@@ -495,7 +495,7 @@ VALUES (
                 cmd.Parameters.Add("@Franquicia", DB2Type.VarChar).Value = t.PaymentMethod.Type ?? "";
                 cmd.Parameters.Add("@Usuario", DB2Type.VarChar).Value = t.CustomerData?.FullName ?? "";
                 cmd.Parameters.Add("@Correo", DB2Type.VarChar).Value = t.CustomerEmail ?? "";
-                cmd.Parameters.Add("@Marca", DB2Type.VarChar).Value = "";
+                cmd.Parameters.Add("@Marca", DB2Type.Integer).Value = "0";
                 cmd.Parameters.Add("@Descuento", DB2Type.Decimal).Value = discount;
                 cmd.Parameters.Add("@RegistroUsuario", DB2Type.VarChar).Value = "SYS";
                 cmd.Parameters.Add("@Enter", DB2Type.VarChar).Value = "";
@@ -545,7 +545,6 @@ VALUES (
         string transactionId,
         string wompiBaseUrl)
         {
-            // 1) Traer de Wompi
             string rawJson;
             using (var http = new HttpClient())
             {
@@ -598,7 +597,22 @@ VALUES (
                 );
             }
 
-            // 5) Devuelvo datos según estado
+            if (!status.Equals("PENDING", StringComparison.OrdinalIgnoreCase))
+            {
+                using var conn = new DB2Connection(_connectionString);
+                await conn.OpenAsync();
+                const string updateSql = @"
+                UPDATE control_transferencias_historico
+                   SET ctr_pago_estado = @Estado
+                 WHERE ctr_transaccion_numero = @Transaccion
+                 AND ctr_pago_estado <> @Estado";
+                using var cmd = new DB2Command(updateSql, conn);
+                cmd.Parameters.Add(new DB2Parameter("@Estado", DB2Type.VarChar) { Value = status });
+                cmd.Parameters.Add(new DB2Parameter("@Transaccion", DB2Type.VarChar) { Value = transactionId });
+                await cmd.ExecuteNonQueryAsync();
+            }
+
+
             var data = status.Equals("PENDING", StringComparison.OrdinalIgnoreCase)
                 ? await GetTransferenciasHistoricoAsync(transactionId)
                 : await GetTransferControlsAsync(transactionId);
