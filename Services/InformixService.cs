@@ -364,41 +364,43 @@ namespace WompiRecamier.Services
             }
 
             string sql = @"
-INSERT INTO control_transferencias (
-    ctr_cliente_nit,
-    ctr_pago_fecha,
-    ctr_pago_estado,
-    ctr_factura_valor,
-    ctr_factura_numero,
-    ctr_transaccion_numero,
-    ctr_pago_franquicia,
-    ctr_usuario_nombre,
-    ctr_cliente_correo,
-    ctr_pago_marca,
-    ctr_pago_descuento,
-    ctr_registro_usuario,
-    ctr_enter,
-    ctr_entry_date,
-    ctr_entry_time
-)
-VALUES (
-    @Nit,
-    @Fecha,
-    @Estado,
-    @Valor,
-    @Factura,
-    @Transaccion,
-    @Franquicia,
-    @Usuario,
-    @Correo,
-    @Marca,
-    @Descuento,
-    @RegistroUsuario,
-    @Enter,
-    @EntryDate,
-    @EntryTime
-)
-";
+        INSERT INTO control_transferencias (
+            ctr_cliente_nit,
+            ctr_pago_fecha,
+            ctr_pago_estado,
+            ctr_factura_valor,
+            ctr_factura_numero,
+            ctr_transaccion_numero,
+            ctr_pago_franquicia,
+            ctr_referencia_pago,
+            ctr_usuario_nombre,
+            ctr_cliente_correo,
+            ctr_pago_marca,
+            ctr_pago_descuento,
+            ctr_registro_usuario,
+            ctr_enter,
+            ctr_entry_date,
+            ctr_entry_time
+        )
+        VALUES (
+            @Nit,
+            @Fecha,
+            @Estado,
+            @Valor,
+            @Factura,
+            @Transaccion,
+            @Franquicia,
+            @ReferenciaPago,
+            @Usuario,
+            @Correo,
+            @Marca,
+            @Descuento,
+            @RegistroUsuario,
+            @Enter,
+            @EntryDate,
+            @EntryTime
+        )
+        ";
 
             DateTime fechaPago;
             if (!DateTime.TryParse(t.FinalizedAt, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out fechaPago))
@@ -493,6 +495,7 @@ VALUES (
                 cmd.Parameters.Add("@Factura", DB2Type.Integer).Value = invoiceNumber;
                 cmd.Parameters.Add("@Transaccion", DB2Type.VarChar).Value = t.Id ?? "";
                 cmd.Parameters.Add("@Franquicia", DB2Type.VarChar).Value = t.PaymentMethod.Type ?? "";
+                cmd.Parameters.Add("@ReferenciaPago", DB2Type.VarChar).Value = reference;
                 cmd.Parameters.Add("@Usuario", DB2Type.VarChar).Value = t.CustomerData?.FullName ?? "";
                 cmd.Parameters.Add("@Correo", DB2Type.VarChar).Value = t.CustomerEmail ?? "";
                 cmd.Parameters.Add("@Marca", DB2Type.Integer).Value = "0";
@@ -515,7 +518,7 @@ VALUES (
                 await connection.OpenAsync();
 
                 string query = @"
-                SELECT ctr_factura_numero, ctr_factura_valor, ctr_pago_fecha
+                SELECT ctr_factura_numero, ctr_factura_valor, ctr_pago_fecha, ctr_referencia_pago
                 FROM control_transferencias
                 WHERE ctr_transaccion_numero = @transactionId";
 
@@ -529,7 +532,8 @@ VALUES (
                     {
                         FacturaNumero = reader["ctr_factura_numero"]?.ToString(),
                         FacturaValor = reader["ctr_factura_valor"] != DBNull.Value ? Convert.ToDecimal(reader["ctr_factura_valor"]) : 0,
-                        PagoFecha = reader["ctr_pago_fecha"] != DBNull.Value ? Convert.ToDateTime(reader["ctr_pago_fecha"]) : DateTime.MinValue
+                        PagoFecha = reader["ctr_pago_fecha"] != DBNull.Value ? Convert.ToDateTime(reader["ctr_pago_fecha"]) : DateTime.MinValue,
+                        ReferenciaPago = reader["ctr_referencia_pago"]?.ToString()
                     });
                 }
             }
@@ -593,7 +597,8 @@ VALUES (
                 await InsertTransferenciasHistoricoAsync(
                     invoices,
                     transactionId,
-                    status
+                    status,
+                    reference
                 );
             }
 
@@ -612,8 +617,7 @@ VALUES (
                 await cmd.ExecuteNonQueryAsync();
             }
 
-
-            var data = status.Equals("PENDING", StringComparison.OrdinalIgnoreCase)
+            var data = status.Equals("APPROVED", StringComparison.OrdinalIgnoreCase)
                 ? await GetTransferenciasHistoricoAsync(transactionId)
                 : await GetTransferControlsAsync(transactionId);
 
@@ -622,7 +626,8 @@ VALUES (
         public async Task InsertTransferenciasHistoricoAsync(
         List<(int invoiceNumber, decimal invoiceValue)> invoices,
         string transactionId,
-        string status)
+        string status,
+        string rawReference)
         {
             const string sql = @"
             INSERT INTO control_transferencias_historico (
@@ -631,6 +636,7 @@ VALUES (
                 ctr_factura_valor,
                 ctr_pago_estado,
                 ctr_pago_fecha,
+                ctr_referencia_pago,
                 ctr_cliente_ip
             ) VALUES (
                 @Transaccion,
@@ -638,6 +644,7 @@ VALUES (
                 @Valor,
                 @Estado,
                 @Fecha,
+                @ReferenciaPago,
                 @ClienteIp
             )";
 
@@ -657,6 +664,7 @@ VALUES (
                 cmd.Parameters.Add(new DB2Parameter("@Valor", DB2Type.Decimal) { Value = invoiceValue });
                 cmd.Parameters.Add(new DB2Parameter("@Estado", DB2Type.VarChar) { Value = status });
                 cmd.Parameters.Add(new DB2Parameter("@Fecha", DB2Type.DateTime) { Value = DateTime.Now });
+                cmd.Parameters.Add(new DB2Parameter("@ReferenciaPago", DB2Type.VarChar) { Value = rawReference });
                 cmd.Parameters.Add(new DB2Parameter("@ClienteIp", DB2Type.VarChar) { Value = (object)ip ?? DBNull.Value });
 
                 await cmd.ExecuteNonQueryAsync();
@@ -673,7 +681,8 @@ VALUES (
             SELECT 
                 ctr_factura_numero, 
                 ctr_factura_valor, 
-                ctr_pago_fecha
+                ctr_pago_fecha,
+                ctr_referencia_pago
               FROM control_transferencias_historico
              WHERE ctr_transaccion_numero = @transactionId";
 
@@ -691,7 +700,9 @@ VALUES (
                                         : 0,
                     PagoFecha = reader["ctr_pago_fecha"] != DBNull.Value
                                         ? Convert.ToDateTime(reader["ctr_pago_fecha"])
-                                        : DateTime.MinValue
+                                        : DateTime.MinValue,
+                    ReferenciaPago = reader["ctr_referencia_pago"]?.ToString()
+
                 });
             }
 

@@ -222,8 +222,119 @@ namespace WompiRecamier.Controllers
                 var t = webhook.Data.Transaction;
                 _logger.LogInformation("Procesando transacción {TransactionId}, Estado: {Status}", t.Id, t.Status);
 
-                // Se llama al servicio modificado que registra cada factura de forma independiente
                 await _informixService.InsertTransferControlAsync(webhook);
+
+                var data = await _informixService.GetTransferControlsAsync(t.Id);
+
+                bool esEVA = data.Any(d =>
+                    d.ReferenciaPago != null &&
+                    d.ReferenciaPago.IndexOf("_APP_EVA_", StringComparison.OrdinalIgnoreCase) >= 0
+                );
+
+                if (esEVA)
+                {
+
+                    if (t.PaymentMethod?.Type != "BANCOLOMBIA_COLLECT")
+                    {
+                        _logger.LogWarning("🚫 EVA bloqueada: método de pago inválido ({Metodo}) para la transacción {TransactionId}",
+                            t.PaymentMethod?.Type, t.Id);
+
+                        return BadRequest(new
+                        {
+                            status = "Rejected",
+                            transactionId = t.Id,
+                            message = "El método de pago no es válido para transacciones EVA."
+                        });
+                    }
+
+                    string referencia = data.First().ReferenciaPago;
+
+                    string extraer(string refStr, string key)
+                    {
+                        int i = refStr.IndexOf(key, StringComparison.OrdinalIgnoreCase);
+                        if (i < 0) return null;
+
+                        i += key.Length;
+                        int f = refStr.IndexOf("_", i);
+                        if (f < 0) f = refStr.Length;
+
+                        return refStr.Substring(i, f - i);
+                    }
+
+                    string cmpy = extraer(referencia, "_CMPY_");
+                    string reg = extraer(referencia, "_REG_");
+                    string teri = extraer(referencia, "_TERI_");
+
+                    string refEva = referencia.Substring(
+                        referencia.IndexOf("_REF_", StringComparison.OrdinalIgnoreCase) + "_REF_".Length
+                    );
+
+                    string cust = "";
+                    if (referencia.StartsWith("NIT-"))
+                    {
+                        var partes = referencia.Split('-');
+                        if (partes.Length > 1)
+                            cust = partes[1];
+                    }
+
+                    string estadoEva;
+                    switch (t.Status)
+                    {
+                        case "APPROVED":
+                            estadoEva = "AUTORIZADA";
+                            break;
+                        case "DECLINED":
+                            estadoEva = "RECHAZADA";
+                            break;
+                        default:
+                            estadoEva = t.Status;
+                            break;
+                    }
+
+                    var evaPayload = new
+                    {
+                        csh_cmpy = cmpy ?? "",
+                        csh_transaccion_numero = t.Id,
+                        csh_transaccion_estado = estadoEva,
+                    };
+
+                    try
+                    {
+                        var json = JsonSerializer.Serialize(evaPayload);
+                        using var http = new HttpClient();
+
+                        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                        var respuesta = await http.PostAsync("https://eva.recamier.com:8471/api/CashRecp/UpdateCashRecp/isProd/true", content);
+
+                        string respuestaServidor = await respuesta.Content.ReadAsStringAsync();
+
+                        Console.WriteLine($"[EVA RESPONSE OK] {respuestaServidor}");
+                        _logger.LogInformation("[EVA RESPONSE OK] {Respuesta}", respuestaServidor);
+
+                        return Ok(new
+                        {
+                            status = t.Status,
+                            transactionId = t.Id,
+                            data,
+                            evaRequest = evaPayload,
+                            evaResponse = respuestaServidor
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"[EVA ERROR] {ex.Message}");
+                        _logger.LogError(ex, "[EVA ERROR] fallo al enviar la petición EVA");
+
+                        return Ok(new
+                        {
+                            status = t.Status,
+                            transactionId = t.Id,
+                            data,
+                            evaRequest = evaPayload,
+                            evaError = ex.Message
+                        });
+                    }
+                }
 
                 switch (t.Status)
                 {
@@ -261,6 +372,124 @@ namespace WompiRecamier.Controllers
                 var (status, data) = await _informixService
                     .HandleConfirmationAsync(transactionId, _wompiBaseUrl);
 
+                bool esEVA = data.Any(d =>
+                    d.ReferenciaPago != null &&
+                    d.ReferenciaPago.IndexOf("_APP_EVA_", StringComparison.OrdinalIgnoreCase) >= 0
+                );
+
+                if (esEVA)
+                {
+                    string referencia = data.First().ReferenciaPago;
+
+                    // =====================================================
+                    // EXTRACCIÓN DIRECTA SIN CREAR OTRA FUNCIÓN
+                    // =====================================================
+                    string extraer(string refStr, string key)
+                    {
+                        int i = refStr.IndexOf(key, StringComparison.OrdinalIgnoreCase);
+                        if (i < 0) return null;
+
+                        i += key.Length;
+                        int f = refStr.IndexOf("_", i);
+                        if (f < 0) f = refStr.Length;
+
+                        return refStr.Substring(i, f - i);
+                    }
+
+                    string cmpy = extraer(referencia, "_CMPY_");
+                    string reg = extraer(referencia, "_REG_");
+                    string teri = extraer(referencia, "_TERI_");
+                    string phone = extraer(referencia, "_PHONE_");
+
+                    // REF_EVA = Todo lo que viene después de _REF_
+                    string refEva = referencia.Substring(
+                        referencia.IndexOf("_REF_", StringComparison.OrdinalIgnoreCase) + "_REF_".Length
+                    );
+
+                    // ----------------------------------------------------
+                    // Extraer NIT del formato NIT-60393066-....
+                    // ----------------------------------------------------
+                    string cust = "";
+                    if (referencia.StartsWith("NIT-"))
+                    {
+                        var partes = referencia.Split('-');
+                        if (partes.Length > 1)
+                            cust = partes[1];
+                    }
+
+                    // ----------------------------------------------------
+                    // Construcción JSON para EVA
+                    // ----------------------------------------------------
+                    var payload = new
+                    {
+                        csh_cmpy = cmpy ?? "",
+                        csh_transaccion_numero = transactionId,
+                        //csh_transaccion_estado = status,
+                        csh_transaccion_estado = "INICIADA",
+                        csh_tipo_abono = "EFECTIVO",
+                        csh_cust = cust,
+                        csh_entdt = DateTime.Now.ToString("yyyy-MM-dd"),
+                        csh_phone = phone,
+                        csh_eva = "S",
+                        facturas = data.Select(x => new
+                        {
+                            csh_inv = x.FacturaNumero,
+                            csh_amt = x.FacturaValor,
+                            csh_descto = 0m
+                        }).ToList(),
+
+                        csh_reg = reg ?? "",
+                        csh_teri = teri ?? "",
+                        csh_num2 = (int?)null,
+                        csh_marca = "N",
+                        csh_date = DateTime.Now.ToString("yyyy-MM-dd"),
+                        csh_time = DateTime.Now.ToString("HH:mm:ss")
+                    };
+
+                    // ----------------------------------------------------
+                    // ENVÍO A API FANTASMA + LOGS COMPLETOS
+                    // ----------------------------------------------------
+                    try
+                    {
+                        var json = JsonSerializer.Serialize(payload);
+                        using var http = new HttpClient();
+
+                        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                        var respuesta = await http.PostAsync("https://eva.recamier.com:8471/api/CashRecp/GenerateCashRecp/isProd/true", content);
+
+                        string respuestaServidor = await respuesta.Content.ReadAsStringAsync();
+
+                        Console.WriteLine($"[EVA RESPONSE OK] {respuestaServidor}");
+                        _logger.LogInformation("[EVA RESPONSE OK] {Respuesta}", respuestaServidor);
+
+                        return Ok(new
+                        {
+                            status,
+                            transactionId,
+                            data,
+                            evaRequest = payload,
+                            evaResponse = respuestaServidor
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"[EVA ERROR] {ex.Message}");
+                        _logger.LogError(ex, "[EVA ERROR] fallo al enviar la petición EVA");
+
+                        return Ok(new
+                        {
+                            status,
+                            transactionId,
+                            data,
+                            evaRequest = payload,
+                            evaError = ex.Message
+                        });
+                    }
+                }
+
+                // ----------------------------------------------------
+                // SI NO ES EVA → respuesta normal
+                // ----------------------------------------------------
                 return Ok(new { status, transactionId, data });
             }
             catch (InvalidOperationException ex)

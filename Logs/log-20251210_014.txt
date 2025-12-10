@@ -1,0 +1,33 @@
+2025-12-10 14:17:23.131 -05:00 [INF] Iniciando validación del cliente con resal: 60393066
+2025-12-10 14:17:25.929 -05:00 [INF] Cliente con resal 60393066 encontrado. Status: A
+2025-12-10 14:17:25.972 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 60393066
+2025-12-10 14:17:26.152 -05:00 [INF] Cliente encontrado: STILOS DILMA                                      , Teléfono: 3202446650     
+2025-12-10 14:21:42.811 -05:00 [Information] Iniciando validación del cliente con resal: 60393066
+2025-12-10 14:21:46.041 -05:00 [Information] Cliente con resal 60393066 encontrado. Status: A
+2025-12-10 14:21:46.087 -05:00 [Information] Iniciando validación del cliente con resal: 60393066
+2025-12-10 14:21:46.101 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "60393066"
+2025-12-10 14:21:46.425 -05:00 [Information] Cliente encontrado: "STILOS DILMA                                      ", Teléfono: "3202446650     "
+2025-12-10 14:21:46.439 -05:00 [Information] Cliente con resal 60393066 encontrado. Status: A
+2025-12-10 14:21:46.464 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "60393066"
+2025-12-10 14:21:46.616 -05:00 [Information] Cliente encontrado: "STILOS DILMA                                      ", Teléfono: "3202446650     "
+2025-12-10 14:22:09.996 -05:00 [Information] Iniciando validación del cliente con resal: 60393066
+2025-12-10 14:22:10.284 -05:00 [Information] Cliente con resal 60393066 encontrado. Status: A
+2025-12-10 14:22:10.298 -05:00 [Information] Iniciando validación del cliente con resal: 60393066
+2025-12-10 14:22:10.304 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "60393066"
+2025-12-10 14:22:10.509 -05:00 [Information] Cliente encontrado: "STILOS DILMA                                      ", Teléfono: "3202446650     "
+2025-12-10 14:22:10.555 -05:00 [Information] Cliente con resal 60393066 encontrado. Status: A
+2025-12-10 14:22:10.579 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "60393066"
+2025-12-10 14:22:10.752 -05:00 [Information] Cliente encontrado: "STILOS DILMA                                      ", Teléfono: "3202446650     "
+2025-12-10 14:24:17.715 -05:00 [Information] [EVA RESPONSE OK] "1"
+2025-12-10 14:24:26.456 -05:00 [Error] Error interno en confirmation
+IBM.Data.Db2.DB2Exception (0x80004005): ERROR [IX000] [IBM][IDS/UNIX64] Could not do a physical-order read to fetch next row. (-107 ISAM error:  record is locked.)
+   at IBM.Data.Db2.DB2Connection.HandleError(IntPtr hHandle, SQL_HANDLE hType, RETCODE retcode)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject(Boolean skipInitialValidation)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject()
+   at IBM.Data.Db2.DB2Command.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at WompiRecamier.Services.InformixService.HandleConfirmationAsync(String transactionId, String wompiBaseUrl) in C:\RECAMIER\procesos\Federico\WompiRecamier\Services\InformixService.cs:line 617
+   at WompiRecamier.Controllers.ValidationController.Confirmation(String transactionId) in C:\RECAMIER\procesos\Federico\WompiRecamier\Controllers\ValidationController.cs:line 372
+2025-12-10 14:24:29.975 -05:00 [Information] [EVA RESPONSE OK] "1"
+2025-12-10 14:24:29.975 -05:00 [Information] [EVA RESPONSE OK] "1"
