@@ -1,0 +1,34 @@
+2025-12-16 14:44:52.728 -05:00 [INF] Iniciando validación del cliente con resal: 06001831
+2025-12-16 14:44:52.728 -05:00 [INF] Iniciando validación del cliente con resal: 06139137
+2025-12-16 14:44:52.728 -05:00 [INF] Iniciando validación del cliente con resal: 06001831
+2025-12-16 14:44:58.373 -05:00 [INF] Cliente con resal 06139137 encontrado. Status: A
+2025-12-16 14:44:58.373 -05:00 [INF] Cliente con resal 06001831 encontrado. Status: A
+2025-12-16 14:44:58.373 -05:00 [INF] Cliente con resal 06001831 encontrado. Status: A
+2025-12-16 14:44:58.532 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06001831
+2025-12-16 14:44:58.844 -05:00 [INF] Cliente encontrado: S DE B SUSAN FASHION SUSANA MARTINEZ              , Teléfono: 6453278        
+2025-12-16 14:44:58.885 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06001831
+2025-12-16 14:44:59.148 -05:00 [INF] Cliente encontrado: S DE B SUSAN FASHION SUSANA MARTINEZ              , Teléfono: 6453278        
+2025-12-16 14:45:21.534 -05:00 [Information] Iniciando validación del cliente con resal: 06001831
+2025-12-16 14:45:28.328 -05:00 [Information] Cliente con resal 06001831 encontrado. Status: A
+2025-12-16 14:45:28.401 -05:00 [Information] Iniciando validación del cliente con resal: 06001831
+2025-12-16 14:45:28.431 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "06001831"
+2025-12-16 14:45:28.863 -05:00 [Information] Cliente con resal 06001831 encontrado. Status: A
+2025-12-16 14:45:29.008 -05:00 [Information] Cliente encontrado: "S DE B SUSAN FASHION SUSANA MARTINEZ              ", Teléfono: "6453278        "
+2025-12-16 14:45:29.041 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "06001831"
+2025-12-16 14:45:29.320 -05:00 [Information] Cliente encontrado: "S DE B SUSAN FASHION SUSANA MARTINEZ              ", Teléfono: "6453278        "
+2025-12-16 14:45:43.983 -05:00 [Information] Iniciando validación del cliente con resal: 06001831
+2025-12-16 14:45:44.413 -05:00 [Information] Cliente con resal 06001831 encontrado. Status: A
+2025-12-16 14:45:44.446 -05:00 [Information] Iniciando validación del cliente con resal: 06001831
+2025-12-16 14:45:44.474 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "06001831"
+2025-12-16 14:45:44.754 -05:00 [Information] Cliente encontrado: "S DE B SUSAN FASHION SUSANA MARTINEZ              ", Teléfono: "6453278        "
+2025-12-16 14:45:44.892 -05:00 [Information] Cliente con resal 06001831 encontrado. Status: A
+2025-12-16 14:45:44.937 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "06001831"
+2025-12-16 14:45:45.215 -05:00 [Information] Cliente encontrado: "S DE B SUSAN FASHION SUSANA MARTINEZ              ", Teléfono: "6453278        "
+2025-12-16 14:51:43.113 -05:00 [Information] Iniciando validación del cliente con resal: 06163380
+2025-12-16 14:51:43.888 -05:00 [Information] Cliente con resal 06163380 encontrado. Status: A
+2025-12-16 14:51:44.178 -05:00 [Information] Iniciando validación del cliente con resal: 06163380
+2025-12-16 14:51:44.217 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "06163380"
+2025-12-16 14:51:44.681 -05:00 [Information] Cliente con resal 06163380 encontrado. Status: A
+2025-12-16 14:51:44.790 -05:00 [Information] Cliente encontrado: "ADHARA DISTRIBUCIONES                             ", Teléfono: "3162686327     "
+2025-12-16 14:51:44.973 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "06163380"
+2025-12-16 14:51:45.246 -05:00 [Information] Cliente encontrado: "ADHARA DISTRIBUCIONES                             ", Teléfono: "3162686327     "

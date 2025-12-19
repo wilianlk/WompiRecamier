@@ -61,6 +61,10 @@ builder.Services.Configure<WompiOptions>(
     builder.Configuration.GetSection("Wompi")
 );
 
+builder.Services.Configure<EvaOptions>(
+    builder.Configuration.GetSection("EVA")
+);
+
 // Agregar servicios y controladores
 builder.Services.AddControllers();
 builder.Services.AddSingleton<InformixService>();
@@ -181,7 +185,7 @@ try
 }
 catch (Exception ex)
 {
-    Log.Fatal(ex, "La aplicaci�n fall� al iniciar.");
+    Log.Fatal(ex, "La aplicaci�n fallo al iniciar.");
 }
 finally
 {

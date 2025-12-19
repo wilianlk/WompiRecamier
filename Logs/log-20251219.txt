@@ -1,0 +1,8 @@
+2025-12-19 11:09:53.463 -05:00 [Information] Iniciando validación del cliente con resal: 06100361
+2025-12-19 11:09:55.976 -05:00 [Information] Cliente con resal 06100361 encontrado. Status: A
+2025-12-19 11:09:56.024 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "06100361"
+2025-12-19 11:09:56.135 -05:00 [Information] Cliente encontrado: "PELUQ JAZMIN JAZMIN VILLAMIZAR                    ", Teléfono: "3112677398     "
+2025-12-19 11:10:02.016 -05:00 [Information] Iniciando validación del cliente con resal: 04117815
+2025-12-19 11:10:02.161 -05:00 [Information] Cliente con resal 04117815 encontrado. Status: M
+2025-12-19 11:10:02.187 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "04117815"
+2025-12-19 11:10:02.282 -05:00 [Information] Cliente encontrado: "INVVERSIONES KAUTIVA S.A.S                        ", Teléfono: "3506036591     "

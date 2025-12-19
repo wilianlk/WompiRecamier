@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Globalization;
+using System.Text;
+using System.Text.Json;
+using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Text.Json;
-using WompiRecamier.Services;
-using WompiRecamier.Models;
-using System.Globalization;
 using Microsoft.Extensions.Options;
-using System.Text.RegularExpressions;
+using WompiRecamier.Models;
+using WompiRecamier.Services;
 
 namespace WompiRecamier.Controllers
 {
@@ -17,12 +18,20 @@ namespace WompiRecamier.Controllers
         private readonly InformixService _informixService;
         private readonly ILogger<ValidationController> _logger;
         private readonly string _wompiBaseUrl;
+        private readonly EvaOptions _eva;
 
-        public ValidationController(InformixService informixService, ILogger<ValidationController> logger, IOptions<WompiOptions> wompiOptions)
+        public ValidationController(InformixService informixService, ILogger<ValidationController> logger, IOptions<WompiOptions> wompiOptions, IOptions<EvaOptions> evaOptions)
         {
             _informixService = informixService;
             _logger = logger;
             _wompiBaseUrl = wompiOptions.Value.ApiBaseUrl;
+            _eva = evaOptions.Value;
+
+            if (string.IsNullOrWhiteSpace(_eva.GenerateUrl) ||
+            string.IsNullOrWhiteSpace(_eva.UpdateUrl))
+            {
+                throw new InvalidOperationException("Configuración EVA incompleta.");
+            }
         }
 
         [HttpGet("env-check")]
@@ -233,20 +242,9 @@ namespace WompiRecamier.Controllers
 
                 if (esEVA)
                 {
-
-                    if (t.PaymentMethod?.Type != "BANCOLOMBIA_COLLECT")
-                    {
-                        _logger.LogWarning("🚫 EVA bloqueada: método de pago inválido ({Metodo}) para la transacción {TransactionId}",
-                            t.PaymentMethod?.Type, t.Id);
-
-                        return BadRequest(new
-                        {
-                            status = "Rejected",
-                            transactionId = t.Id,
-                            message = "El método de pago no es válido para transacciones EVA."
-                        });
-                    }
-
+                    // =====================================================
+                    // EXTRACCIÓN COMÚN (UNA SOLA VEZ)
+                    // =====================================================
                     string referencia = data.First().ReferenciaPago;
 
                     string extraer(string refStr, string key)
@@ -264,10 +262,7 @@ namespace WompiRecamier.Controllers
                     string cmpy = extraer(referencia, "_CMPY_");
                     string reg = extraer(referencia, "_REG_");
                     string teri = extraer(referencia, "_TERI_");
-
-                    string refEva = referencia.Substring(
-                        referencia.IndexOf("_REF_", StringComparison.OrdinalIgnoreCase) + "_REF_".Length
-                    );
+                    string phone = extraer(referencia, "_PHONE_");
 
                     string cust = "";
                     if (referencia.StartsWith("NIT-"))
@@ -277,39 +272,78 @@ namespace WompiRecamier.Controllers
                             cust = partes[1];
                     }
 
-                    string estadoEva;
-                    switch (t.Status)
+                    string estadoEva = t.Status switch
                     {
-                        case "APPROVED":
-                            estadoEva = "AUTORIZADA";
-                            break;
-                        case "DECLINED":
-                            estadoEva = "RECHAZADA";
-                            break;
-                        default:
-                            estadoEva = t.Status;
-                            break;
-                    }
-
-                    var evaPayload = new
-                    {
-                        csh_cmpy = cmpy ?? "",
-                        csh_transaccion_numero = t.Id,
-                        csh_transaccion_estado = estadoEva,
+                        "APPROVED" => "AUTORIZADA",
+                        "DECLINED" => "RECHAZADA",
+                        _ => t.Status
                     };
 
+                    // =====================================================
+                    // DEFINICIÓN DINÁMICA EVA
+                    // =====================================================
+                    string evaUrl;
+                    object evaPayload;
+
+                    if (t.PaymentMethod?.Type == "BANCOLOMBIA_COLLECT")
+                    {
+                        
+
+                        evaUrl = _eva.UpdateUrl;
+
+                        evaPayload = new
+                        {
+                            csh_cmpy = cmpy ?? "",
+                            csh_transaccion_numero = t.Id,
+                            csh_transaccion_estado = estadoEva
+                        };
+                    }
+                    else
+                    {
+                        evaUrl = _eva.GenerateUrl;
+
+                        evaPayload = new
+                        {
+                            csh_cmpy = cmpy ?? "",
+                            csh_transaccion_numero = t.Id,
+                            csh_transaccion_estado = estadoEva,
+                            csh_tipo_abono = "OTRO",
+                            csh_cust = cust,
+                            csh_entdt = DateTime.Now.ToString("yyyy-MM-dd"),
+                            csh_phone = phone,
+                            csh_eva = "S",
+                            facturas = data.Select(x => new
+                            {
+                                csh_inv = x.FacturaNumero,
+                                csh_amt = x.FacturaValor,
+                                csh_descto = 0m
+                            }).ToList(),
+                            csh_reg = reg ?? "",
+                            csh_teri = teri ?? "",
+                            csh_num2 = (int?)null,
+                            csh_marca = "N",
+                            csh_date = DateTime.Now.ToString("yyyy-MM-dd"),
+                            csh_time = DateTime.Now.ToString("HH:mm:ss"),
+                            csh_referencia = (string?)null,
+                            csh_convenio = (string?)null
+                        };
+                    }
+
+                    // =====================================================
+                    // ENVÍO EVA (ÚNICO)
+                    // =====================================================
                     try
                     {
                         var json = JsonSerializer.Serialize(evaPayload);
                         using var http = new HttpClient();
 
-                        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-                        var respuesta = await http.PostAsync("https://eva.recamier.com:8471/api/CashRecp/UpdateCashRecp/isProd/true", content);
+                        //Console.WriteLine(json);
+
+                        var content = new StringContent(json, Encoding.UTF8, "application/json");
+                        var respuesta = await http.PostAsync(evaUrl, content);
 
                         string respuestaServidor = await respuesta.Content.ReadAsStringAsync();
-
-                        Console.WriteLine($"[EVA RESPONSE OK] {respuestaServidor}");
-                        _logger.LogInformation("[EVA RESPONSE OK] {Respuesta}", respuestaServidor);
+                        _logger.LogInformation("[EVA OK] {Respuesta}", respuestaServidor);
 
                         return Ok(new
                         {
@@ -322,8 +356,7 @@ namespace WompiRecamier.Controllers
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"[EVA ERROR] {ex.Message}");
-                        _logger.LogError(ex, "[EVA ERROR] fallo al enviar la petición EVA");
+                        _logger.LogError(ex, "[EVA ERROR] fallo al enviar EVA");
 
                         return Ok(new
                         {
@@ -336,6 +369,9 @@ namespace WompiRecamier.Controllers
                     }
                 }
 
+                // =====================================================
+                // FLUJO NO EVA
+                // =====================================================
                 switch (t.Status)
                 {
                     case "APPROVED":
@@ -361,6 +397,7 @@ namespace WompiRecamier.Controllers
             }
         }
 
+
         [HttpGet("confirmation")]
         public async Task<IActionResult> Confirmation([FromQuery] string transactionId)
         {
@@ -369,7 +406,7 @@ namespace WompiRecamier.Controllers
 
             try
             {
-                var (status, data) = await _informixService
+                var (status, paymentInfo, data)  = await _informixService
                     .HandleConfirmationAsync(transactionId, _wompiBaseUrl);
 
                 bool esEVA = data.Any(d =>
@@ -377,7 +414,9 @@ namespace WompiRecamier.Controllers
                     d.ReferenciaPago.IndexOf("_APP_EVA_", StringComparison.OrdinalIgnoreCase) >= 0
                 );
 
-                if (esEVA)
+                dynamic pi = paymentInfo;
+
+                if (esEVA && pi?.paymentMethodType == "BANCOLOMBIA_COLLECT")
                 {
                     string referencia = data.First().ReferenciaPago;
 
@@ -443,7 +482,10 @@ namespace WompiRecamier.Controllers
                         csh_num2 = (int?)null,
                         csh_marca = "N",
                         csh_date = DateTime.Now.ToString("yyyy-MM-dd"),
-                        csh_time = DateTime.Now.ToString("HH:mm:ss")
+                        csh_time = DateTime.Now.ToString("HH:mm:ss"),
+                        csh_referencia = pi?.paymentIntentionIdentifier,
+                        csh_convenio = pi?.businessAgreementCode	
+
                     };
 
                     // ----------------------------------------------------
@@ -455,7 +497,7 @@ namespace WompiRecamier.Controllers
                         using var http = new HttpClient();
 
                         var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-                        var respuesta = await http.PostAsync("https://eva.recamier.com:8471/api/CashRecp/GenerateCashRecp/isProd/true", content);
+                        var respuesta = await http.PostAsync(_eva.GenerateUrl, content);
 
                         string respuestaServidor = await respuesta.Content.ReadAsStringAsync();
 

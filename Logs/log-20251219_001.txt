@@ -1,0 +1,28 @@
+2025-12-19 11:09:53.463 -05:00 [INF] Iniciando validación del cliente con resal: 06100361
+2025-12-19 11:09:55.976 -05:00 [INF] Cliente con resal 06100361 encontrado. Status: A
+2025-12-19 11:09:56.024 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06100361
+2025-12-19 11:09:56.135 -05:00 [INF] Cliente encontrado: PELUQ JAZMIN JAZMIN VILLAMIZAR                    , Teléfono: 3112677398     
+2025-12-19 11:10:02.016 -05:00 [INF] Iniciando validación del cliente con resal: 04117815
+2025-12-19 11:10:02.161 -05:00 [INF] Cliente con resal 04117815 encontrado. Status: M
+2025-12-19 11:10:02.187 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 04117815
+2025-12-19 11:10:02.282 -05:00 [INF] Cliente encontrado: INVVERSIONES KAUTIVA S.A.S                        , Teléfono: 3506036591     
+2025-12-19 11:40:49.569 -05:00 [Information] Iniciando validación del cliente con resal: 06163380
+2025-12-19 11:40:52.467 -05:00 [Information] Cliente con resal 06163380 encontrado. Status: A
+2025-12-19 11:40:52.506 -05:00 [Information] Iniciando validación del cliente con resal: 06163380
+2025-12-19 11:40:52.526 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "06163380"
+2025-12-19 11:40:52.642 -05:00 [Information] Cliente con resal 06163380 encontrado. Status: A
+2025-12-19 11:40:52.692 -05:00 [Information] Cliente encontrado: "ADHARA DISTRIBUCIONES                             ", Teléfono: "3162686327     "
+2025-12-19 11:40:52.722 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "06163380"
+2025-12-19 11:40:52.830 -05:00 [Information] Cliente encontrado: "ADHARA DISTRIBUCIONES                             ", Teléfono: "3162686327     "
+2025-12-19 11:43:46.487 -05:00 [Information] Iniciando validación del cliente con resal: 06163380
+2025-12-19 11:43:46.682 -05:00 [Information] Cliente con resal 06163380 encontrado. Status: A
+2025-12-19 11:43:46.701 -05:00 [Information] Iniciando validación del cliente con resal: 06163380
+2025-12-19 11:43:46.712 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "06163380"
+2025-12-19 11:43:46.837 -05:00 [Information] Cliente con resal 06163380 encontrado. Status: A
+2025-12-19 11:43:46.868 -05:00 [Information] Cliente encontrado: "ADHARA DISTRIBUCIONES                             ", Teléfono: "3162686327     "
+2025-12-19 11:43:46.885 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "06163380"
+2025-12-19 11:43:46.988 -05:00 [Information] Cliente encontrado: "ADHARA DISTRIBUCIONES                             ", Teléfono: "3162686327     "
+2025-12-19 11:50:58.052 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "06163380"
+2025-12-19 11:50:58.227 -05:00 [Information] Cliente encontrado: "ADHARA DISTRIBUCIONES                             ", Teléfono: "3162686327     "
+2025-12-19 11:50:58.248 -05:00 [Information] Iniciando solicitud para obtener información del cliente con Resal: "06163380"
+2025-12-19 11:50:58.447 -05:00 [Information] Cliente encontrado: "ADHARA DISTRIBUCIONES                             ", Teléfono: "3162686327     "

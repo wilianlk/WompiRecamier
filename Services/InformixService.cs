@@ -545,7 +545,7 @@ namespace WompiRecamier.Services
 
             return transferControls;
         }
-        public async Task<(string Status, List<TransferControl> Data)> HandleConfirmationAsync(
+        public async Task<(string Status, object PaymentInfo, List<TransferControl> Data)> HandleConfirmationAsync(
         string transactionId,
         string wompiBaseUrl)
         {
@@ -565,6 +565,30 @@ namespace WompiRecamier.Services
 
             var status = txElem.GetProperty("status").GetString() ?? "";
             var reference = txElem.GetProperty("reference").GetString() ?? "";
+
+            var paymentMethodType = txElem.TryGetProperty("payment_method_type", out var pmt)
+            ? pmt.GetString()
+            : null;
+
+            string businessAgreementCode = null;
+            string paymentIntentionIdentifier = null;
+
+            if (txElem.TryGetProperty("payment_method", out var pm) &&
+                pm.TryGetProperty("extra", out var extra))
+            {
+                if (extra.TryGetProperty("business_agreement_code", out var bac))
+                    businessAgreementCode = bac.GetString();
+
+                if (extra.TryGetProperty("payment_intention_identifier", out var pii))
+                    paymentIntentionIdentifier = pii.GetString();
+            }
+
+            var paymentInfo = new
+            {
+                paymentMethodType,
+                businessAgreementCode,
+                paymentIntentionIdentifier
+            };
 
             // 3) Extraer lista (invoiceNumber, invoiceValue)
             reference = Regex.Replace(reference, @"-ABONO-\d{2}-\d{2}-\d{4}_\d{2}-\d{2}", "");
@@ -621,7 +645,7 @@ namespace WompiRecamier.Services
                 ? await GetTransferenciasHistoricoAsync(transactionId)
                 : await GetTransferControlsAsync(transactionId);
 
-            return (status, data);
+            return (status, paymentInfo, data);
         }
         public async Task InsertTransferenciasHistoricoAsync(
         List<(int invoiceNumber, decimal invoiceValue)> invoices,
