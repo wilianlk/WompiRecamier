@@ -1,0 +1,125 @@
+2025-12-23 08:12:19.477 -05:00 [INF] JSON recibido: {
+  "data": {
+    "transaction": {
+      "id": "1258689-1766494721-65069",
+      "origin": null,
+      "status": "APPROVED",
+      "currency": "COP",
+      "reference": "NIT-10636000266-FAV-3071878_547925_DP-9366",
+      "created_at": "2025-12-23T12:58:41.213Z",
+      "billing_data": null,
+      "finalized_at": "2025-12-23T12:59:34.000Z",
+      "redirect_url": "https://portalpagos.recamier.com/confirmation",
+      "customer_data": {
+        "device_id": "0836703775fdc4e6fca98890e4cbbd6f",
+        "full_name": "LUISA FERNANDA  RODRIGUEZ",
+        "browser_info": {
+          "browser_tz": "300",
+          "browser_language": "es-419",
+          "browser_user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Mobile/15E148 Safari/604.1",
+          "browser_color_depth": "24",
+          "browser_screen_width": "390",
+          "browser_screen_height": "844"
+        },
+        "phone_number": "3153302830",
+        "device_data_token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wcmVzc2VkIjoiZUp6VlZjdHUyemdVL1JXQ3F4WlFiYjBzeStuS3NkTWthTndhNHp3S0RJcUNJcThrd2hLcG9TZzdhZEIvNzZVVWU5eWlzODlzQk9xY284dHpINlNlYVdsdGM5ZUNtUmVnTEQyaksvMWRWaFViVDBZK2VTUFhwVmJ3bml6V2QyUllrODhiRXFUZnBxU1NXeUFyeGgzdzVTMlpOMDBGRDVCOWxIYWMrSk5STUFvbTVNM0hxOXZWalRkb0w0RnY5VnR5RDZhVldvM0RoS3gwSmlzWUI1T0xJRTdKaHVYTVNQdzRIZ1hVKzlYWGtsbEd6NTVwWnZRZU1iUTVxRkgzQW4zYkRYR1JDcE5SaUlSdWNTMC9iL3JsQ1Iya295bGlBbmFTZzVQMGVTSENEQytsQlc0NzQvQTd0VlY2cjVBQVZVamxvQ0UvUkNxbWlvNFZEb1AyWFJ6TUVKUHRrQTg5czZZRDkzN0xzZ3F3cGptcjJoNVlRcnUxdW5sQmZuaTBxWmpOdGFsUGJiakU1NXhEWTIvK3NJdGlPMWt3cTgzYTZBYU1sZEF1ZE9jNk53azl1b2ZzOHVZZWxORG0xRzRQLzRVd0dQaVhJQThPUHRDdXhNY3YrMjZTYThWSHAvUkpoRUZ3dWI0NzVUY2xRMzV0Z011aDFtSGswZHpBUHgwby9qUlhySHJxbXhlbnZ1OTcxTW9hdnV1K3NQTWFqT1JzZks0TGpaMzJhTXNOZ0hxUXdwYjBMSnI1QitRS1pGRmlzbWtjSDZBbFZncEZJUUpjNnkwVzVFSzV3b3RESXlyTldiWEJrbUVwZjZOYWFKM1RQNU1TczMwRXNUei9EUytaRVh0bVlLRVY3NHh4dVdGT2g0bGFRYTBOQW1nWisxUExmb04yd1RCREhHRVVLWW1oZmlGWGttTXp5NkVVUjBHdWxjVVIvcHRlNG5uRTA2RmFCSytnMm9IRlVwRlAwTGxwV1lHcU5QM3EwYTZGdVRqSFhMZkhnUlA2azdhM2hqbUlkc2R4YnFvTzU5bUZmc1p4cXQybTYrVUhjaTloajkxeGVXQmhaV09INDdMV3hycjB5Vkx6cnNhelNEN2d3REkzVmpVMjhQYXBnU0dVeFJYcUdVNEcrbk5manh1UnUxNTJlUzRmbllvNjRJZDMxRnA0dFA4aCt1cGtMKzRXcGRFMWtQK0JTZG5Wcjl4bVAydXR6aTI1RU1WcnIrbkxQWlYxc3JMdnBISnVYNDlOUEhNN0tVQVAyN1h1OTFRM01mSTFlOHBndUJmcmsxZGRGUGlHNGFrWjdsRnhYZU9sYzhWYXZMMW95dExjRjJHV3BWa1MrWkZJL01SbktlUXpQeEFSRjN6aSsyRVd4U0tQRTRpVENUN2RneWRCR1BtQ3grejRSN3RlWWpRL2paS3BIMDJua3h4SlNITE9abWs2OHlIbVdTWVM5UDhUZ0VTcXZBPT0ifQ.WIhrckqSpY8mSeESv_MzUB6VO_mXSrMTUkBM3xysWdc"
+      },
+      "customer_email": "mariamrobo@hotmail.com",
+      "payment_method": {
+        "type": "BANCOLOMBIA_TRANSFER",
+        "extra": {
+          "is_three_ds": false,
+          "transfer_date": "2025-12-23T07:59:34.097-0500",
+          "transfer_voucher": "TR251223075932XbYPcU",
+          "async_payment_url": "https://botonbancolombia.apps.bancolombia.com/web/transfer-gateway/checkout/_ljMbjMGGik",
+          "three_ds_auth_type": null,
+          "external_identifier": "_ljMbjMGGik"
+        },
+        "user_type": "PERSON",
+        "afe_decision": "FRAUD_CHECK",
+        "payment_description": "Pago a RECAMIER, ref: NIT-10636000266-FAV-3071878_547925_DP-9366"
+      },
+      "status_message": "Aprobado",
+      "amount_in_cents": 54792500,
+      "payment_link_id": null,
+      "shipping_address": null,
+      "payment_source_id": null,
+      "payment_method_type": "BANCOLOMBIA_TRANSFER"
+    }
+  },
+  "event": "transaction.updated",
+  "sent_at": "2025-12-23T12:59:35.287Z",
+  "signature": {
+    "checksum": "c3c16919dcf0c09a6d94fb201362cdb6fb81dca8b844e8c91bbf818d6104b55d",
+    "properties": [
+      "transaction.id",
+      "transaction.status",
+      "transaction.amount_in_cents"
+    ]
+  },
+  "timestamp": 1766494775,
+  "environment": "prod"
+}
+2025-12-23 08:12:19.672 -05:00 [INF] Procesando transacción 1258689-1766494721-65069, Estado: APPROVED
+2025-12-23 08:14:39.341 -05:00 [INF] Transacción aprobada: NIT-10636000266-FAV-3071878_547925_DP-9366
+2025-12-23 08:41:02.646 -05:00 [Information] JSON recibido: "{
+  \"data\": {
+    \"transaction\": {
+      \"id\": \"1258689-1766245737-30849\",
+      \"origin\": null,
+      \"status\": \"APPROVED\",
+      \"currency\": \"COP\",
+      \"reference\": \"NIT-04111657-FAV-3080922_197685_DP-11001_APP_EVA_CMPY_RE_REG_04_TERI_176_PHONE_3206447397_REF_20251220_104833\",
+      \"created_at\": \"2025-12-20T15:48:58.190Z\",
+      \"billing_data\": null,
+      \"finalized_at\": \"2025-12-20T22:04:00.000Z\",
+      \"redirect_url\": \"https://portalpagos.recamier.com/confirmation\",
+      \"customer_data\": {
+        \"device_id\": \"8ace0a0429207802d9e4cd239baa3a02\",
+        \"full_name\": \"TINTURAS Y VARIEDADES LA 58\",
+        \"browser_info\": {
+          \"browser_tz\": \"300\",
+          \"browser_language\": \"es-US\",
+          \"browser_user_agent\": \"Mozilla/5.0 (Linux; Android 15; SM-A366E Build/AP3A.240905.015.A2; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/143.0.7499.34 Mobile Safari/537.36\",
+          \"browser_color_depth\": \"24\",
+          \"browser_screen_width\": \"384\",
+          \"browser_screen_height\": \"832\"
+        },
+        \"phone_number\": \"3206447397\",
+        \"device_data_token\": \"eyJhbGciOiJIUzI1NiJ9.eyJjb21wcmVzc2VkIjoiZUp4dFUxMXptekFRL0NzYVBTVXpqZzBJTUU2ZVNKd21tY1NkdEU2YWgwNm5JNlFETkFhSkNtRTN6ZlMvOXpDMjYzNDhhbS92dU50ZDNtanBYUFBjZ2swTDBJNmUwNFg1b2FxS1Q2S3hSMDRlbE82K1g1QlVTMnVVSkg1MFFaYUxzNVRGOFRXNTdGUWxKK2tqUzhkQjZNMDhiUENqY1JwY2tNMzZsS1JOVThFTFpQZktUU0kySGJPWW5OemZQaTBlUnFSU0t5QTNJRmJtbEh3QzJ5cWpKeUYrN2FxMHBvYUpIekt5TUptcWdDeDV6cTNhOWRQUm43dk91ZVAwL0kxbTFtd1F3OVdIQWNqYlFWL1h3M1FzNGRDeE41NkdzOW1ZaGNnd0xZSzdzN2JQWTI2RWlJUzFFdkFIaVZ0UktnZkNkYll2UE91Vk5odU5CZENGMGowMDNJdEl4WFhSOGFMSG9EMTdYaUtrMnVFb2V1NXNCLzM3aVdjVm9PUTVyOW90TUlkMjVVeXpRMzZPYUZOeGx4dGI0NWl0RTRUM084VGhUb3BVQ0dqY3c3L2Ywbnl0Q3U2TWZiU21BZXNVdEZlbTYrMk5weU82Z2V6bTRSTm9hZXp4emx2NEk4Smc0WGVCdlBUd3Z0eHJmdWo4MFBGS21MbytMaDcxcDlLQ051VGthWEZLcHI1M3pGcVdIRm1QRm9RYU5BL1lpT1lXdm5XZ3hXdXFlZlc2ZFRSTVBNOGJVYWRxK0dHMkNxYzFXQ1g0NU5JVUJ1MGYwVlpZQVAyaXBDdnBPVXZDUFhJTHFpang0SVFGZTJpT1lpRXBRSTR3Wm9XaVhPdmVBcm0zcERLQ1YwdVVEZFg4cTlSQzIyLzYvNkxDbTcrRG5GLytoWmZjeWcyM2NHVzA2S3p0YjhPRjl0bGFRRzNzQUtCSHRkcCtvTDNpZUNIbW1qYVk1YWIzNWFpNFVBSU5MUWNwRG9UY2FJZHgva3hicnRzekZFN2xaNjVVbW40WjBhNkZWRjdpWWF0RHpxUjViOXlUNVQxRXUwT0ltNnJERlBkenNHMnRKSmgzbUR6ZVQzNmpkUk1pdWVhdkdRdysxa2RQVXhTSEY0YldEaEdRZHpVcWRjdGJsSndLUDRtakxJRWdtZWFlakRJSmlSZUxhU2pZeko5R2ZwYjRJZy9pSEZnR01VdVluOGVlekNBTEFoWko4SDEyK0NIdjVqZ3Q0UUk4N29YQkxQQ21pUmZJR1lSQ0JteVdjYzY0RjlDZnZ3Q2JGSllGIn0.M1yICH4yndyM8pZkRuDb0zFksY0yredM4QI5pWvQMbA\"
+      },
+      \"customer_email\": \"mpabon@recamier.com\",
+      \"payment_method\": {
+        \"type\": \"BANCOLOMBIA_COLLECT\",
+        \"extra\": {
+          \"subpayment_method\": \"CASH\",
+          \"external_identifier\": \"96951875717\",
+          \"business_agreement_code\": \"85786\",
+          \"payment_intention_identifier\": \"96951875717\",
+          \"payment_request_unique_identifier\": \"00000000-0000-0000-0000-917047686406\"
+        },
+        \"afe_decision\": \"FRAUD_CHECK\",
+        \"payment_description\": \"Pago a RECAMIER, ref: NIT-04111657-FAV-3080922_197685_DP-11001_APP_EVA_CMPY_RE_REG_04_TERI_176_PHONE_3206447397_REF_20251220_104833\"
+      },
+      \"status_message\": null,
+      \"amount_in_cents\": 19768500,
+      \"payment_link_id\": null,
+      \"shipping_address\": null,
+      \"payment_source_id\": null,
+      \"payment_method_type\": \"BANCOLOMBIA_COLLECT\"
+    }
+  },
+  \"event\": \"transaction.updated\",
+  \"sent_at\": \"2025-12-20T22:04:00.711Z\",
+  \"signature\": {
+    \"checksum\": \"27022b6b51af8a4dc539d9409cffd777e544c214d3ff593de748be06d5fd10b7\",
+    \"properties\": [
+      \"transaction.id\",
+      \"transaction.status\",
+      \"transaction.amount_in_cents\"
+    ]
+  },
+  \"timestamp\": 1766268240,
+  \"environment\": \"prod\"
+}"
+2025-12-23 08:41:02.782 -05:00 [Information] Procesando transacción "1258689-1766245737-30849", Estado: "APPROVED"

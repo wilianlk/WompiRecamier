@@ -417,6 +417,7 @@ namespace WompiRecamier.Services
                 string invoiceNumberStr = "";
                 decimal invoiceValue = defaultValor;
                 decimal discount = 0m;
+                bool esEVA = invoiceToken.Contains("_APP_EVA_", StringComparison.OrdinalIgnoreCase);
 
                 if (invoiceToken.Contains("_DP-"))
                 {

@@ -1,0 +1,516 @@
+2025-12-22 15:48:47.142 -05:00 [INF] Iniciando validación del cliente con resal: 06150371
+2025-12-22 15:48:50.689 -05:00 [INF] Cliente con resal 06150371 encontrado. Status: A
+2025-12-22 15:48:50.755 -05:00 [INF] Iniciando validación del cliente con resal: 06150371
+2025-12-22 15:48:50.773 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06150371
+2025-12-22 15:48:50.909 -05:00 [INF] Cliente con resal 06150371 encontrado. Status: A
+2025-12-22 15:48:50.955 -05:00 [INF] Cliente encontrado: VIOLETA PRODUCTOS DE BELLEZA                      , Teléfono: 3185647898     
+2025-12-22 15:48:50.985 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06150371
+2025-12-22 15:48:51.116 -05:00 [INF] Cliente encontrado: VIOLETA PRODUCTOS DE BELLEZA                      , Teléfono: 3185647898     
+2025-12-22 15:50:18.674 -05:00 [INF] JSON recibido: {
+  "data": {
+    "transaction": {
+      "id": "1126070-1766436555-17010",
+      "origin": null,
+      "status": "APPROVED",
+      "currency": "COP",
+      "reference": "NIT-06150371-FAV-3086213_467917_DP-20523_APP_EVA_CMPY_RE_REG_06_TERI_02_PHONE_3114613565_REF_20251222_154528",
+      "created_at": "2025-12-22T20:49:15.141Z",
+      "billing_data": null,
+      "finalized_at": "2025-12-22T20:49:15.524Z",
+      "redirect_url": "https://a1b2c3d4.ngrok.io/confirmation",
+      "customer_data": {
+        "device_id": "537a9de52265f409348264c1a1e038b8",
+        "full_name": "VIOLETA PRODUCTOS DE BELLEZA",
+        "browser_info": {
+          "browser_tz": "300",
+          "browser_language": "es",
+          "browser_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+          "browser_color_depth": "24",
+          "browser_screen_width": "1920",
+          "browser_screen_height": "1080"
+        },
+        "phone_number": "3185647898",
+        "device_data_token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wcmVzc2VkIjoiZUp6VlZsbHYyemdRL2l1RW5tSkFtK2l5cXFSUFBuSVl0Vk1qZHBzRkZrVkFrU09ac0VScUtjcEhnL3ozSFVxTzR3Uzc3MWtic0RUZkRPZWVvWitkbFRIVmp4cjBJQWRwbkN0bnBuNkxvcUFYL1hPUG5EMEt5ZFcySnZkTDRudm4zbGVDUUJ4OUpiczQ2cEZCVlJYd0NPazNZUzc2NFpmek1DWm4zKzZXczZsTENyRUdjZ3Rzclhwa3ROS3FoQXMvQ3NtQ1psU0xnN0RqdnJjOXBvWTZWODlPcXRFaWFIU2xPNGx5QitocEE3b1dTaUlMdFoxNzlvdGNWU053OExRbFQrVTZFUTRid1FEcCtRZ3BxdGxLR0dDbTBSYkRZQkFFbVF0cHlTNGlSQW9xODRibUZnT3JXTlF6bFlvQzZZd1dOVmhnU2RNQ3pBa3dobnB0Vk9WY0dkM0FpK3RVQlRXWjBtWG5ZUmdjZ2g0d0JwV1pmakFnNlViazFDZzkxNm9DYlFUVUk5WFlxbHhHcnJPRjlIYjZFekJNZmVwbEN6OGdEQnJlR09UUndxOXNtOXJqeVZ1bDhnTElSTEp6Y2phUkJvcmVxZHlKcXNIOTdmVDZJT09TOW5IMjBDTVRMV3I3L0JOTHJHbTFFcXdtWjk3T3c4L2d5OER2a2JIUW1OeHc3UHRrVXovMW56eFN0UStYakMzNHp0eGlSZEhjSEErSXJtUkI2RHFaaHI4YmtHdy9rTFRZdDgwUUphamVkWXdvNGJkcTZ6UW9RUXRHTDRZcVY5ZzVybE16RFNBZkJUY3I1OHEvREx4WDZBNUV2c0lzK2w1eXhNYVlmeFFMTUxGTXFUV20rbHJhWXZLdWRGaDl4V2l4d0dKZ2dUNndhcWl0ci8vT3hENkVIZkR4OEFPK29wcHZxWWFSa3F6UjJrYUhIZ1d2dlRtRFVtbEVFdXdaMEtWb0xkUWppa0hpVktDUUZLanJIWE1tR1BiSnFzdkdVU0JUMHVCQS9PWFlvV0o3Y2pORWNFUUxrV3BoMzNEU0dqUjBmQ08zeW1BSkVialJWSzRMSWQrUU93ckdnS3paYWd2WStCcWhhY01FcDJTbzI1UWU2UVdWdG9ObkMvSzlNUVVtdENNZUlBTWJLcEJGaFJXbWhkbDNqQitUTnl1ekpibmVHVzFMT0tNYTU4bnFuU21wekw0Q01sSTR5eHZMbkdQZkdTSHQ2d0p5QlZiSnRIWGpsK3MwTlF6NEVJdTJQazRqVi9mS0xEVzFrT1BiM0JVTnpyaE56alBPV3RudWcvRU4rU2xnMjhiR0FYdERWS1piSFhPbGphMGdHU3ZXbEpnc2NvT0RUSzF6SlhiaEVwM3JWRmszVVo3aU9zUit0S2N2S3A3WmhteXlUT3lzbEdPQkYvY29hMkJuL2tQb2x4VTdlTmN0UVBJL2NGSTA1U2QzczUyV1dtV0dYUFA4cytmMHNNVFRSaFRtRDV4STlQYnp1SW5UdGhFY1ZHZXV0bmQyV1VYSUwraytoVzY1bHlla3l2TWpoVmVpN2k0WVBpbHhlZDdSR3Jld2s5QWs4M2lRcGtrYWgxN0lZeS8yYUFMWnBlZnprSEhXOTd3Z0RTT2VSVEZFY1I5LzdRK0wvU0QwT0l2bzhZcWZqRkViL3IrZ2x4ejZRUkQzczhpN0RLTWtpQ1BtVXgrOE1Fa1Q1K1VmcUgvNEVnPT0ifQ.yJ1MecmHdueHaha1DKhvtbYnaSwovg2IzwG5QU3oT-E"
+      },
+      "customer_email": "test@recamier.com",
+      "payment_method": {
+        "type": "NEQUI",
+        "extra": {
+          "is_three_ds": false,
+          "transaction_id": "SANDBOX-1766436555Ecmfxw",
+          "three_ds_auth_type": null,
+          "external_identifier": "1766436555rqSH4T"
+        },
+        "phone_number": "3991111111"
+      },
+      "status_message": null,
+      "amount_in_cents": 46791700,
+      "payment_link_id": null,
+      "shipping_address": null,
+      "payment_source_id": null,
+      "payment_method_type": "NEQUI"
+    }
+  },
+  "event": "transaction.updated",
+  "sent_at": "2025-12-22T20:49:15.767Z",
+  "signature": {
+    "checksum": "bd83abe9075ed658e41c3905a65235833212f41235924db12104564a927b2120",
+    "properties": [
+      "transaction.id",
+      "transaction.status",
+      "transaction.amount_in_cents"
+    ]
+  },
+  "timestamp": 1766436555,
+  "environment": "test"
+}
+2025-12-22 15:50:18.750 -05:00 [INF] Procesando transacción 1126070-1766436555-17010, Estado: APPROVED
+2025-12-22 15:50:24.475 -05:00 [INF] [EVA OK] 1
+2025-12-22 15:58:20.294 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06150371
+2025-12-22 15:58:20.508 -05:00 [INF] Cliente encontrado: VIOLETA PRODUCTOS DE BELLEZA                      , Teléfono: 3185647898     
+2025-12-22 15:58:20.547 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06150371
+2025-12-22 15:58:20.681 -05:00 [INF] Cliente encontrado: VIOLETA PRODUCTOS DE BELLEZA                      , Teléfono: 3185647898     
+2025-12-22 15:58:25.790 -05:00 [INF] Iniciando validación del cliente con resal: 06156133
+2025-12-22 15:58:25.955 -05:00 [INF] Cliente con resal 06156133 encontrado. Status: A
+2025-12-22 15:58:25.979 -05:00 [INF] Iniciando validación del cliente con resal: 06156133
+2025-12-22 15:58:26.013 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06156133
+2025-12-22 15:58:26.141 -05:00 [INF] Cliente encontrado: BELLEZA Y ESTILO                                  , Teléfono: 3123497224     
+2025-12-22 15:58:26.152 -05:00 [INF] Cliente con resal 06156133 encontrado. Status: A
+2025-12-22 15:58:26.195 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06156133
+2025-12-22 15:58:26.324 -05:00 [INF] Cliente encontrado: BELLEZA Y ESTILO                                  , Teléfono: 3123497224     
+2025-12-22 15:59:03.759 -05:00 [INF] [EVA RESPONSE OK] 1
+2025-12-22 16:00:20.250 -05:00 [INF] JSON recibido: {
+  "data": {
+    "transaction": {
+      "id": "1126070-1766437129-84632",
+      "origin": null,
+      "status": "APPROVED",
+      "currency": "COP",
+      "reference": "NIT-06156133-FAV-3073264_1610371_DP-49934_APP_EVA_CMPY_RE_REG_06_TERI_02_PHONE_3114613565_REF_20251222_155608",
+      "created_at": "2025-12-22T20:58:49.979Z",
+      "billing_data": null,
+      "finalized_at": "2025-12-22T20:58:50.000Z",
+      "redirect_url": "https://a1b2c3d4.ngrok.io/confirmation",
+      "customer_data": {
+        "device_id": "537a9de52265f409348264c1a1e038b8",
+        "full_name": "BELLEZA Y ESTILO",
+        "browser_info": {
+          "browser_tz": "300",
+          "browser_language": "es",
+          "browser_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+          "browser_color_depth": "24",
+          "browser_screen_width": "1920",
+          "browser_screen_height": "1080"
+        },
+        "phone_number": "3123497224",
+        "device_data_token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wcmVzc2VkIjoiZUp6VlZsbHYyemdRL2l1RW5tSkFtK2l5cXFSUFBuSVl0Vk1qZHBzRkZrVkFrU09ac0VScUtjcEhnL3ozSFVxTzR3Uzc3MWtic0RUZkRPZWVvWitkbFRIVmp4cjBJQWRwbkN0bnBuNkxvcUFYL1hPUG5EMEt5ZFcySnZkTDRudm4zbGVDUUJ4OUpiczQ2cEZCVlJYd0NPazNZUzc2NFpmek1DWm4zKzZXczZsTENyRUdjZ3Rzclhwa3ROS3FoQXMvQ3NtQ1psU0xnN0RqdnJjOXBvWTZWODlPcXRFaWFIU2xPNGx5QitocEE3b1dTaUlMdFoxNzlvdGNWU053OExRbFQrVTZFUTRid1FEcCtRZ3BxdGxLR0dDbTBSYkRZQkFFbVF0cHlTNGlSQW9xODRibUZnT3JXTlF6bFlvQzZZd1dOVmhnU2RNQ3pBa3dobnB0Vk9WY0dkM0FpK3RVQlRXWjBtWG5ZUmdjZ2g0d0JwV1pmakFnNlViazFDZzkxNm9DYlFUVUk5WFlxbHhHcnJPRjlIYjZFekJNZmVwbEN6OGdEQnJlR09UUndxOXNtOXJqeVZ1bDhnTElSTEp6Y2phUkJvcmVxZHlKcXNIOTdmVDZJT09TOW5IMjBDTVRMV3I3L0JOTHJHbTFFcXdtWjk3T3c4L2d5OER2a2JIUW1OeHc3UHRrVXovMW56eFN0UStYakMzNHp0eGlSZEhjSEErSXJtUkI2RHFaaHI4YmtHdy9rTFRZdDgwUUphamVkWXdvNGJkcTZ6UW9RUXRHTDRZcVY5ZzVybE16RFNBZkJUY3I1OHEvREx4WDZBNUV2c0lzK2w1eXhNYVlmeFFMTUxGTXFUV20rbHJhWXZLdWRGaDl4V2l4d0dKZ2dUNndhcWl0ci8vT3hENkVIZkR4OEFPK29wcHZxWWFSa3F6UjJrYUhIZ1d2dlRtRFVtbEVFdXdaMEtWb0xkUWppa0hpVktDUUZLanJIWE1tR1BiSnFzdkdVU0JUMHVCQS9PWFlvV0o3Y2pORWNFUUxrV3BoMzNEU0dqUjBmQ08zeW1BSkVialJWSzRMSWQrUU93ckdnS3paYWd2WStCcWhhY01FcDJTbzI1UWU2UVdWdG9ObkMvSzlNUVVtdENNZUlBTWJLcEJGaFJXbWhkbDNqQitUTnl1ekpibmVHVzFMT0tNYTU4bnFuU21wekw0Q01sSTR5eHZMbkdQZkdTSHQ2d0p5QlZiSnRIWGpsK3MwTlF6NEVJdTJQazRqVi9mS0xEVzFrT1BiM0JVTnpyaE56alBPV3RudWcvRU4rU2xnMjhiR0FYdERWS1piSFhPbGphMGdHU3ZXbEpnc2NvT0RUSzF6SlhiaEVwM3JWRmszVVo3aU9zUit0S2N2S3A3WmhteXlUT3lzbEdPQkYvY29hMkJuL2tQb2x4VTdlTmN0UVBJL2NGSTA1U2QzczUyV1dtV0dYUFA4cytmMHNNVFRSaFRtRDV4STlQYnp1SW5UdGhFY1ZHZXV0bmQyV1VYSUwraytoVzY1bHlla3l2TWpoVmVpN2k0WVBpbHhlZDdSR3Jld2s5QWs4M2lRcGtrYWgxN0lZeS8yYUFMWnBlZnprSEhXOTd3Z0RTT2VSVEZFY1I5LzdRK0wvU0QwT0l2bzhZcWZqRkViL3IrZ2x4ejZRUkQzczhpN0RLTWtpQ1BtVXgrOE1Fa1Q1K1VmcUgvNEVnPT0ifQ.yJ1MecmHdueHaha1DKhvtbYnaSwovg2IzwG5QU3oT-E"
+      },
+      "customer_email": "test@recamier.com",
+      "payment_method": {
+        "type": "BANCOLOMBIA_COLLECT",
+        "extra": {
+          "external_identifier": "47159950171",
+          "business_agreement_code": "00000",
+          "payment_intention_identifier": "47159950171"
+        },
+        "sandbox_status": "APPROVED",
+        "payment_description": "Pago a RECAMIER, ref: NIT-06156133-FAV-3073264_1610371_DP-49934_APP_EVA_CMPY_RE_REG_06_TERI_02_PHONE_3114613565_REF_20251222_155608"
+      },
+      "status_message": null,
+      "amount_in_cents": 161037100,
+      "payment_link_id": null,
+      "shipping_address": null,
+      "payment_source_id": null,
+      "payment_method_type": "BANCOLOMBIA_COLLECT"
+    }
+  },
+  "event": "transaction.updated",
+  "sent_at": "2025-12-22T20:58:50.379Z",
+  "signature": {
+    "checksum": "9be0b8fe09e186eb472389efce7462f9f0b934105472eca4feacde11edc7926c",
+    "properties": [
+      "transaction.id",
+      "transaction.status",
+      "transaction.amount_in_cents"
+    ]
+  },
+  "timestamp": 1766437130,
+  "environment": "test"
+}
+2025-12-22 16:00:20.292 -05:00 [INF] Procesando transacción 1126070-1766437129-84632, Estado: APPROVED
+2025-12-22 16:00:27.020 -05:00 [INF] [EVA OK] 1
+2025-12-22 16:08:30.152 -05:00 [INF] Iniciando validación del cliente con resal: 06156133
+2025-12-22 16:08:30.443 -05:00 [INF] Cliente con resal 06156133 encontrado. Status: A
+2025-12-22 16:08:30.459 -05:00 [INF] Iniciando validación del cliente con resal: 06156133
+2025-12-22 16:08:30.470 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06156133
+2025-12-22 16:08:30.630 -05:00 [INF] Cliente con resal 06156133 encontrado. Status: A
+2025-12-22 16:08:30.671 -05:00 [INF] Cliente encontrado: BELLEZA Y ESTILO                                  , Teléfono: 3123497224     
+2025-12-22 16:08:30.687 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06156133
+2025-12-22 16:08:30.783 -05:00 [INF] Cliente encontrado: BELLEZA Y ESTILO                                  , Teléfono: 3123497224     
+2025-12-22 16:08:32.810 -05:00 [INF] Iniciando validación del cliente con resal: 06156133
+2025-12-22 16:08:32.930 -05:00 [INF] Cliente con resal 06156133 encontrado. Status: A
+2025-12-22 16:08:32.940 -05:00 [INF] Iniciando validación del cliente con resal: 06156133
+2025-12-22 16:08:32.944 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06156133
+2025-12-22 16:08:33.057 -05:00 [INF] Cliente encontrado: BELLEZA Y ESTILO                                  , Teléfono: 3123497224     
+2025-12-22 16:08:33.081 -05:00 [INF] Cliente con resal 06156133 encontrado. Status: A
+2025-12-22 16:08:33.114 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06156133
+2025-12-22 16:08:33.221 -05:00 [INF] Cliente encontrado: BELLEZA Y ESTILO                                  , Teléfono: 3123497224     
+2025-12-22 16:08:36.411 -05:00 [INF] Iniciando validación del cliente con resal: 06156133
+2025-12-22 16:08:36.543 -05:00 [INF] Cliente con resal 06156133 encontrado. Status: A
+2025-12-22 16:08:36.556 -05:00 [INF] Iniciando validación del cliente con resal: 06156133
+2025-12-22 16:08:36.563 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06156133
+2025-12-22 16:08:36.673 -05:00 [INF] Cliente encontrado: BELLEZA Y ESTILO                                  , Teléfono: 3123497224     
+2025-12-22 16:08:36.694 -05:00 [INF] Cliente con resal 06156133 encontrado. Status: A
+2025-12-22 16:08:36.725 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06156133
+2025-12-22 16:08:36.838 -05:00 [INF] Cliente encontrado: BELLEZA Y ESTILO                                  , Teléfono: 3123497224     
+2025-12-22 16:09:19.734 -05:00 [INF] [EVA RESPONSE OK] 3
+2025-12-22 16:10:21.635 -05:00 [INF] JSON recibido: {
+  "data": {
+    "transaction": {
+      "id": "1126070-1766437129-84632",
+      "origin": null,
+      "status": "APPROVED",
+      "currency": "COP",
+      "reference": "NIT-06156133-FAV-3073264_1610371_DP-49934_APP_EVA_CMPY_RE_REG_06_TERI_02_PHONE_3114613565_REF_20251222_155608",
+      "created_at": "2025-12-22T20:58:49.979Z",
+      "billing_data": null,
+      "finalized_at": "2025-12-22T20:58:50.000Z",
+      "redirect_url": "https://a1b2c3d4.ngrok.io/confirmation",
+      "customer_data": {
+        "device_id": "537a9de52265f409348264c1a1e038b8",
+        "full_name": "BELLEZA Y ESTILO",
+        "browser_info": {
+          "browser_tz": "300",
+          "browser_language": "es",
+          "browser_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+          "browser_color_depth": "24",
+          "browser_screen_width": "1920",
+          "browser_screen_height": "1080"
+        },
+        "phone_number": "3123497224",
+        "device_data_token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wcmVzc2VkIjoiZUp6VlZsbHYyemdRL2l1RW5tSkFtK2l5cXFSUFBuSVl0Vk1qZHBzRkZrVkFrU09ac0VScUtjcEhnL3ozSFVxTzR3Uzc3MWtic0RUZkRPZWVvWitkbFRIVmp4cjBJQWRwbkN0bnBuNkxvcUFYL1hPUG5EMEt5ZFcySnZkTDRudm4zbGVDUUJ4OUpiczQ2cEZCVlJYd0NPazNZUzc2NFpmek1DWm4zKzZXczZsTENyRUdjZ3Rzclhwa3ROS3FoQXMvQ3NtQ1psU0xnN0RqdnJjOXBvWTZWODlPcXRFaWFIU2xPNGx5QitocEE3b1dTaUlMdFoxNzlvdGNWU053OExRbFQrVTZFUTRid1FEcCtRZ3BxdGxLR0dDbTBSYkRZQkFFbVF0cHlTNGlSQW9xODRibUZnT3JXTlF6bFlvQzZZd1dOVmhnU2RNQ3pBa3dobnB0Vk9WY0dkM0FpK3RVQlRXWjBtWG5ZUmdjZ2g0d0JwV1pmakFnNlViazFDZzkxNm9DYlFUVUk5WFlxbHhHcnJPRjlIYjZFekJNZmVwbEN6OGdEQnJlR09UUndxOXNtOXJqeVZ1bDhnTElSTEp6Y2phUkJvcmVxZHlKcXNIOTdmVDZJT09TOW5IMjBDTVRMV3I3L0JOTHJHbTFFcXdtWjk3T3c4L2d5OER2a2JIUW1OeHc3UHRrVXovMW56eFN0UStYakMzNHp0eGlSZEhjSEErSXJtUkI2RHFaaHI4YmtHdy9rTFRZdDgwUUphamVkWXdvNGJkcTZ6UW9RUXRHTDRZcVY5ZzVybE16RFNBZkJUY3I1OHEvREx4WDZBNUV2c0lzK2w1eXhNYVlmeFFMTUxGTXFUV20rbHJhWXZLdWRGaDl4V2l4d0dKZ2dUNndhcWl0ci8vT3hENkVIZkR4OEFPK29wcHZxWWFSa3F6UjJrYUhIZ1d2dlRtRFVtbEVFdXdaMEtWb0xkUWppa0hpVktDUUZLanJIWE1tR1BiSnFzdkdVU0JUMHVCQS9PWFlvV0o3Y2pORWNFUUxrV3BoMzNEU0dqUjBmQ08zeW1BSkVialJWSzRMSWQrUU93ckdnS3paYWd2WStCcWhhY01FcDJTbzI1UWU2UVdWdG9ObkMvSzlNUVVtdENNZUlBTWJLcEJGaFJXbWhkbDNqQitUTnl1ekpibmVHVzFMT0tNYTU4bnFuU21wekw0Q01sSTR5eHZMbkdQZkdTSHQ2d0p5QlZiSnRIWGpsK3MwTlF6NEVJdTJQazRqVi9mS0xEVzFrT1BiM0JVTnpyaE56alBPV3RudWcvRU4rU2xnMjhiR0FYdERWS1piSFhPbGphMGdHU3ZXbEpnc2NvT0RUSzF6SlhiaEVwM3JWRmszVVo3aU9zUit0S2N2S3A3WmhteXlUT3lzbEdPQkYvY29hMkJuL2tQb2x4VTdlTmN0UVBJL2NGSTA1U2QzczUyV1dtV0dYUFA4cytmMHNNVFRSaFRtRDV4STlQYnp1SW5UdGhFY1ZHZXV0bmQyV1VYSUwraytoVzY1bHlla3l2TWpoVmVpN2k0WVBpbHhlZDdSR3Jld2s5QWs4M2lRcGtrYWgxN0lZeS8yYUFMWnBlZnprSEhXOTd3Z0RTT2VSVEZFY1I5LzdRK0wvU0QwT0l2bzhZcWZqRkViL3IrZ2x4ejZRUkQzczhpN0RLTWtpQ1BtVXgrOE1Fa1Q1K1VmcUgvNEVnPT0ifQ.yJ1MecmHdueHaha1DKhvtbYnaSwovg2IzwG5QU3oT-E"
+      },
+      "customer_email": "test@recamier.com",
+      "payment_method": {
+        "type": "BANCOLOMBIA_COLLECT",
+        "extra": {
+          "external_identifier": "47159950171",
+          "business_agreement_code": "00000",
+          "payment_intention_identifier": "47159950171"
+        },
+        "sandbox_status": "APPROVED",
+        "payment_description": "Pago a RECAMIER, ref: NIT-06156133-FAV-3073264_1610371_DP-49934_APP_EVA_CMPY_RE_REG_06_TERI_02_PHONE_3114613565_REF_20251222_155608"
+      },
+      "status_message": null,
+      "amount_in_cents": 161037100,
+      "payment_link_id": null,
+      "shipping_address": null,
+      "payment_source_id": null,
+      "payment_method_type": "BANCOLOMBIA_COLLECT"
+    }
+  },
+  "event": "transaction.updated",
+  "sent_at": "2025-12-22T20:58:50.379Z",
+  "signature": {
+    "checksum": "9be0b8fe09e186eb472389efce7462f9f0b934105472eca4feacde11edc7926c",
+    "properties": [
+      "transaction.id",
+      "transaction.status",
+      "transaction.amount_in_cents"
+    ]
+  },
+  "timestamp": 1766437130,
+  "environment": "test"
+}
+2025-12-22 16:10:21.668 -05:00 [INF] Procesando transacción 1126070-1766437129-84632, Estado: APPROVED
+2025-12-22 16:10:24.120 -05:00 [ERR] Error al procesar el webhook.
+IBM.Data.Db2.DB2Exception (0x80004005): ERROR [23000] [IBM][IDS/UNIX64] Could not insert new row - duplicate value in a UNIQUE INDEX column (Unique Index:pk_control_transferencias). (-100 ISAM error:  duplicate value for a record with unique key.)
+   at IBM.Data.Db2.DB2Connection.HandleError(IntPtr hHandle, SQL_HANDLE hType, RETCODE retcode)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject(Boolean skipInitialValidation)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject()
+   at IBM.Data.Db2.DB2Command.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at WompiRecamier.Services.InformixService.InsertTransferControlAsync(WompiWebhook webhook) in C:\RECAMIER\procesos\Federico\WompiRecamier\Services\InformixService.cs:line 508
+   at WompiRecamier.Controllers.ValidationController.Webhook(JsonElement payload) in C:\RECAMIER\procesos\Federico\WompiRecamier\Controllers\ValidationController.cs:line 234
+2025-12-22 16:11:06.748 -05:00 [INF] JSON recibido: {
+  "data": {
+    "transaction": {
+      "id": "1126070-1766437129-84632",
+      "origin": null,
+      "status": "APPROVED",
+      "currency": "COP",
+      "reference": "NIT-06156133-FAV-3073264_1610371_DP-49934_APP_EVA_CMPY_RE_REG_06_TERI_02_PHONE_3114613565_REF_20251222_155608",
+      "created_at": "2025-12-22T20:58:49.979Z",
+      "billing_data": null,
+      "finalized_at": "2025-12-22T20:58:50.000Z",
+      "redirect_url": "https://a1b2c3d4.ngrok.io/confirmation",
+      "customer_data": {
+        "device_id": "537a9de52265f409348264c1a1e038b8",
+        "full_name": "BELLEZA Y ESTILO",
+        "browser_info": {
+          "browser_tz": "300",
+          "browser_language": "es",
+          "browser_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+          "browser_color_depth": "24",
+          "browser_screen_width": "1920",
+          "browser_screen_height": "1080"
+        },
+        "phone_number": "3123497224",
+        "device_data_token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wcmVzc2VkIjoiZUp6VlZsbHYyemdRL2l1RW5tSkFtK2l5cXFSUFBuSVl0Vk1qZHBzRkZrVkFrU09ac0VScUtjcEhnL3ozSFVxTzR3Uzc3MWtic0RUZkRPZWVvWitkbFRIVmp4cjBJQWRwbkN0bnBuNkxvcUFYL1hPUG5EMEt5ZFcySnZkTDRudm4zbGVDUUJ4OUpiczQ2cEZCVlJYd0NPazNZUzc2NFpmek1DWm4zKzZXczZsTENyRUdjZ3Rzclhwa3ROS3FoQXMvQ3NtQ1psU0xnN0RqdnJjOXBvWTZWODlPcXRFaWFIU2xPNGx5QitocEE3b1dTaUlMdFoxNzlvdGNWU053OExRbFQrVTZFUTRid1FEcCtRZ3BxdGxLR0dDbTBSYkRZQkFFbVF0cHlTNGlSQW9xODRibUZnT3JXTlF6bFlvQzZZd1dOVmhnU2RNQ3pBa3dobnB0Vk9WY0dkM0FpK3RVQlRXWjBtWG5ZUmdjZ2g0d0JwV1pmakFnNlViazFDZzkxNm9DYlFUVUk5WFlxbHhHcnJPRjlIYjZFekJNZmVwbEN6OGdEQnJlR09UUndxOXNtOXJqeVZ1bDhnTElSTEp6Y2phUkJvcmVxZHlKcXNIOTdmVDZJT09TOW5IMjBDTVRMV3I3L0JOTHJHbTFFcXdtWjk3T3c4L2d5OER2a2JIUW1OeHc3UHRrVXovMW56eFN0UStYakMzNHp0eGlSZEhjSEErSXJtUkI2RHFaaHI4YmtHdy9rTFRZdDgwUUphamVkWXdvNGJkcTZ6UW9RUXRHTDRZcVY5ZzVybE16RFNBZkJUY3I1OHEvREx4WDZBNUV2c0lzK2w1eXhNYVlmeFFMTUxGTXFUV20rbHJhWXZLdWRGaDl4V2l4d0dKZ2dUNndhcWl0ci8vT3hENkVIZkR4OEFPK29wcHZxWWFSa3F6UjJrYUhIZ1d2dlRtRFVtbEVFdXdaMEtWb0xkUWppa0hpVktDUUZLanJIWE1tR1BiSnFzdkdVU0JUMHVCQS9PWFlvV0o3Y2pORWNFUUxrV3BoMzNEU0dqUjBmQ08zeW1BSkVialJWSzRMSWQrUU93ckdnS3paYWd2WStCcWhhY01FcDJTbzI1UWU2UVdWdG9ObkMvSzlNUVVtdENNZUlBTWJLcEJGaFJXbWhkbDNqQitUTnl1ekpibmVHVzFMT0tNYTU4bnFuU21wekw0Q01sSTR5eHZMbkdQZkdTSHQ2d0p5QlZiSnRIWGpsK3MwTlF6NEVJdTJQazRqVi9mS0xEVzFrT1BiM0JVTnpyaE56alBPV3RudWcvRU4rU2xnMjhiR0FYdERWS1piSFhPbGphMGdHU3ZXbEpnc2NvT0RUSzF6SlhiaEVwM3JWRmszVVo3aU9zUit0S2N2S3A3WmhteXlUT3lzbEdPQkYvY29hMkJuL2tQb2x4VTdlTmN0UVBJL2NGSTA1U2QzczUyV1dtV0dYUFA4cytmMHNNVFRSaFRtRDV4STlQYnp1SW5UdGhFY1ZHZXV0bmQyV1VYSUwraytoVzY1bHlla3l2TWpoVmVpN2k0WVBpbHhlZDdSR3Jld2s5QWs4M2lRcGtrYWgxN0lZeS8yYUFMWnBlZnprSEhXOTd3Z0RTT2VSVEZFY1I5LzdRK0wvU0QwT0l2bzhZcWZqRkViL3IrZ2x4ejZRUkQzczhpN0RLTWtpQ1BtVXgrOE1Fa1Q1K1VmcUgvNEVnPT0ifQ.yJ1MecmHdueHaha1DKhvtbYnaSwovg2IzwG5QU3oT-E"
+      },
+      "customer_email": "test@recamier.com",
+      "payment_method": {
+        "type": "BANCOLOMBIA_COLLECT",
+        "extra": {
+          "external_identifier": "47159950171",
+          "business_agreement_code": "00000",
+          "payment_intention_identifier": "47159950171"
+        },
+        "sandbox_status": "APPROVED",
+        "payment_description": "Pago a RECAMIER, ref: NIT-06156133-FAV-3073264_1610371_DP-49934_APP_EVA_CMPY_RE_REG_06_TERI_02_PHONE_3114613565_REF_20251222_155608"
+      },
+      "status_message": null,
+      "amount_in_cents": 161037100,
+      "payment_link_id": null,
+      "shipping_address": null,
+      "payment_source_id": null,
+      "payment_method_type": "BANCOLOMBIA_COLLECT"
+    }
+  },
+  "event": "transaction.updated",
+  "sent_at": "2025-12-22T20:58:50.379Z",
+  "signature": {
+    "checksum": "9be0b8fe09e186eb472389efce7462f9f0b934105472eca4feacde11edc7926c",
+    "properties": [
+      "transaction.id",
+      "transaction.status",
+      "transaction.amount_in_cents"
+    ]
+  },
+  "timestamp": 1766437130,
+  "environment": "test"
+}
+2025-12-22 16:11:06.788 -05:00 [INF] Procesando transacción 1126070-1766437129-84632, Estado: APPROVED
+2025-12-22 16:11:08.769 -05:00 [ERR] Error al procesar el webhook.
+IBM.Data.Db2.DB2Exception (0x80004005): ERROR [23000] [IBM][IDS/UNIX64] Could not insert new row - duplicate value in a UNIQUE INDEX column (Unique Index:pk_control_transferencias). (-100 ISAM error:  duplicate value for a record with unique key.)
+   at IBM.Data.Db2.DB2Connection.HandleError(IntPtr hHandle, SQL_HANDLE hType, RETCODE retcode)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject(Boolean skipInitialValidation)
+   at IBM.Data.Db2.DB2Command.ExecuteNonQueryObject()
+   at IBM.Data.Db2.DB2Command.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at WompiRecamier.Services.InformixService.InsertTransferControlAsync(WompiWebhook webhook) in C:\RECAMIER\procesos\Federico\WompiRecamier\Services\InformixService.cs:line 508
+   at WompiRecamier.Controllers.ValidationController.Webhook(JsonElement payload) in C:\RECAMIER\procesos\Federico\WompiRecamier\Controllers\ValidationController.cs:line 234
+2025-12-22 16:14:22.191 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06156133
+2025-12-22 16:14:22.405 -05:00 [INF] Cliente encontrado: BELLEZA Y ESTILO                                  , Teléfono: 3123497224     
+2025-12-22 16:14:22.424 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06156133
+2025-12-22 16:14:22.608 -05:00 [INF] Cliente encontrado: BELLEZA Y ESTILO                                  , Teléfono: 3123497224     
+2025-12-22 16:14:27.213 -05:00 [INF] Iniciando validación del cliente con resal: 06100705
+2025-12-22 16:14:27.353 -05:00 [INF] Cliente con resal 06100705 encontrado. Status: A
+2025-12-22 16:14:27.375 -05:00 [INF] Iniciando validación del cliente con resal: 06100705
+2025-12-22 16:14:27.383 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06100705
+2025-12-22 16:14:27.505 -05:00 [INF] Cliente encontrado: CHACON LUZ STELLA                                 , Teléfono: 3045492355     
+2025-12-22 16:14:27.543 -05:00 [INF] Cliente con resal 06100705 encontrado. Status: A
+2025-12-22 16:14:27.586 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06100705
+2025-12-22 16:14:27.764 -05:00 [INF] Cliente encontrado: CHACON LUZ STELLA                                 , Teléfono: 3045492355     
+2025-12-22 16:15:07.905 -05:00 [INF] [EVA RESPONSE OK] 1
+2025-12-22 16:17:02.212 -05:00 [INF] JSON recibido: {
+  "data": {
+    "transaction": {
+      "id": "1126070-1766438099-71870",
+      "origin": null,
+      "status": "APPROVED",
+      "currency": "COP",
+      "reference": "NIT-06100705-FAV-3082453_775804_DP-34027_APP_EVA_CMPY_RE_REG_06_TERI_02_PHONE_3174398278_REF_20251222_041308",
+      "created_at": "2025-12-22T21:14:59.560Z",
+      "billing_data": null,
+      "finalized_at": "2025-12-22T21:14:59.000Z",
+      "redirect_url": "https://a1b2c3d4.ngrok.io/confirmation",
+      "customer_data": {
+        "device_id": "537a9de52265f409348264c1a1e038b8",
+        "full_name": "CHACON LUZ STELLA",
+        "browser_info": {
+          "browser_tz": "300",
+          "browser_language": "es",
+          "browser_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+          "browser_color_depth": "24",
+          "browser_screen_width": "1920",
+          "browser_screen_height": "1080"
+        },
+        "phone_number": "3045492355",
+        "device_data_token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wcmVzc2VkIjoiZUp6VlZsbHYyemdRL2l1RW5tSkFtK2l5cXFSUFBuSVl0Vk1qZHBzRkZrVkFrU09ac0VScUtjcEhnL3ozSFVxTzR3Uzc3MWtic0RUZkRPZWVvWitkbFRIVmp4cjBJQWRwbkN0bnBuNkxvcUFYL1hPUG5EMEt5ZFcySnZkTDRudm4zbGVDUUJ4OUpiczQ2cEZCVlJYd0NPazNZUzc2NFpmek1DWm4zKzZXczZsTENyRUdjZ3Rzclhwa3ROS3FoQXMvQ3NtQ1psU0xnN0RqdnJjOXBvWTZWODlPcXRFaWFIU2xPNGx5QitocEE3b1dTaUlMdFoxNzlvdGNWU053OExRbFQrVTZFUTRid1FEcCtRZ3BxdGxLR0dDbTBSYkRZQkFFbVF0cHlTNGlSQW9xODRibUZnT3JXTlF6bFlvQzZZd1dOVmhnU2RNQ3pBa3dobnB0Vk9WY0dkM0FpK3RVQlRXWjBtWG5ZUmdjZ2g0d0JwV1pmakFnNlViazFDZzkxNm9DYlFUVUk5WFlxbHhHcnJPRjlIYjZFekJNZmVwbEN6OGdEQnJlR09UUndxOXNtOXJqeVZ1bDhnTElSTEp6Y2phUkJvcmVxZHlKcXNIOTdmVDZJT09TOW5IMjBDTVRMV3I3L0JOTHJHbTFFcXdtWjk3T3c4L2d5OER2a2JIUW1OeHc3UHRrVXovMW56eFN0UStYakMzNHp0eGlSZEhjSEErSXJtUkI2RHFaaHI4YmtHdy9rTFRZdDgwUUphamVkWXdvNGJkcTZ6UW9RUXRHTDRZcVY5ZzVybE16RFNBZkJUY3I1OHEvREx4WDZBNUV2c0lzK2w1eXhNYVlmeFFMTUxGTXFUV20rbHJhWXZLdWRGaDl4V2l4d0dKZ2dUNndhcWl0ci8vT3hENkVIZkR4OEFPK29wcHZxWWFSa3F6UjJrYUhIZ1d2dlRtRFVtbEVFdXdaMEtWb0xkUWppa0hpVktDUUZLanJIWE1tR1BiSnFzdkdVU0JUMHVCQS9PWFlvV0o3Y2pORWNFUUxrV3BoMzNEU0dqUjBmQ08zeW1BSkVialJWSzRMSWQrUU93ckdnS3paYWd2WStCcWhhY01FcDJTbzI1UWU2UVdWdG9ObkMvSzlNUVVtdENNZUlBTWJLcEJGaFJXbWhkbDNqQitUTnl1ekpibmVHVzFMT0tNYTU4bnFuU21wekw0Q01sSTR5eHZMbkdQZkdTSHQ2d0p5QlZiSnRIWGpsK3MwTlF6NEVJdTJQazRqVi9mS0xEVzFrT1BiM0JVTnpyaE56alBPV3RudWcvRU4rU2xnMjhiR0FYdERWS1piSFhPbGphMGdHU3ZXbEpnc2NvT0RUSzF6SlhiaEVwM3JWRmszVVo3aU9zUit0S2N2S3A3WmhteXlUT3lzbEdPQkYvY29hMkJuL2tQb2x4VTdlTmN0UVBJL2NGSTA1U2QzczUyV1dtV0dYUFA4cytmMHNNVFRSaFRtRDV4STlQYnp1SW5UdGhFY1ZHZXV0bmQyV1VYSUwraytoVzY1bHlla3l2TWpoVmVpN2k0WVBpbHhlZDdSR3Jld2s5QWs4M2lRcGtrYWgxN0lZeS8yYUFMWnBlZnprSEhXOTd3Z0RTT2VSVEZFY1I5LzdRK0wvU0QwT0l2bzhZcWZqRkViL3IrZ2x4ejZRUkQzczhpN0RLTWtpQ1BtVXgrOE1Fa1Q1K1VmcUgvNEVnPT0ifQ.yJ1MecmHdueHaha1DKhvtbYnaSwovg2IzwG5QU3oT-E"
+      },
+      "customer_email": "test@recamier.com",
+      "payment_method": {
+        "type": "BANCOLOMBIA_COLLECT",
+        "extra": {
+          "external_identifier": "27601738322",
+          "business_agreement_code": "00000",
+          "payment_intention_identifier": "27601738322"
+        },
+        "sandbox_status": "APPROVED",
+        "payment_description": "Pago a RECAMIER, ref: NIT-06100705-FAV-3082453_775804_DP-34027_APP_EVA_CMPY_RE_REG_06_TERI_02_PHONE_3174398278_REF_20251222_041308"
+      },
+      "status_message": null,
+      "amount_in_cents": 77580400,
+      "payment_link_id": null,
+      "shipping_address": null,
+      "payment_source_id": null,
+      "payment_method_type": "BANCOLOMBIA_COLLECT"
+    }
+  },
+  "event": "transaction.updated",
+  "sent_at": "2025-12-22T21:16:02.069Z",
+  "signature": {
+    "checksum": "2caba29351504757dcf8779196d166589dc27610977d37aa5bd70a3c7c7d5108",
+    "properties": [
+      "transaction.id",
+      "transaction.status",
+      "transaction.amount_in_cents"
+    ]
+  },
+  "timestamp": 1766438162,
+  "environment": "test"
+}
+2025-12-22 16:17:02.235 -05:00 [INF] Procesando transacción 1126070-1766438099-71870, Estado: APPROVED
+2025-12-22 16:17:08.420 -05:00 [INF] [EVA OK] 1
+2025-12-22 16:29:00.064 -05:00 [INF] Iniciando validación del cliente con resal: 06100705
+2025-12-22 16:29:00.462 -05:00 [INF] Cliente con resal 06100705 encontrado. Status: A
+2025-12-22 16:29:00.553 -05:00 [INF] Iniciando validación del cliente con resal: 06100705
+2025-12-22 16:29:00.567 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06100705
+2025-12-22 16:29:00.707 -05:00 [INF] Cliente con resal 06100705 encontrado. Status: A
+2025-12-22 16:29:00.748 -05:00 [INF] Cliente encontrado: CHACON LUZ STELLA                                 , Teléfono: 3045492355     
+2025-12-22 16:29:00.771 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06100705
+2025-12-22 16:29:00.889 -05:00 [INF] Cliente encontrado: CHACON LUZ STELLA                                 , Teléfono: 3045492355     
+2025-12-22 16:29:05.366 -05:00 [INF] Iniciando validación del cliente con resal: 06115380
+2025-12-22 16:29:05.523 -05:00 [INF] Cliente con resal 06115380 encontrado. Status: A
+2025-12-22 16:29:05.540 -05:00 [INF] Iniciando validación del cliente con resal: 06115380
+2025-12-22 16:29:05.550 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06115380
+2025-12-22 16:29:05.691 -05:00 [INF] Cliente encontrado: KRISS PEL  CRISTINA ACUNA                         , Teléfono: 3166522981     
+2025-12-22 16:29:05.704 -05:00 [INF] Cliente con resal 06115380 encontrado. Status: A
+2025-12-22 16:29:05.755 -05:00 [INF] Iniciando solicitud para obtener información del cliente con Resal: 06115380
+2025-12-22 16:29:05.881 -05:00 [INF] Cliente encontrado: KRISS PEL  CRISTINA ACUNA                         , Teléfono: 3166522981     
+2025-12-22 16:30:00.875 -05:00 [INF] [EVA RESPONSE OK] 2
+2025-12-22 16:32:52.110 -05:00 [INF] JSON recibido: {
+  "data": {
+    "transaction": {
+      "id": "1126070-1766438995-42493",
+      "origin": null,
+      "status": "APPROVED",
+      "currency": "COP",
+      "reference": "NIT-06115380-FAV-3079758_174927_DP-20041-3081927_192966_DP-4991_APP_EVA_CMPY_RE_REG_06_TERI_02_PHONE_3174398278_REF_20251222_041508",
+      "created_at": "2025-12-22T21:29:55.177Z",
+      "billing_data": null,
+      "finalized_at": "2025-12-22T21:29:55.000Z",
+      "redirect_url": "https://a1b2c3d4.ngrok.io/confirmation",
+      "customer_data": {
+        "device_id": "537a9de52265f409348264c1a1e038b8",
+        "full_name": "KRISS PEL  CRISTINA ACUNA",
+        "browser_info": {
+          "browser_tz": "300",
+          "browser_language": "es",
+          "browser_user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+          "browser_color_depth": "24",
+          "browser_screen_width": "1920",
+          "browser_screen_height": "1080"
+        },
+        "phone_number": "3166522981",
+        "device_data_token": "eyJhbGciOiJIUzI1NiJ9.eyJjb21wcmVzc2VkIjoiZUp6VlZsbHYyemdRL2l1RW5tSkFtK2l5cXFSUFBuSVl0Vk1qZHBzRkZrVkFrU09ac0VScUtjcEhnL3ozSFVxTzR3Uzc3MWtic0RUZkRPZWVvWitkbFRIVmp4cjBJQWRwbkN0bnBuNkxvcUFYL1hPUG5EMEt5ZFcySnZkTDRudm4zbGVDUUJ4OUpiczQ2cEZCVlJYd0NPazNZUzc2NFpmek1DWm4zKzZXczZsTENyRUdjZ3Rzclhwa3ROS3FoQXMvQ3NtQ1psU0xnN0RqdnJjOXBvWTZWODlPcXRFaWFIU2xPNGx5QitocEE3b1dTaUlMdFoxNzlvdGNWU053OExRbFQrVTZFUTRid1FEcCtRZ3BxdGxLR0dDbTBSYkRZQkFFbVF0cHlTNGlSQW9xODRibUZnT3JXTlF6bFlvQzZZd1dOVmhnU2RNQ3pBa3dobnB0Vk9WY0dkM0FpK3RVQlRXWjBtWG5ZUmdjZ2g0d0JwV1pmakFnNlViazFDZzkxNm9DYlFUVUk5WFlxbHhHcnJPRjlIYjZFekJNZmVwbEN6OGdEQnJlR09UUndxOXNtOXJqeVZ1bDhnTElSTEp6Y2phUkJvcmVxZHlKcXNIOTdmVDZJT09TOW5IMjBDTVRMV3I3L0JOTHJHbTFFcXdtWjk3T3c4L2d5OER2a2JIUW1OeHc3UHRrVXovMW56eFN0UStYakMzNHp0eGlSZEhjSEErSXJtUkI2RHFaaHI4YmtHdy9rTFRZdDgwUUphamVkWXdvNGJkcTZ6UW9RUXRHTDRZcVY5ZzVybE16RFNBZkJUY3I1OHEvREx4WDZBNUV2c0lzK2w1eXhNYVlmeFFMTUxGTXFUV20rbHJhWXZLdWRGaDl4V2l4d0dKZ2dUNndhcWl0ci8vT3hENkVIZkR4OEFPK29wcHZxWWFSa3F6UjJrYUhIZ1d2dlRtRFVtbEVFdXdaMEtWb0xkUWppa0hpVktDUUZLanJIWE1tR1BiSnFzdkdVU0JUMHVCQS9PWFlvV0o3Y2pORWNFUUxrV3BoMzNEU0dqUjBmQ08zeW1BSkVialJWSzRMSWQrUU93ckdnS3paYWd2WStCcWhhY01FcDJTbzI1UWU2UVdWdG9ObkMvSzlNUVVtdENNZUlBTWJLcEJGaFJXbWhkbDNqQitUTnl1ekpibmVHVzFMT0tNYTU4bnFuU21wekw0Q01sSTR5eHZMbkdQZkdTSHQ2d0p5QlZiSnRIWGpsK3MwTlF6NEVJdTJQazRqVi9mS0xEVzFrT1BiM0JVTnpyaE56alBPV3RudWcvRU4rU2xnMjhiR0FYdERWS1piSFhPbGphMGdHU3ZXbEpnc2NvT0RUSzF6SlhiaEVwM3JWRmszVVo3aU9zUit0S2N2S3A3WmhteXlUT3lzbEdPQkYvY29hMkJuL2tQb2x4VTdlTmN0UVBJL2NGSTA1U2QzczUyV1dtV0dYUFA4cytmMHNNVFRSaFRtRDV4STlQYnp1SW5UdGhFY1ZHZXV0bmQyV1VYSUwraytoVzY1bHlla3l2TWpoVmVpN2k0WVBpbHhlZDdSR3Jld2s5QWs4M2lRcGtrYWgxN0lZeS8yYUFMWnBlZnprSEhXOTd3Z0RTT2VSVEZFY1I5LzdRK0wvU0QwT0l2bzhZcWZqRkViL3IrZ2x4ejZRUkQzczhpN0RLTWtpQ1BtVXgrOE1Fa1Q1K1VmcUgvNEVnPT0ifQ.yJ1MecmHdueHaha1DKhvtbYnaSwovg2IzwG5QU3oT-E"
+      },
+      "customer_email": "test@recamier.com",
+      "payment_method": {
+        "type": "BANCOLOMBIA_COLLECT",
+        "extra": {
+          "external_identifier": "17327836646",
+          "business_agreement_code": "00000",
+          "payment_intention_identifier": "17327836646"
+        },
+        "sandbox_status": "APPROVED",
+        "payment_description": "Pago a RECAMIER, ref: NIT-06115380-FAV-3079758_174927_DP-20041-3081927_192966_DP-4991_APP_EVA_CMPY_RE_REG_06_TERI_02_PHONE_3174398278_REF_20251222_041508"
+      },
+      "status_message": null,
+      "amount_in_cents": 36789300,
+      "payment_link_id": null,
+      "shipping_address": null,
+      "payment_source_id": null,
+      "payment_method_type": "BANCOLOMBIA_COLLECT"
+    }
+  },
+  "event": "transaction.updated",
+  "sent_at": "2025-12-22T21:29:55.463Z",
+  "signature": {
+    "checksum": "2bffa79baec68ae0ebaf843d22782ef2f547e2b18dd49697f3ade43c23422b01",
+    "properties": [
+      "transaction.id",
+      "transaction.status",
+      "transaction.amount_in_cents"
+    ]
+  },
+  "timestamp": 1766438995,
+  "environment": "test"
+}
+2025-12-22 16:32:52.211 -05:00 [INF] Procesando transacción 1126070-1766438995-42493, Estado: APPROVED
+2025-12-22 16:33:02.986 -05:00 [INF] [EVA OK] 2
+2025-12-22 16:55:06.669 -05:00 [INF] [EVA RESPONSE OK] 2
+2025-12-22 17:29:57.492 -05:00 [Information] [EVA RESPONSE OK] "2"
+2025-12-22 17:31:22.809 -05:00 [Information] JSON recibido: "{
+  \"data\": {
+    \"transaction\": {
+      \"id\": \"1126070-1766438995-42493\",
+      \"origin\": null,
+      \"status\": \"APPROVED\",
+      \"currency\": \"COP\",
+      \"reference\": \"NIT-06115380-FAV-3079758_174927_DP-20041-3081927_192966_DP-4991_APP_EVA_CMPY_RE_REG_06_TERI_02_PHONE_3174398278_REF_20251222_041508\",
+      \"created_at\": \"2025-12-22T21:29:55.177Z\",
+      \"billing_data\": null,
+      \"finalized_at\": \"2025-12-22T21:29:55.000Z\",
+      \"redirect_url\": \"https://a1b2c3d4.ngrok.io/confirmation\",
+      \"customer_data\": {
+        \"device_id\": \"537a9de52265f409348264c1a1e038b8\",
+        \"full_name\": \"KRISS PEL  CRISTINA ACUNA\",
+        \"browser_info\": {
+          \"browser_tz\": \"300\",
+          \"browser_language\": \"es\",
+          \"browser_user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\",
+          \"browser_color_depth\": \"24\",
+          \"browser_screen_width\": \"1920\",
+          \"browser_screen_height\": \"1080\"
+        },
+        \"phone_number\": \"3166522981\",
+        \"device_data_token\": \"eyJhbGciOiJIUzI1NiJ9.eyJjb21wcmVzc2VkIjoiZUp6VlZsbHYyemdRL2l1RW5tSkFtK2l5cXFSUFBuSVl0Vk1qZHBzRkZrVkFrU09ac0VScUtjcEhnL3ozSFVxTzR3Uzc3MWtic0RUZkRPZWVvWitkbFRIVmp4cjBJQWRwbkN0bnBuNkxvcUFYL1hPUG5EMEt5ZFcySnZkTDRudm4zbGVDUUJ4OUpiczQ2cEZCVlJYd0NPazNZUzc2NFpmek1DWm4zKzZXczZsTENyRUdjZ3Rzclhwa3ROS3FoQXMvQ3NtQ1psU0xnN0RqdnJjOXBvWTZWODlPcXRFaWFIU2xPNGx5QitocEE3b1dTaUlMdFoxNzlvdGNWU053OExRbFQrVTZFUTRid1FEcCtRZ3BxdGxLR0dDbTBSYkRZQkFFbVF0cHlTNGlSQW9xODRibUZnT3JXTlF6bFlvQzZZd1dOVmhnU2RNQ3pBa3dobnB0Vk9WY0dkM0FpK3RVQlRXWjBtWG5ZUmdjZ2g0d0JwV1pmakFnNlViazFDZzkxNm9DYlFUVUk5WFlxbHhHcnJPRjlIYjZFekJNZmVwbEN6OGdEQnJlR09UUndxOXNtOXJqeVZ1bDhnTElSTEp6Y2phUkJvcmVxZHlKcXNIOTdmVDZJT09TOW5IMjBDTVRMV3I3L0JOTHJHbTFFcXdtWjk3T3c4L2d5OER2a2JIUW1OeHc3UHRrVXovMW56eFN0UStYakMzNHp0eGlSZEhjSEErSXJtUkI2RHFaaHI4YmtHdy9rTFRZdDgwUUphamVkWXdvNGJkcTZ6UW9RUXRHTDRZcVY5ZzVybE16RFNBZkJUY3I1OHEvREx4WDZBNUV2c0lzK2w1eXhNYVlmeFFMTUxGTXFUV20rbHJhWXZLdWRGaDl4V2l4d0dKZ2dUNndhcWl0ci8vT3hENkVIZkR4OEFPK29wcHZxWWFSa3F6UjJrYUhIZ1d2dlRtRFVtbEVFdXdaMEtWb0xkUWppa0hpVktDUUZLanJIWE1tR1BiSnFzdkdVU0JUMHVCQS9PWFlvV0o3Y2pORWNFUUxrV3BoMzNEU0dqUjBmQ08zeW1BSkVialJWSzRMSWQrUU93ckdnS3paYWd2WStCcWhhY01FcDJTbzI1UWU2UVdWdG9ObkMvSzlNUVVtdENNZUlBTWJLcEJGaFJXbWhkbDNqQitUTnl1ekpibmVHVzFMT0tNYTU4bnFuU21wekw0Q01sSTR5eHZMbkdQZkdTSHQ2d0p5QlZiSnRIWGpsK3MwTlF6NEVJdTJQazRqVi9mS0xEVzFrT1BiM0JVTnpyaE56alBPV3RudWcvRU4rU2xnMjhiR0FYdERWS1piSFhPbGphMGdHU3ZXbEpnc2NvT0RUSzF6SlhiaEVwM3JWRmszVVo3aU9zUit0S2N2S3A3WmhteXlUT3lzbEdPQkYvY29hMkJuL2tQb2x4VTdlTmN0UVBJL2NGSTA1U2QzczUyV1dtV0dYUFA4cytmMHNNVFRSaFRtRDV4STlQYnp1SW5UdGhFY1ZHZXV0bmQyV1VYSUwraytoVzY1bHlla3l2TWpoVmVpN2k0WVBpbHhlZDdSR3Jld2s5QWs4M2lRcGtrYWgxN0lZeS8yYUFMWnBlZnprSEhXOTd3Z0RTT2VSVEZFY1I5LzdRK0wvU0QwT0l2bzhZcWZqRkViL3IrZ2x4ejZRUkQzczhpN0RLTWtpQ1BtVXgrOE1Fa1Q1K1VmcUgvNEVnPT0ifQ.yJ1MecmHdueHaha1DKhvtbYnaSwovg2IzwG5QU3oT-E\"
+      },
+      \"customer_email\": \"test@recamier.com\",
+      \"payment_method\": {
+        \"type\": \"BANCOLOMBIA_COLLECT\",
+        \"extra\": {
+          \"external_identifier\": \"17327836646\",
+          \"business_agreement_code\": \"00000\",
+          \"payment_intention_identifier\": \"17327836646\"
+        },
+        \"sandbox_status\": \"APPROVED\",
+        \"payment_description\": \"Pago a RECAMIER, ref: NIT-06115380-FAV-3079758_174927_DP-20041-3081927_192966_DP-4991_APP_EVA_CMPY_RE_REG_06_TERI_02_PHONE_3174398278_REF_20251222_041508\"
+      },
+      \"status_message\": null,
+      \"amount_in_cents\": 36789300,
+      \"payment_link_id\": null,
+      \"shipping_address\": null,
+      \"payment_source_id\": null,
+      \"payment_method_type\": \"BANCOLOMBIA_COLLECT\"
+    }
+  },
+  \"event\": \"transaction.updated\",
+  \"sent_at\": \"2025-12-22T22:00:59.542Z\",
+  \"signature\": {
+    \"checksum\": \"7fb524458e8b13cd6c0119b5f63f489a0a17a7971588c37b6897a017df51c3fa\",
+    \"properties\": [
+      \"transaction.id\",
+      \"transaction.status\",
+      \"transaction.amount_in_cents\"
+    ]
+  },
+  \"timestamp\": 1766440859,
+  \"environment\": \"test\"
+}"
+2025-12-22 17:31:22.940 -05:00 [Information] Procesando transacción "1126070-1766438995-42493", Estado: "APPROVED"
+2025-12-22 17:31:34.706 -05:00 [Information] [EVA OK] "2"
